@@ -32,8 +32,13 @@ def make_policies(ep, seed):
 
 
 def _summ(rows):
+    """P and R are pooled over all findings/errors of the split (micro average): a per-episode mean would
+    count clean episodes (no errors, nothing flagged: 0/0) as P=R=0 while F1=1. None = undefined (0/0)."""
     f = lambda k: statistics.mean(r[k] for r in rows)
-    return {"episodes": len(rows), "precision": f("precision"), "recall": f("recall"), "f1": f("f1"), "return": f("reward"),
+    tp, fp, fn = (sum(r[k] for r in rows) for k in ("tp", "fp", "fn"))
+    return {"episodes": len(rows), "tp": tp, "fp": fp, "fn": fn,
+            "precision": tp / (tp + fp) if tp + fp else None, "recall": tp / (tp + fn) if tp + fn else None,
+            "f1": f("f1"), "return": f("reward"),
             "inspection_steps": f("inspection_steps"), "wall_s": statistics.mean(r["wall_s"] for r in rows)}
 
 
@@ -53,7 +58,7 @@ def run_policies(split: str, mode: str, isolated: bool, traj=None, extra_referen
             else:
                 r = run_episode(pol, e["seed"], e["config"], mode=mode, episode=ep, traj=traj)
             ev = r["evaluation"]
-            per.setdefault(pol.name, []).append({**{k: ev[k] for k in ("precision", "recall", "f1", "reward", "inspection_steps", "by_type")},
+            per.setdefault(pol.name, []).append({**{k: ev[k] for k in ("tp", "fp", "fn", "precision", "recall", "f1", "reward", "inspection_steps", "by_type")},
                                                  "wall_s": r["wall_s"], "name": e["name"], "seed": e["seed"],
                                                  "n_issues": ev["tp"] + ev["fn"]})
     return per
@@ -89,10 +94,18 @@ def cmd_baselines(args):
 def markdown_table(summary):
     lines = []
     for split, per in summary.items():
-        lines += [f"\n**{split}**\n", "| policy | P | R | F1 | return | steps | s/episode |", "|---|---|---|---|---|---|---|"]
+        lines += [f"\n**{split}**\n", "| policy | TP | FP | FN | P (pooled) | R (pooled) | mean F1 | mean return | steps | s/episode |",
+                  "|---|---|---|---|---|---|---|---|---|---|"]
         for p, s in per.items():
-            lines.append(f"| {p} | {s['precision']:.3f} | {s['recall']:.3f} | {s['f1']:.3f} | {s['return']:.3f} | {s['inspection_steps']:.1f} | {s['wall_s']:.2f} |")
+            lines.append(f"| {p} | {s['tp']} | {s['fp']} | {s['fn']} | {_fmt(s['precision'])} | {_fmt(s['recall'])} | {s['f1']:.3f} | "
+                         f"{s['return']:.3f} | {s['inspection_steps']:.1f} | {s['wall_s']:.2f} |")
+    lines.append("\nP and R are pooled over all episodes of the split; mean F1 and mean return are averaged per episode "
+                 "(a clean episode answered with no findings has F1 = 1). '—' = nothing flagged, precision undefined.")
     return "\n".join(lines)
+
+
+def _fmt(x):
+    return "—" if x is None else f"{x:.3f}"
 
 
 def cmd_explain(args):

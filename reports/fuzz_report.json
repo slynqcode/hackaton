@@ -16,6 +16,6 @@
   "seed_range": 120,
   "recovered_without_secret": true,
   "recovered_with_secret": false,
-  "seconds": 1.7
+  "seconds": 2.0
  }
 }
