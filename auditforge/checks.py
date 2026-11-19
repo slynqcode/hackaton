@@ -60,6 +60,11 @@ def memo_invoice_ids(b: Book, memo: str) -> list:
     return sorted(i for i in b.inv if i in memo)
 
 
+def is_advance(b: Book, p: dict) -> bool:
+    """Legitimate prepayment on account: no references and the memo names no invoice."""
+    return p["invoice_refs"] == [] and not memo_invoice_ids(b, p["memo"]) and p["amount_minor"] > 0
+
+
 # ------------------------------------------------------------------ accounting invariants (clean books)
 
 def check_clean(tables: dict, manifest: dict, policy: dict) -> list:
@@ -112,12 +117,13 @@ def check_clean(tables: dict, manifest: dict, policy: dict) -> list:
         if refs is None:
             v.append(f"{pid}: null refs in clean books")
             continue
-        if sum(r["allocated_minor"] for r in refs) != p["amount_minor"]:
+        if sum(r["allocated_minor"] for r in refs) != p["amount_minor"] and not is_advance(b, p):
             v.append(f"{pid}: not fully allocated")
         if memo_invoice_ids(b, p["memo"]) != sorted(r["invoice_id"] for r in refs):
             v.append(f"{pid}: memo/refs mismatch")
         rows = b.rows_by_pay[pid]
-        if any(r["account"] == "UNAPPLIED" for r in rows):
+        un = sum(r["credit_minor"] for r in rows if r["account"] == "UNAPPLIED")
+        if un and not (is_advance(b, p) and un == p["amount_minor"]):
             v.append(f"{pid}: unapplied in clean books")
         cash = [r for r in rows if r["account"] == "CASH"]
         if len(cash) != 1 or cash[0]["debit_minor"] + cash[0]["credit_minor"] != abs(p["amount_minor"]) or cash[0]["currency"] != p["currency"]:
@@ -161,7 +167,7 @@ def detect(tables: dict, manifest: dict, policy: dict) -> list:
     for pid, p in b.pay.items():
         refs = p["invoice_refs"] or []
         un = p["amount_minor"] - sum(r["allocated_minor"] for r in refs)
-        if un != 0:
+        if un != 0 and not is_advance(b, p):
             out.append(("payment_allocation", tuple(sorted([pid] + memo_invoice_ids(b, p["memo"]))), abs(un), p["currency"]))
         d = b.ldate(p["timestamp"])
         for ref in refs:
@@ -240,6 +246,8 @@ def solve_from_evidence(view: dict, manifest: dict, policy: dict, ftype: str):
         if gap != un[0]["credit_minor"] + un[0]["debit_minor"] or gap <= 0:
             return None
         memo_ids = sorted(set(re.findall(r"[A-Za-z]+[-/_][0-9]+", p["memo"])))
+        if not memo_ids:   # an advance on account: unapplied by design, not a discrepancy
+            return None
         return (tuple(sorted([p["payment_id"]] + memo_ids)), gap, p["currency"])
     if ftype == "fx_error":
         if len(pays) != 1 or len(fxs) != 1:

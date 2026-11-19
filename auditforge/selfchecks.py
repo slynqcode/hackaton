@@ -56,8 +56,15 @@ def sub(ep, findings):
     return {"episode_id": ep.episode_id, "findings": findings}
 
 
+def known_ids(ep):
+    from .checks import fx_record_id
+    t = ep.tables
+    return frozenset(r["row_id"] for r in t["ledger"]) | frozenset(r["doc_id"] for r in t["invoices"] + t["payments"]) | \
+        frozenset(fx_record_id(r) for r in t["fx"])
+
+
 def g(ep, findings, steps=0, tol=1):
-    return grade(validate_submission(sub(ep, findings), ep.episode_id), ep.truth["issues"], tol, steps)
+    return grade(validate_submission(sub(ep, findings), ep.episode_id), ep.truth["issues"], tol, steps, known_ids(ep))
 
 
 def step_all(env, action):
@@ -195,12 +202,22 @@ def reward_checks():
         ep = episode(); fs = truth_findings(ep)
         none = copy.deepcopy(fs); none[0]["evidence_ids"] = []
         part = copy.deepcopy(fs); part[0]["evidence_ids"] = part[0]["evidence_ids"][:1]
-        sup = copy.deepcopy(fs); sup[0]["evidence_ids"] = sup[0]["evidence_ids"] + ["x1", "x2"]
+        extra = [r["row_id"] for r in ep.tables["ledger"][:2]]   # real but irrelevant records
+        sup = copy.deepcopy(fs); sup[0]["evidence_ids"] = sup[0]["evidence_ids"] + extra
         wrong = copy.deepcopy(fs); wrong[0]["evidence_ids"] = ["nope1", "nope2"]
         assert g(ep, none)["tp"] == len(fs) - 1 and g(ep, wrong)["tp"] == len(fs) - 1
         if len(ep.truth["issues"][0]["acceptable_evidence_sets"][0]) > 1:
             assert g(ep, part)["tp"] == len(fs) - 1
         assert g(ep, sup)["tp"] == len(fs)
+
+    @check
+    def invented_evidence_ids_are_never_accepted():
+        ep = episode(); fs = truth_findings(ep)
+        fake = copy.deepcopy(fs); fake[0]["evidence_ids"] = fake[0]["evidence_ids"] + ["FAKE-0001"]
+        r = g(ep, fake); assert r["tp"] == len(fs) - 1 and r["fp"] == 1
+        env, obs, info = _fresh()
+        env.step({"action": "submit", "findings": {"episode_id": info["episode_id"], "findings": fake}})
+        assert env.evaluation()["tp"] == len(fs) - 1
 
     @check
     def any_acceptable_evidence_set_counts():
@@ -547,6 +564,49 @@ def contract_checks():
             assert te and rw == 0.0 and r.evaluation()["f1"] == 0.0
         finally:
             r.close()
+
+    @check
+    def evaluator_secret_defeats_seed_regeneration():
+        # without a secret the public generator reproduces the episode; with it, no seed in the range matches
+        env = AuditEnv(mode="eval", secret="organiser-only-secret")
+        obs, info = env.reset(SEED)
+        plain = AuditEnv(mode="eval").reset(SEED)[0]
+        assert obs["manifest"] != plain["manifest"]
+        target = obs["manifest"]
+        assert all(generate_episode(s).manifest != target for s in range(0, 60))
+        # deterministic for the same secret
+        assert AuditEnv(mode="eval", secret="organiser-only-secret").reset(SEED)[0] == obs
+
+    @check
+    def remote_secret_stays_inside_evaluator_process():
+        from .remote import RemoteEnv
+        with RemoteEnv(mode="eval", secret="s3cr3t-xyz") as r:
+            obs, info = r.reset(SEED)
+            assert "s3cr3t" not in json.dumps([obs, info])
+            assert obs == AuditEnv(mode="eval", secret="s3cr3t-xyz").reset(SEED)[0]
+            o = r.step({"action": "get_record", "table": "ledger", "id": "s3cr3t-xyz"})[0]
+            assert "s3cr3t" not in json.dumps(o)
+
+    @check
+    def list_records_without_limit_uses_full_page():
+        env, obs, info = _fresh()
+        o = env.step({"action": "list_records", "table": "ledger", "limit": None})[0]
+        assert o["ok"] and len(o["result"]["records"]) == 50
+        o = env.step({"action": "list_records", "table": "ledger"})[0]
+        assert o["ok"] and len(o["result"]["records"]) == 50
+
+    @check
+    def dead_evaluator_process_is_reported_not_hung():
+        from .remote import RemoteEnv
+        r = RemoteEnv()
+        r.reset(SEED)
+        r._p.kill(); r._p.wait()
+        try:
+            r.step({"action": "calculator", "expression": "1"})
+        except RuntimeError as e:
+            assert "evaluator_process_died" in str(e)
+        else:
+            raise AssertionError("no error on dead evaluator")
 
     @check
     def trajectory_lines_have_required_fields_and_no_truth():

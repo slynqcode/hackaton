@@ -35,7 +35,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "interactions": [],
     "distractors": {
         "installments": 3, "refunds": 2, "multi_invoice": 2, "recurring": 2,
-        "same_amount_near": 3, "boundary_invoices": 8, "boundary_cross_ok": 4, "cross_ccy_ok": 6,
+        "same_amount_near": 3, "boundary_invoices": 8, "boundary_cross_ok": 4, "cross_ccy_ok": 6, "advances": 2,
     },
     "company_offset_minutes": None,
     "period_months": None,
@@ -81,6 +81,22 @@ def resolve_config(config: dict | None) -> dict:
     for t in cfg["interactions"]:
         if t not in INTERACTIONS:
             raise ValueError(f"unknown interaction: {t}")
+    if not (isinstance(cfg["n_entities"], int) and 3 <= cfg["n_entities"] <= 40):
+        raise ValueError("n_entities must be an int in [3, 40]")
+    if not (isinstance(cfg["n_invoices"], int) and 30 <= cfg["n_invoices"] <= 80):
+        raise ValueError("n_invoices must be an int in [30, 80] (keeps documents <= 200)")
+    if cfg["currencies"] is not None:
+        if len(set(cfg["currencies"])) < 2 or any(c not in EXPONENTS for c in cfg["currencies"]):
+            raise ValueError("currencies: >=2 distinct supported currencies")
+    if cfg["rounding"] not in (None, "half_up", "half_even"):
+        raise ValueError("rounding must be half_up or half_even")
+    if cfg["company_offset_minutes"] is not None and not (-720 <= cfg["company_offset_minutes"] <= 840):
+        raise ValueError("company_offset_minutes out of range")
+    if cfg["period_months"] not in (None, 1, 2, 3):
+        raise ValueError("period_months must be 1, 2 or 3")
+    for k, v in list(cfg["faults"].items()) + list(cfg["distractors"].items()):
+        if isinstance(v, bool) or not isinstance(v, int) or v < 0:
+            raise ValueError(f"{k} must be a non-negative int")
     total = sum(cfg["faults"].values()) + 2 * len(cfg["interactions"])
     if total > MAX_ISSUES:
         raise ValueError(f"too many issues: {total} > {MAX_ISSUES}")
@@ -301,18 +317,13 @@ def build_history(ctx: Ctx, rng) -> dict:
         pc = ic if rng.random() < 0.6 else rng.choice([c for c in ctx.ccys if c != ic])
         ctx.ents[f"E{i:02d}"] = {"inv_ccy": ic, "pay_ccy": pc}
     ek = list(ctx.ents)
+    # guarantee >=1 cross-currency entity (E00) and >=2 same-currency entities (E01, E02): FX faults,
+    # cutoff receipts and distractors all need them. Previously small n_entities could crash here.
+    ctx.ents[ek[0]]["pay_ccy"] = [c for c in ctx.ccys if c != ctx.ents[ek[0]]["inv_ccy"]][0]
+    for e in ek[1:3]:
+        ctx.ents[e]["pay_ccy"] = ctx.ents[e]["inv_ccy"]
     cross_ents = [e for e in ek if ctx.ents[e]["inv_ccy"] != ctx.ents[e]["pay_ccy"]]
     same_ents = [e for e in ek if e not in cross_ents]
-    if not cross_ents:
-        e = ek[0]; ctx.ents[e]["pay_ccy"] = [c for c in ctx.ccys if c != ctx.ents[e]["inv_ccy"]][0]
-        cross_ents, same_ents = [e], [x for x in ek if x != e]
-    if len(same_ents) < 2:
-        for e in ek[-2:]:
-            ctx.ents[e]["pay_ccy"] = ctx.ents[e]["inv_ccy"]
-        cross_ents = [e for e in ek if ctx.ents[e]["inv_ccy"] != ctx.ents[e]["pay_ccy"]]
-        same_ents = [e for e in ek if e not in cross_ents]
-        if not cross_ents:
-            raise RuntimeError("entity setup failed")
 
     n_b_inv = max(dis["boundary_invoices"], 2 * cfg["faults"]["period_cutoff"] + 2)
     # generic + boundary invoices
@@ -432,6 +443,17 @@ def build_history(ctx: Ctx, rng) -> dict:
         ts = _boundary_time(rng, ctx, rng.choice(["start", "end"]))
         inv = _new_inv(ctx, rng, e, ts - timedelta(days=rng.randint(3, 20)))
         _new_pay(ctx, rng, inv, ts, inv.total, tags={"boundary"})
+    # legitimate advances (prepayments on account): no invoice, full amount sits in UNAPPLIED.
+    # They make "any UNAPPLIED row = allocation error" a losing shortcut; the memo/refs must be read.
+    for _ in range(dis["advances"]):
+        e = rng.choice(same_ents)
+        ccy = ctx.ents[e]["pay_ccy"]
+        ts = _rand_instant(rng, ctx.wstart, ctx.wend)
+        key = f"P{len(ctx.pays):04d}"
+        pay = Pay(key, e, ccy, ts, _price(rng, ccy) * rng.randint(1, 6), [], rng.choice(DOC_OFFSETS),
+                  rng.choice(DOC_OFFSETS), None, {"advance"})
+        pay.post_ts = _post_ts(rng, ctx, ts)
+        ctx.pays[key] = pay
     return {"special_counts": {k: sum(1 for v in special.values() if v == k) for k in ("installments", "refunds", "multi")}}
 
 
@@ -534,7 +556,8 @@ def render(ctx: Ctx, F: dict) -> dict:
             "doc_id": did, "payment_id": pid, "entity_id": ids.get("ent", p.ent),
             "timestamp": to_iso(p.ts, p.doc_off), "currency": p.ccy, "amount_minor": p.amount,
             "invoice_refs": None if refs_null else [{"invoice_id": ids.get("inv", ik), "allocated_minor": a} for ik, a in allocs],
-            "memo": ("Refund against " if p.refund else "Remittance advice: ") + "; ".join(orig_ids)})
+            "memo": "Advance payment on account (no invoice yet)" if "advance" in p.tags else
+                    ("Refund against " if p.refund else "Remittance advice: ") + "; ".join(orig_ids)})
 
     rows.sort(key=lambda r: (r[0], r[1]))
     ledger = [r[2] for r in rows]
@@ -569,14 +592,12 @@ def _typo_rate(rate: Decimal) -> Decimal:
     return (rate * Decimal("1.02")).quantize(FX_DP)
 
 
-def _ensure_gap(ctx: Ctx, p: Pay, inv: Inv, alloc: int, d_wrong: date, d_right: date) -> None:
-    for _ in range(6):
-        wrong = _conv(ctx, alloc, p.ccy, inv.ccy, d_wrong)
-        right = _conv(ctx, alloc, p.ccy, inv.ccy, d_right)
-        if abs(wrong - right) >= 8:
-            return
-        k = (d_wrong.isoformat(), p.ccy, inv.ccy)
-        ctx.rates[k] = (ctx.rates[k] * Decimal("1.02")).quantize(FX_DP)
+MIN_FX_GAP_MINOR = 8   # an fx_error must move AR by clearly more than the 1-minor-unit tolerance
+
+
+def _gap(ctx: Ctx, p: Pay, inv: Inv, alloc: int, d_wrong: date, d_right: date) -> int:
+    """Never edits published rates (an edited rate would be a detectable spike = leak)."""
+    return abs(_conv(ctx, alloc, p.ccy, inv.ccy, d_wrong) - _conv(ctx, alloc, p.ccy, inv.ccy, d_right))
 
 
 def plan_faults(ctx: Ctx, rng) -> tuple[dict, list]:
@@ -631,11 +652,9 @@ def plan_faults(ctx: Ctx, rng) -> tuple[dict, list]:
             d_wrong = ctx.ldate(F["cutoff"][("pay", p.key)])
         else:
             d_wrong = None
-        if d_wrong is not None:
-            assert d_wrong != d_right, (variant, d_wrong, d_right)
-            _ensure_gap(ctx, p, inv, alloc, d_wrong, d_right)
+        if d_wrong is not None and d_wrong != d_right and _gap(ctx, p, inv, alloc, d_wrong, d_right) >= MIN_FX_GAP_MINOR:
             F["fx"][p.key] = {"variant": variant, "date_override": d_wrong, "rate_override": None}
-        else:
+        else:  # rare: the wrong date gives an invisible difference -> keying (typo) error instead
             wr = _typo_rate(ctx.rate(d_right, p.ccy, inv.ccy))
             F["fx"][p.key] = {"variant": "typo", "date_override": None, "rate_override": format(wr, "f")}
 
@@ -761,7 +780,9 @@ def build_policy(ctx: Ctx) -> dict:
         "rounding": {"mode": ctx.rounding, "rule": "converted amount rounded once to the minor unit of the target currency"},
         "amount_tolerance_minor": 1,
         "duplicate_rule": "two invoices with the same entity, the same po_ref and the same set of line items",
-        "allocation_rule": "invoice_refs[].allocated_minor is in payment currency; clean receipts allocate their full amount; null = not allocated",
+        "allocation_rule": "invoice_refs[].allocated_minor is in payment currency. A receipt whose memo names invoices must "
+                           "allocate its full amount to them; null = not allocated. An advance payment on account (memo names "
+                           "no invoice, invoice_refs = []) legitimately stays in UNAPPLIED and is NOT an error.",
         "null_semantics": "null in a reference field means the link is absent; links are never guessed",
         "accounts": ["AR", "REVENUE", "CASH", "FX_CLEARING", "UNAPPLIED"],
         "record_ids": {"ledger": "row_id", "invoices": "invoice_id (get_record) / doc_id (get_document)",

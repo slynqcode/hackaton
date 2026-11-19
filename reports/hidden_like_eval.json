@@ -7,16 +7,16 @@
    "f1": 0.05,
    "return": -0.9009,
    "inspection_steps": 20.35,
-   "wall_s": 0.05873607929999984
+   "wall_s": 0.049604078399988795
   },
   "simple_reconciler": {
    "episodes": 20,
-   "precision": 0.19446123471471768,
-   "recall": 0.5933333333333334,
-   "f1": 0.2890610945841125,
-   "return": -0.46677781083177505,
-   "inspection_steps": 30.45,
-   "wall_s": 0.05853679515000021
+   "precision": 0.15665580618212196,
+   "recall": 0.59,
+   "f1": 0.2455437834585182,
+   "return": -0.5578124330829636,
+   "inspection_steps": 32.9,
+   "wall_s": 0.05082858289999308
   },
   "flag_all": {
    "episodes": 20,
@@ -24,8 +24,8 @@
    "recall": 0.0,
    "f1": 0.0,
    "return": -1.0,
-   "inspection_steps": 3.55,
-   "wall_s": 0.05426457439999961
+   "inspection_steps": 3.9,
+   "wall_s": 0.04581061450001585
   },
   "oracle": {
    "episodes": 20,
@@ -34,16 +34,25 @@
    "f1": 1.0,
    "return": 1.0,
    "inspection_steps": 0,
-   "wall_s": 0.05002662529999977
+   "wall_s": 0.042720094149996155
   },
   "reference_solver": {
    "episodes": 20,
    "precision": 0.75,
    "recall": 0.75,
    "f1": 1.0,
-   "return": 0.9493999999999999,
-   "inspection_steps": 25.3,
-   "wall_s": 0.060350328549999686
+   "return": 0.9457,
+   "inspection_steps": 27.15,
+   "wall_s": 0.05425825815001417
+  },
+  "zero_agent": {
+   "episodes": 20,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.25,
+   "return": -0.5,
+   "inspection_steps": 0,
+   "wall_s": 0.0431561638499943
   }
  },
  "per_episode": {
@@ -76,7 +85,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.07041579799999909,
+    "wall_s": 0.06027359699999124,
     "name": "clean_0",
     "seed": 9001,
     "n_issues": 0
@@ -109,7 +118,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06279687900000042,
+    "wall_s": 0.04386534600007508,
     "name": "clean_1",
     "seed": 9002,
     "n_issues": 0
@@ -142,7 +151,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.0717715659999989,
+    "wall_s": 0.04110026699993341,
     "name": "clean_2",
     "seed": 9003,
     "n_issues": 0
@@ -156,7 +165,7 @@
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
-      "fp": 0,
+      "fp": 1,
       "fn": 0
      },
      "payment_allocation": {
@@ -171,11 +180,11 @@
      },
      "period_cutoff": {
       "tp": 0,
-      "fp": 2,
+      "fp": 1,
       "fn": 0
      }
     },
-    "wall_s": 0.08082768300000254,
+    "wall_s": 0.043612143999894215,
     "name": "clean_3",
     "seed": 9004,
     "n_issues": 0
@@ -208,7 +217,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.0644834199999984,
+    "wall_s": 0.042275561999986166,
     "name": "clean_4",
     "seed": 9005,
     "n_issues": 0
@@ -241,7 +250,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.05901638800000342,
+    "wall_s": 0.04225931100006619,
     "name": "interacting_0",
     "seed": 9101,
     "n_issues": 6
@@ -274,7 +283,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.05397905099999889,
+    "wall_s": 0.04361848199994256,
     "name": "interacting_1",
     "seed": 9102,
     "n_issues": 6
@@ -307,7 +316,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.05421286400000014,
+    "wall_s": 0.04353174499999568,
     "name": "interacting_2",
     "seed": 9103,
     "n_issues": 8
@@ -340,7 +349,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.04881359899999893,
+    "wall_s": 0.05096420899997156,
     "name": "interacting_3",
     "seed": 9104,
     "n_issues": 8
@@ -373,7 +382,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.054086165999997604,
+    "wall_s": 0.04449118200000157,
     "name": "interacting_4",
     "seed": 9105,
     "n_issues": 6
@@ -406,7 +415,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.058446559999996595,
+    "wall_s": 0.052765728999929706,
     "name": "mixed_0",
     "seed": 9201,
     "n_issues": 4
@@ -439,7 +448,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.04926940300000027,
+    "wall_s": 0.0547994959999869,
     "name": "mixed_1",
     "seed": 9202,
     "n_issues": 5
@@ -472,7 +481,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04621416899999886,
+    "wall_s": 0.07098793299996942,
     "name": "mixed_2",
     "seed": 9203,
     "n_issues": 5
@@ -486,26 +495,26 @@
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
-      "fp": 1,
+      "fp": 0,
       "fn": 0
      },
      "payment_allocation": {
       "tp": 0,
-      "fp": 1,
+      "fp": 2,
       "fn": 1
      },
      "fx_error": {
       "tp": 0,
-      "fp": 1,
+      "fp": 0,
       "fn": 1
      },
      "period_cutoff": {
       "tp": 0,
-      "fp": 0,
+      "fp": 1,
       "fn": 2
      }
     },
-    "wall_s": 0.055981131999999434,
+    "wall_s": 0.047705291000056604,
     "name": "mixed_3",
     "seed": 9204,
     "n_issues": 4
@@ -538,7 +547,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.07528587000000186,
+    "wall_s": 0.052909980999970685,
     "name": "mixed_4",
     "seed": 9205,
     "n_issues": 4
@@ -571,7 +580,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.0628696220000009,
+    "wall_s": 0.05324814499999775,
     "name": "mixed_5",
     "seed": 9206,
     "n_issues": 5
@@ -604,7 +613,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.05065559599999858,
+    "wall_s": 0.05053312600000481,
     "name": "mixed_6",
     "seed": 9207,
     "n_issues": 4
@@ -637,7 +646,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.05273475999999988,
+    "wall_s": 0.05608625499996833,
     "name": "mixed_7",
     "seed": 9208,
     "n_issues": 5
@@ -670,7 +679,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.050723777000001746,
+    "wall_s": 0.04774470799998198,
     "name": "mixed_8",
     "seed": 9209,
     "n_issues": 4
@@ -703,7 +712,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.05213728300000042,
+    "wall_s": 0.049309059000052,
     "name": "mixed_9",
     "seed": 9210,
     "n_issues": 4
@@ -715,7 +724,7 @@
     "recall": 0.0,
     "f1": 0.0,
     "reward": -1.0,
-    "inspection_steps": 25,
+    "inspection_steps": 39,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -723,140 +732,8 @@
       "fn": 0
      },
      "payment_allocation": {
-      "tp": 0,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 6,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 3,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.07123971200000057,
-    "name": "clean_0",
-    "seed": 9001,
-    "n_issues": 0
-   },
-   {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "reward": -1.0,
-    "inspection_steps": 44,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 0,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 0,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 16,
-      "fn": 0
-     },
-     "period_cutoff": {
       "tp": 0,
       "fp": 2,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.07645039599999848,
-    "name": "clean_1",
-    "seed": 9002,
-    "n_issues": 0
-   },
-   {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "reward": -1.0,
-    "inspection_steps": 23,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 0,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 0,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 5,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 4,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.06979584800000183,
-    "name": "clean_2",
-    "seed": 9003,
-    "n_issues": 0
-   },
-   {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "reward": -1.0,
-    "inspection_steps": 21,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 0,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 0,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 4,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 2,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.06158078700000047,
-    "name": "clean_3",
-    "seed": 9004,
-    "n_issues": 0
-   },
-   {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "reward": -1.0,
-    "inspection_steps": 47,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 0,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 0,
-      "fp": 0,
       "fn": 0
      },
      "fx_error": {
@@ -870,49 +747,148 @@
       "fn": 0
      }
     },
-    "wall_s": 0.07016342200000025,
+    "wall_s": 0.054215341000031,
+    "name": "clean_0",
+    "seed": 9001,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 37,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 9,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04505111600008149,
+    "name": "clean_1",
+    "seed": 9002,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 33,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 4,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04475964000005206,
+    "name": "clean_2",
+    "seed": 9003,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 33,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 4,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04394095500003914,
+    "name": "clean_3",
+    "seed": 9004,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 27,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.042359035999993466,
     "name": "clean_4",
     "seed": 9005,
     "n_issues": 0
    },
    {
-    "precision": 0.2,
+    "precision": 0.16666666666666666,
     "recall": 0.6666666666666666,
-    "f1": 0.3076923076923077,
-    "reward": -0.4506153846153846,
-    "inspection_steps": 33,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 1,
-      "fp": 8,
-      "fn": 1
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 5,
-      "fn": 1
-     }
-    },
-    "wall_s": 0.06376045399999697,
-    "name": "interacting_0",
-    "seed": 9101,
-    "n_issues": 6
-   },
-   {
-    "precision": 0.25,
-    "recall": 0.5,
-    "f1": 0.3333333333333333,
-    "reward": -0.38333333333333336,
+    "f1": 0.26666666666666666,
+    "reward": -0.5166666666666667,
     "inspection_steps": 25,
     "by_type": {
      "duplicate_invoice": {
@@ -921,32 +897,65 @@
       "fn": 0
      },
      "payment_allocation": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 11,
+      "fn": 2
+     },
+     "period_cutoff": {
       "tp": 1,
-      "fp": 0,
+      "fp": 4,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.044573463000006086,
+    "name": "interacting_0",
+    "seed": 9101,
+    "n_issues": 6
+   },
+   {
+    "precision": 0.16,
+    "recall": 0.6666666666666666,
+    "f1": 0.25806451612903225,
+    "reward": -0.5598709677419355,
+    "inspection_steps": 38,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 1,
+      "fp": 2,
       "fn": 0
      },
      "fx_error": {
       "tp": 1,
-      "fp": 5,
+      "fp": 12,
       "fn": 1
      },
      "period_cutoff": {
-      "tp": 0,
-      "fp": 1,
-      "fn": 2
+      "tp": 1,
+      "fp": 4,
+      "fn": 1
      }
     },
-    "wall_s": 0.051449322999999936,
+    "wall_s": 0.04771431599999687,
     "name": "interacting_1",
     "seed": 9102,
     "n_issues": 6
    },
    {
-    "precision": 0.2631578947368421,
-    "recall": 0.625,
-    "f1": 0.37037037037037035,
-    "reward": -0.3112592592592593,
-    "inspection_steps": 26,
+    "precision": 0.16,
+    "recall": 0.5,
+    "f1": 0.24242424242424243,
+    "reward": -0.5791515151515152,
+    "inspection_steps": 32,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -955,31 +964,31 @@
      },
      "payment_allocation": {
       "tp": 2,
-      "fp": 0,
+      "fp": 2,
       "fn": 0
      },
      "fx_error": {
-      "tp": 1,
-      "fp": 7,
-      "fn": 2
+      "tp": 0,
+      "fp": 9,
+      "fn": 3
      },
      "period_cutoff": {
       "tp": 1,
-      "fp": 4,
+      "fp": 7,
       "fn": 1
      }
     },
-    "wall_s": 0.05630855300000093,
+    "wall_s": 0.046603199999935896,
     "name": "interacting_2",
     "seed": 9103,
     "n_issues": 8
    },
    {
-    "precision": 0.4117647058823529,
-    "recall": 0.875,
-    "f1": 0.56,
-    "reward": 0.0680000000000001,
-    "inspection_steps": 26,
+    "precision": 0.24,
+    "recall": 0.75,
+    "f1": 0.36363636363636365,
+    "reward": -0.3367272727272727,
+    "inspection_steps": 32,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -988,13 +997,13 @@
      },
      "payment_allocation": {
       "tp": 2,
-      "fp": 0,
+      "fp": 2,
       "fn": 0
      },
      "fx_error": {
-      "tp": 2,
-      "fp": 5,
-      "fn": 1
+      "tp": 1,
+      "fp": 12,
+      "fn": 2
      },
      "period_cutoff": {
       "tp": 2,
@@ -1002,17 +1011,17 @@
       "fn": 0
      }
     },
-    "wall_s": 0.051062892000000915,
+    "wall_s": 0.06923076900000069,
     "name": "interacting_3",
     "seed": 9104,
     "n_issues": 8
    },
    {
-    "precision": 0.35294117647058826,
-    "recall": 1.0,
-    "f1": 0.5217391304347826,
-    "reward": -0.024521739130434816,
-    "inspection_steps": 34,
+    "precision": 0.2222222222222222,
+    "recall": 0.6666666666666666,
+    "f1": 0.3333333333333333,
+    "reward": -0.4113333333333334,
+    "inspection_steps": 39,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -1021,259 +1030,28 @@
      },
      "payment_allocation": {
       "tp": 1,
-      "fp": 0,
+      "fp": 2,
       "fn": 0
      },
      "fx_error": {
-      "tp": 2,
+      "tp": 1,
       "fp": 6,
-      "fn": 0
+      "fn": 1
      },
      "period_cutoff": {
-      "tp": 2,
-      "fp": 2,
-      "fn": 0
+      "tp": 1,
+      "fp": 3,
+      "fn": 1
      }
     },
-    "wall_s": 0.0549414739999996,
+    "wall_s": 0.04696905699995568,
     "name": "interacting_4",
     "seed": 9105,
     "n_issues": 6
    },
    {
-    "precision": 0.36363636363636365,
-    "recall": 1.0,
-    "f1": 0.5333333333333333,
-    "reward": 0.01866666666666665,
-    "inspection_steps": 24,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 1,
-      "fp": 2,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 1,
-      "fp": 2,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.050856286000001916,
-    "name": "mixed_0",
-    "seed": 9201,
-    "n_issues": 4
-   },
-   {
-    "precision": 0.17647058823529413,
-    "recall": 0.6,
-    "f1": 0.2727272727272727,
-    "reward": -0.5125454545454546,
-    "inspection_steps": 29,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 2,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 7,
-      "fn": 1
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 4,
-      "fn": 1
-     }
-    },
-    "wall_s": 0.0511567460000002,
-    "name": "mixed_1",
-    "seed": 9202,
-    "n_issues": 5
-   },
-   {
-    "precision": 0.3333333333333333,
-    "recall": 1.0,
-    "f1": 0.5,
-    "reward": -0.054,
-    "inspection_steps": 27,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 2,
-      "fp": 4,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 3,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.04745412100000124,
-    "name": "mixed_2",
-    "seed": 9203,
-    "n_issues": 5
-   },
-   {
-    "precision": 0.1875,
+    "precision": 0.21428571428571427,
     "recall": 0.75,
-    "f1": 0.3,
-    "reward": -0.468,
-    "inspection_steps": 34,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 0,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 8,
-      "fn": 1
-     },
-     "period_cutoff": {
-      "tp": 2,
-      "fp": 2,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.05119735599999942,
-    "name": "mixed_3",
-    "seed": 9204,
-    "n_issues": 4
-   },
-   {
-    "precision": 0.14285714285714285,
-    "recall": 0.5,
-    "f1": 0.2222222222222222,
-    "reward": -0.6215555555555556,
-    "inspection_steps": 33,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 8,
-      "fn": 1
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 1,
-      "fn": 1
-     }
-    },
-    "wall_s": 0.05509465300000116,
-    "name": "mixed_4",
-    "seed": 9205,
-    "n_issues": 4
-   },
-   {
-    "precision": 0.2631578947368421,
-    "recall": 1.0,
-    "f1": 0.4166666666666667,
-    "reward": -0.24066666666666664,
-    "inspection_steps": 37,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 3,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 0,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 1,
-      "fp": 8,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 1,
-      "fp": 3,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.06415358599999976,
-    "name": "mixed_5",
-    "seed": 9206,
-    "n_issues": 5
-   },
-   {
-    "precision": 0.25,
-    "recall": 1.0,
-    "f1": 0.4,
-    "reward": -0.24799999999999994,
-    "inspection_steps": 24,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 3,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 1,
-      "fp": 7,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 1,
-      "fp": 2,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.05122943000000291,
-    "name": "mixed_6",
-    "seed": 9207,
-    "n_issues": 4
-   },
-   {
-    "precision": 0.23076923076923078,
-    "recall": 0.6,
     "f1": 0.3333333333333333,
     "reward": -0.3993333333333334,
     "inspection_steps": 33,
@@ -1285,7 +1063,7 @@
      },
      "payment_allocation": {
       "tp": 1,
-      "fp": 0,
+      "fp": 2,
       "fn": 0
      },
      "fx_error": {
@@ -1295,30 +1073,30 @@
      },
      "period_cutoff": {
       "tp": 1,
-      "fp": 2,
-      "fn": 1
+      "fp": 1,
+      "fn": 0
      }
     },
-    "wall_s": 0.052436401000001354,
-    "name": "mixed_7",
-    "seed": 9208,
-    "n_issues": 5
+    "wall_s": 0.053299634999916634,
+    "name": "mixed_0",
+    "seed": 9201,
+    "n_issues": 4
    },
    {
-    "precision": 0.36363636363636365,
+    "precision": 0.4166666666666667,
     "recall": 1.0,
-    "f1": 0.5333333333333333,
-    "reward": 0.02466666666666665,
-    "inspection_steps": 21,
+    "f1": 0.5882352941176471,
+    "reward": 0.13047058823529417,
+    "inspection_steps": 23,
     "by_type": {
      "duplicate_invoice": {
-      "tp": 1,
+      "tp": 2,
       "fp": 3,
       "fn": 0
      },
      "payment_allocation": {
       "tp": 1,
-      "fp": 0,
+      "fp": 2,
       "fn": 0
      },
      "fx_error": {
@@ -1328,21 +1106,87 @@
      },
      "period_cutoff": {
       "tp": 1,
-      "fp": 3,
+      "fp": 1,
       "fn": 0
      }
     },
-    "wall_s": 0.05078797399999857,
-    "name": "mixed_8",
-    "seed": 9209,
+    "wall_s": 0.0503019889999905,
+    "name": "mixed_1",
+    "seed": 9202,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.16,
+    "recall": 0.8,
+    "f1": 0.26666666666666666,
+    "reward": -0.5586666666666666,
+    "inspection_steps": 46,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 1,
+      "fp": 11,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 5,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.06208158000004005,
+    "name": "mixed_2",
+    "seed": 9203,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.2222222222222222,
+    "recall": 1.0,
+    "f1": 0.36363636363636365,
+    "reward": -0.3347272727272727,
+    "inspection_steps": 31,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 1,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 2,
+      "fp": 6,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.05480574799992155,
+    "name": "mixed_3",
+    "seed": 9204,
     "n_issues": 4
    },
    {
-    "precision": 0.1,
+    "precision": 0.15789473684210525,
     "recall": 0.75,
-    "f1": 0.17647058823529413,
-    "reward": -0.7330588235294117,
-    "inspection_steps": 43,
+    "f1": 0.2608695652173913,
+    "reward": -0.5422608695652174,
+    "inspection_steps": 32,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -1351,12 +1195,12 @@
      },
      "payment_allocation": {
       "tp": 1,
-      "fp": 0,
+      "fp": 2,
       "fn": 0
      },
      "fx_error": {
       "tp": 0,
-      "fp": 18,
+      "fp": 5,
       "fn": 1
      },
      "period_cutoff": {
@@ -1365,7 +1209,172 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06961648899999773,
+    "wall_s": 0.05215676699992855,
+    "name": "mixed_4",
+    "seed": 9205,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.2631578947368421,
+    "recall": 1.0,
+    "f1": 0.4166666666666667,
+    "reward": -0.21866666666666662,
+    "inspection_steps": 26,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 3,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 1,
+      "fp": 5,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.05259350199992241,
+    "name": "mixed_5",
+    "seed": 9206,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.09523809523809523,
+    "recall": 0.5,
+    "f1": 0.16,
+    "reward": -0.7539999999999999,
+    "inspection_steps": 37,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 1,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 13,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.05258361200003492,
+    "name": "mixed_6",
+    "seed": 9207,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.23809523809523808,
+    "recall": 1.0,
+    "f1": 0.38461538461538464,
+    "reward": -0.29476923076923073,
+    "inspection_steps": 32,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 1,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 1,
+      "fp": 8,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 2,
+      "fp": 3,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.05166909199999736,
+    "name": "mixed_7",
+    "seed": 9208,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.16666666666666666,
+    "recall": 0.75,
+    "f1": 0.2727272727272727,
+    "reward": -0.5225454545454546,
+    "inspection_steps": 34,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 1,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 5,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 1,
+      "fp": 5,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.05151938100004827,
+    "name": "mixed_8",
+    "seed": 9209,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "reward": -0.25799999999999995,
+    "inspection_steps": 29,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 1,
+      "fp": 2,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.05014345899996897,
     "name": "mixed_9",
     "seed": 9210,
     "n_issues": 4
@@ -1377,7 +1386,7 @@
     "recall": 0.0,
     "f1": 0.0,
     "reward": -1.0,
-    "inspection_steps": 3,
+    "inspection_steps": 4,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -1400,7 +1409,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06515612299999773,
+    "wall_s": 0.04161990800002968,
     "name": "clean_0",
     "seed": 9001,
     "n_issues": 0
@@ -1433,75 +1442,9 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06526104399999966,
+    "wall_s": 0.039489851999974235,
     "name": "clean_1",
     "seed": 9002,
-    "n_issues": 0
-   },
-   {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "reward": -1.0,
-    "inspection_steps": 3,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 0,
-      "fp": 8,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 0,
-      "fp": 8,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 7,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 7,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.06639800600000001,
-    "name": "clean_2",
-    "seed": 9003,
-    "n_issues": 0
-   },
-   {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "reward": -1.0,
-    "inspection_steps": 3,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 0,
-      "fp": 8,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 0,
-      "fp": 8,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 0,
-      "fp": 7,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 0,
-      "fp": 7,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.06784982299999953,
-    "name": "clean_3",
-    "seed": 9004,
     "n_issues": 0
    },
    {
@@ -1532,7 +1475,73 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04930481099999895,
+    "wall_s": 0.043109569999955966,
+    "name": "clean_2",
+    "seed": 9003,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 4,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 7,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 7,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.03999108100003923,
+    "name": "clean_3",
+    "seed": 9004,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 3,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 7,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 7,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04961344100001952,
     "name": "clean_4",
     "seed": 9005,
     "n_issues": 0
@@ -1565,7 +1574,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.06754825899999872,
+    "wall_s": 0.04014538299998094,
     "name": "interacting_0",
     "seed": 9101,
     "n_issues": 6
@@ -1598,7 +1607,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.048701302000001334,
+    "wall_s": 0.04234553499998128,
     "name": "interacting_1",
     "seed": 9102,
     "n_issues": 6
@@ -1631,7 +1640,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.04585152499999978,
+    "wall_s": 0.041642507000005935,
     "name": "interacting_2",
     "seed": 9103,
     "n_issues": 8
@@ -1664,7 +1673,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.04448147700000149,
+    "wall_s": 0.049515367000026345,
     "name": "interacting_3",
     "seed": 9104,
     "n_issues": 8
@@ -1674,7 +1683,7 @@
     "recall": 0.0,
     "f1": 0.0,
     "reward": -1.0,
-    "inspection_steps": 3,
+    "inspection_steps": 4,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -1697,7 +1706,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.06210490499999821,
+    "wall_s": 0.04272553799989964,
     "name": "interacting_4",
     "seed": 9105,
     "n_issues": 6
@@ -1707,7 +1716,7 @@
     "recall": 0.0,
     "f1": 0.0,
     "reward": -1.0,
-    "inspection_steps": 3,
+    "inspection_steps": 4,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -1730,7 +1739,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.04973901500000011,
+    "wall_s": 0.04801232199997685,
     "name": "mixed_0",
     "seed": 9201,
     "n_issues": 4
@@ -1740,7 +1749,7 @@
     "recall": 0.0,
     "f1": 0.0,
     "reward": -1.0,
-    "inspection_steps": 3,
+    "inspection_steps": 4,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -1763,7 +1772,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.043069537999997465,
+    "wall_s": 0.05170838700007607,
     "name": "mixed_1",
     "seed": 9202,
     "n_issues": 5
@@ -1773,7 +1782,7 @@
     "recall": 0.0,
     "f1": 0.0,
     "reward": -1.0,
-    "inspection_steps": 3,
+    "inspection_steps": 4,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -1796,7 +1805,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04448868799999772,
+    "wall_s": 0.05547523400002774,
     "name": "mixed_2",
     "seed": 9203,
     "n_issues": 5
@@ -1806,7 +1815,7 @@
     "recall": 0.0,
     "f1": 0.0,
     "reward": -1.0,
-    "inspection_steps": 3,
+    "inspection_steps": 4,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -1829,7 +1838,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.04893055199999807,
+    "wall_s": 0.04916518900006395,
     "name": "mixed_3",
     "seed": 9204,
     "n_issues": 4
@@ -1862,7 +1871,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.047486199000001506,
+    "wall_s": 0.04740121600002567,
     "name": "mixed_4",
     "seed": 9205,
     "n_issues": 4
@@ -1895,7 +1904,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.06929362500000025,
+    "wall_s": 0.04781650699999318,
     "name": "mixed_5",
     "seed": 9206,
     "n_issues": 5
@@ -1928,7 +1937,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.04640684800000017,
+    "wall_s": 0.04715018300009888,
     "name": "mixed_6",
     "seed": 9207,
     "n_issues": 4
@@ -1961,7 +1970,7 @@
       "fn": 2
      }
     },
-    "wall_s": 0.047041471,
+    "wall_s": 0.04644050500007779,
     "name": "mixed_7",
     "seed": 9208,
     "n_issues": 5
@@ -1994,7 +2003,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.057044784999998654,
+    "wall_s": 0.04599819899999602,
     "name": "mixed_8",
     "seed": 9209,
     "n_issues": 4
@@ -2027,7 +2036,7 @@
       "fn": 1
      }
     },
-    "wall_s": 0.04913349200000283,
+    "wall_s": 0.046846366000067974,
     "name": "mixed_9",
     "seed": 9210,
     "n_issues": 4
@@ -2062,7 +2071,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06134933799999942,
+    "wall_s": 0.038942175999977735,
     "name": "clean_0",
     "seed": 9001,
     "n_issues": 0
@@ -2095,7 +2104,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.0645873640000012,
+    "wall_s": 0.036373035999986314,
     "name": "clean_1",
     "seed": 9002,
     "n_issues": 0
@@ -2128,7 +2137,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.05612979400000029,
+    "wall_s": 0.05129970500001946,
     "name": "clean_2",
     "seed": 9003,
     "n_issues": 0
@@ -2161,7 +2170,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.07675739299999762,
+    "wall_s": 0.0375279379999256,
     "name": "clean_3",
     "seed": 9004,
     "n_issues": 0
@@ -2194,7 +2203,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04948201599999891,
+    "wall_s": 0.038814108999986274,
     "name": "clean_4",
     "seed": 9005,
     "n_issues": 0
@@ -2227,7 +2236,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.05504233099999922,
+    "wall_s": 0.038305744000012965,
     "name": "interacting_0",
     "seed": 9101,
     "n_issues": 6
@@ -2260,7 +2269,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.05076197700000051,
+    "wall_s": 0.03993971500005955,
     "name": "interacting_1",
     "seed": 9102,
     "n_issues": 6
@@ -2293,7 +2302,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04720069400000071,
+    "wall_s": 0.03976693000004161,
     "name": "interacting_2",
     "seed": 9103,
     "n_issues": 8
@@ -2326,7 +2335,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04162405800000002,
+    "wall_s": 0.043054043999973146,
     "name": "interacting_3",
     "seed": 9104,
     "n_issues": 8
@@ -2359,7 +2368,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04564978799999864,
+    "wall_s": 0.04203938000000562,
     "name": "interacting_4",
     "seed": 9105,
     "n_issues": 6
@@ -2392,7 +2401,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04491271600000246,
+    "wall_s": 0.04711200099995949,
     "name": "mixed_0",
     "seed": 9201,
     "n_issues": 4
@@ -2425,7 +2434,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04101073900000074,
+    "wall_s": 0.04493171799992979,
     "name": "mixed_1",
     "seed": 9202,
     "n_issues": 5
@@ -2458,7 +2467,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04185219000000018,
+    "wall_s": 0.04538007799999377,
     "name": "mixed_2",
     "seed": 9203,
     "n_issues": 5
@@ -2491,7 +2500,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.050311438999997904,
+    "wall_s": 0.047756474000038907,
     "name": "mixed_3",
     "seed": 9204,
     "n_issues": 4
@@ -2524,7 +2533,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.046771015000000915,
+    "wall_s": 0.045306645999971806,
     "name": "mixed_4",
     "seed": 9205,
     "n_issues": 4
@@ -2557,7 +2566,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.044728057000000376,
+    "wall_s": 0.0453321090000145,
     "name": "mixed_5",
     "seed": 9206,
     "n_issues": 5
@@ -2590,7 +2599,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04442688600000011,
+    "wall_s": 0.04519753099998525,
     "name": "mixed_6",
     "seed": 9207,
     "n_issues": 4
@@ -2623,7 +2632,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.045504570999998606,
+    "wall_s": 0.04606588000001466,
     "name": "mixed_7",
     "seed": 9208,
     "n_issues": 5
@@ -2656,7 +2665,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04374762799999843,
+    "wall_s": 0.04254886399996849,
     "name": "mixed_8",
     "seed": 9209,
     "n_issues": 4
@@ -2689,7 +2698,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04868251199999918,
+    "wall_s": 0.038707805000058215,
     "name": "mixed_9",
     "seed": 9210,
     "n_issues": 4
@@ -2700,8 +2709,8 @@
     "precision": 0.0,
     "recall": 0.0,
     "f1": 1.0,
-    "reward": 0.958,
-    "inspection_steps": 21,
+    "reward": 0.94,
+    "inspection_steps": 30,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -2724,7 +2733,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.07207635600000017,
+    "wall_s": 0.04836991900003795,
     "name": "clean_0",
     "seed": 9001,
     "n_issues": 0
@@ -2733,8 +2742,8 @@
     "precision": 0.0,
     "recall": 0.0,
     "f1": 1.0,
-    "reward": 0.948,
-    "inspection_steps": 26,
+    "reward": 0.954,
+    "inspection_steps": 23,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -2757,9 +2766,75 @@
       "fn": 0
      }
     },
-    "wall_s": 0.07561228900000216,
+    "wall_s": 0.04664066100008313,
     "name": "clean_1",
     "seed": 9002,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 1.0,
+    "reward": 0.946,
+    "inspection_steps": 27,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.058916750000094,
+    "name": "clean_2",
+    "seed": 9003,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 1.0,
+    "reward": 0.94,
+    "inspection_steps": 30,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04634806700005356,
+    "name": "clean_3",
+    "seed": 9004,
     "n_issues": 0
    },
    {
@@ -2790,76 +2865,142 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06201691400000087,
-    "name": "clean_2",
-    "seed": 9003,
+    "wall_s": 0.04462675100000979,
+    "name": "clean_4",
+    "seed": 9005,
     "n_issues": 0
    },
    {
-    "precision": 0.0,
-    "recall": 0.0,
+    "precision": 1.0,
+    "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.944,
-    "inspection_steps": 28,
+    "reward": 0.954,
+    "inspection_steps": 23,
     "by_type": {
      "duplicate_invoice": {
-      "tp": 0,
+      "tp": 1,
       "fp": 0,
       "fn": 0
      },
      "payment_allocation": {
-      "tp": 0,
+      "tp": 2,
       "fp": 0,
       "fn": 0
      },
      "fx_error": {
-      "tp": 0,
+      "tp": 2,
       "fp": 0,
       "fn": 0
      },
      "period_cutoff": {
-      "tp": 0,
+      "tp": 1,
       "fp": 0,
       "fn": 0
      }
     },
-    "wall_s": 0.06773905700000071,
-    "name": "clean_3",
-    "seed": 9004,
-    "n_issues": 0
+    "wall_s": 0.04517178000003241,
+    "name": "interacting_0",
+    "seed": 9101,
+    "n_issues": 6
    },
    {
-    "precision": 0.0,
-    "recall": 0.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "reward": 0.954,
+    "inspection_steps": 23,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04952639199996156,
+    "name": "interacting_1",
+    "seed": 9102,
+    "n_issues": 6
+   },
+   {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "reward": 0.954,
+    "inspection_steps": 23,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04753565500004697,
+    "name": "interacting_2",
+    "seed": 9103,
+    "n_issues": 8
+   },
+   {
+    "precision": 1.0,
+    "recall": 1.0,
     "f1": 1.0,
     "reward": 0.938,
     "inspection_steps": 31,
     "by_type": {
      "duplicate_invoice": {
-      "tp": 0,
+      "tp": 1,
       "fp": 0,
       "fn": 0
      },
      "payment_allocation": {
-      "tp": 0,
+      "tp": 2,
       "fp": 0,
       "fn": 0
      },
      "fx_error": {
-      "tp": 0,
+      "tp": 3,
       "fp": 0,
       "fn": 0
      },
      "period_cutoff": {
-      "tp": 0,
+      "tp": 2,
       "fp": 0,
       "fn": 0
      }
     },
-    "wall_s": 0.05710053099999968,
-    "name": "clean_4",
-    "seed": 9005,
-    "n_issues": 0
+    "wall_s": 0.05328010499999891,
+    "name": "interacting_3",
+    "seed": 9104,
+    "n_issues": 8
    },
    {
     "precision": 1.0,
@@ -2874,39 +3015,6 @@
       "fn": 0
      },
      "payment_allocation": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.06794598999999835,
-    "name": "interacting_0",
-    "seed": 9101,
-    "n_issues": 6
-   },
-   {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1": 1.0,
-    "reward": 0.946,
-    "inspection_steps": 27,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "payment_allocation": {
       "tp": 1,
       "fp": 0,
       "fn": 0
@@ -2922,106 +3030,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06199223900000206,
-    "name": "interacting_1",
-    "seed": 9102,
-    "n_issues": 6
-   },
-   {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1": 1.0,
-    "reward": 0.946,
-    "inspection_steps": 27,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 3,
-      "fp": 0,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.05440473000000168,
-    "name": "interacting_2",
-    "seed": 9103,
-    "n_issues": 8
-   },
-   {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1": 1.0,
-    "reward": 0.946,
-    "inspection_steps": 27,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 3,
-      "fp": 0,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.05315598899999685,
-    "name": "interacting_3",
-    "seed": 9104,
-    "n_issues": 8
-   },
-   {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1": 1.0,
-    "reward": 0.948,
-    "inspection_steps": 26,
-    "by_type": {
-     "duplicate_invoice": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "payment_allocation": {
-      "tp": 1,
-      "fp": 0,
-      "fn": 0
-     },
-     "fx_error": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     },
-     "period_cutoff": {
-      "tp": 2,
-      "fp": 0,
-      "fn": 0
-     }
-    },
-    "wall_s": 0.05526005199999773,
+    "wall_s": 0.05217235099996742,
     "name": "interacting_4",
     "seed": 9105,
     "n_issues": 6
@@ -3030,8 +3039,8 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.958,
-    "inspection_steps": 21,
+    "reward": 0.94,
+    "inspection_steps": 30,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -3054,7 +3063,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.05254097599999952,
+    "wall_s": 0.05702679699993496,
     "name": "mixed_0",
     "seed": 9201,
     "n_issues": 4
@@ -3063,8 +3072,8 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.958,
-    "inspection_steps": 21,
+    "reward": 0.942,
+    "inspection_steps": 29,
     "by_type": {
      "duplicate_invoice": {
       "tp": 2,
@@ -3087,7 +3096,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.04905036599999946,
+    "wall_s": 0.05599193800003377,
     "name": "mixed_1",
     "seed": 9202,
     "n_issues": 5
@@ -3096,8 +3105,8 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.958,
-    "inspection_steps": 21,
+    "reward": 0.938,
+    "inspection_steps": 31,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -3120,7 +3129,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06461425099999829,
+    "wall_s": 0.05784559200003514,
     "name": "mixed_2",
     "seed": 9203,
     "n_issues": 5
@@ -3129,8 +3138,8 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.956,
-    "inspection_steps": 22,
+    "reward": 0.946,
+    "inspection_steps": 27,
     "by_type": {
      "duplicate_invoice": {
       "tp": 0,
@@ -3153,7 +3162,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06957757200000003,
+    "wall_s": 0.06397769499994865,
     "name": "mixed_3",
     "seed": 9204,
     "n_issues": 4
@@ -3186,7 +3195,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.05744052400000044,
+    "wall_s": 0.05412762900004964,
     "name": "mixed_4",
     "seed": 9205,
     "n_issues": 4
@@ -3219,7 +3228,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.062178756999998086,
+    "wall_s": 0.057101579000004676,
     "name": "mixed_5",
     "seed": 9206,
     "n_issues": 5
@@ -3228,8 +3237,8 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.946,
-    "inspection_steps": 27,
+    "reward": 0.94,
+    "inspection_steps": 30,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -3252,7 +3261,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.054993126999999475,
+    "wall_s": 0.056997196999986954,
     "name": "mixed_6",
     "seed": 9207,
     "n_issues": 4
@@ -3261,8 +3270,8 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.948,
-    "inspection_steps": 26,
+    "reward": 0.94,
+    "inspection_steps": 30,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -3285,7 +3294,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.05510795200000018,
+    "wall_s": 0.08983491200001481,
     "name": "mixed_7",
     "seed": 9208,
     "n_issues": 5
@@ -3294,8 +3303,8 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "reward": 0.958,
-    "inspection_steps": 21,
+    "reward": 0.956,
+    "inspection_steps": 22,
     "by_type": {
      "duplicate_invoice": {
       "tp": 1,
@@ -3318,7 +3327,7 @@
       "fn": 0
      }
     },
-    "wall_s": 0.05415531999999956,
+    "wall_s": 0.050107271000001674,
     "name": "mixed_8",
     "seed": 9209,
     "n_issues": 4
@@ -3351,7 +3360,669 @@
       "fn": 0
      }
     },
-    "wall_s": 0.06004357899999846,
+    "wall_s": 0.049566121999987445,
+    "name": "mixed_9",
+    "seed": 9210,
+    "n_issues": 4
+   }
+  ],
+  "zero_agent": [
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 1.0,
+    "reward": 1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.038662857999952394,
+    "name": "clean_0",
+    "seed": 9001,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 1.0,
+    "reward": 1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.03698955799995929,
+    "name": "clean_1",
+    "seed": 9002,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 1.0,
+    "reward": 1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.036024967000003016,
+    "name": "clean_2",
+    "seed": 9003,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 1.0,
+    "reward": 1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.03866943100001663,
+    "name": "clean_3",
+    "seed": 9004,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 1.0,
+    "reward": 1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.0374157630000127,
+    "name": "clean_4",
+    "seed": 9005,
+    "n_issues": 0
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.038343618999988394,
+    "name": "interacting_0",
+    "seed": 9101,
+    "n_issues": 6
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     }
+    },
+    "wall_s": 0.040440504000002875,
+    "name": "interacting_1",
+    "seed": 9102,
+    "n_issues": 6
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     }
+    },
+    "wall_s": 0.03992442200001278,
+    "name": "interacting_2",
+    "seed": 9103,
+    "n_issues": 8
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     }
+    },
+    "wall_s": 0.04191581199995653,
+    "name": "interacting_3",
+    "seed": 9104,
+    "n_issues": 8
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     }
+    },
+    "wall_s": 0.04582917200002612,
+    "name": "interacting_4",
+    "seed": 9105,
+    "n_issues": 6
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.05891733300006763,
+    "name": "mixed_0",
+    "seed": 9201,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.04607634399997096,
+    "name": "mixed_1",
+    "seed": 9202,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     }
+    },
+    "wall_s": 0.04620235699997011,
+    "name": "mixed_2",
+    "seed": 9203,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     }
+    },
+    "wall_s": 0.04439349500000844,
+    "name": "mixed_3",
+    "seed": 9204,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.044825462000062544,
+    "name": "mixed_4",
+    "seed": 9205,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 3
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.04486289499993745,
+    "name": "mixed_5",
+    "seed": 9206,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.04722117500000422,
+    "name": "mixed_6",
+    "seed": 9207,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+     }
+    },
+    "wall_s": 0.04842468300000746,
+    "name": "mixed_7",
+    "seed": 9208,
+    "n_issues": 5
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.04219460399997388,
+    "name": "mixed_8",
+    "seed": 9209,
+    "n_issues": 4
+   },
+   {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "reward": -1.0,
+    "inspection_steps": 0,
+    "by_type": {
+     "duplicate_invoice": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "payment_allocation": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "fx_error": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     },
+     "period_cutoff": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+     }
+    },
+    "wall_s": 0.04578882299995257,
     "name": "mixed_9",
     "seed": 9210,
     "n_issues": 4

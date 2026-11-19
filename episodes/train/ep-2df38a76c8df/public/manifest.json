@@ -1,0 +1,44 @@
+{
+ "schema_version": "1.0",
+ "episode_id": "ep-2df38a76c8df",
+ "env_version": "1.1.0",
+ "base_currency": "JPY",
+ "currencies": [
+  "JPY",
+  "KZT",
+  "USD"
+ ],
+ "currency_exponents": {
+  "JPY": 0,
+  "KZT": 2,
+  "USD": 2
+ },
+ "period_start": "2026-02-01T00:00:00+00:00",
+ "period_end": "2026-05-01T00:00:00+00:00",
+ "timezone": "UTC+00:00",
+ "counts": {
+  "ledger_rows": 302,
+  "invoices": 80,
+  "payments": 57,
+  "documents": 137,
+  "fx_rates": 876
+ },
+ "rounding": {
+  "mode": "half_up",
+  "fx_rate_format": "decimal string, 10 dp"
+ },
+ "formats": {
+  "time": "ISO-8601 with UTC offset",
+  "money": "integer minor units; exponent per currency in currency_exponents",
+  "fx": "decimal strings",
+  "null": "explicit null (ledger.csv uses the literal null)"
+ },
+ "files": [
+  "manifest.json",
+  "ledger.csv",
+  "invoices.jsonl",
+  "payments.jsonl",
+  "fx.csv",
+  "policy.json"
+ ]
+}

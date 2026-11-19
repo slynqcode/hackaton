@@ -1,0 +1,114 @@
+{
+ "episode_id": "ep-81b0f300eb9f",
+ "issues": [
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "INV-50742",
+    "PAY-77448"
+   ],
+   "expected_amount_minor": 1942155,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-4129369",
+     "JE34409838"
+    ]
+   ],
+   "issue_id": "ISS-94a32cc25f"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "PAY-77448"
+   ],
+   "expected_amount_minor": 12493,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-4129369",
+     "JE62058302",
+     "fx:2026-04-30:GBP:JPY"
+    ],
+    [
+     "DOC-4129369",
+     "JE91570003",
+     "fx:2026-04-30:GBP:JPY"
+    ]
+   ],
+   "issue_id": "ISS-ef9632f56c"
+  },
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "INV-15447",
+    "INV-36152"
+   ],
+   "expected_amount_minor": 2079000,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-5130920",
+     "DOC-6508109"
+    ]
+   ],
+   "issue_id": "ISS-9ffdf740ab"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "INV-09587",
+    "PAY-19211"
+   ],
+   "expected_amount_minor": 5590500,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-9566344",
+     "JE93215418"
+    ]
+   ],
+   "issue_id": "ISS-4316cba37b"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "PAY-90619"
+   ],
+   "expected_amount_minor": 11782,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-0361974",
+     "JE87209408",
+     "fx:2026-05-26:JPY:GBP"
+    ],
+    [
+     "DOC-0361974",
+     "JE90134405",
+     "fx:2026-05-26:JPY:GBP"
+    ]
+   ],
+   "issue_id": "ISS-e1347efbd4"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "INV-11802"
+   ],
+   "expected_amount_minor": 3328500,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-8413495",
+     "JE77363357"
+    ],
+    [
+     "DOC-8413495",
+     "JE46596864"
+    ]
+   ],
+   "issue_id": "ISS-23852aa43a"
+  }
+ ]
+}

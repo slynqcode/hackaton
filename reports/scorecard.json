@@ -1,9 +1,9 @@
 {
- "env_version": "1.0.0",
+ "env_version": "1.1.0",
  "scorecard": {
   "contract_and_isolation": {
-   "passed": 20,
-   "total": 20,
+   "passed": 24,
+   "total": 24,
    "points": 25.0,
    "max": 25
   },
@@ -14,8 +14,8 @@
    "max": 25
   },
   "reward_reliability": {
-   "passed": 34,
-   "total": 34,
+   "passed": 36,
+   "total": 36,
    "points": 25.0,
    "max": 25,
    "mutation_score": 1.0
@@ -42,5 +42,5 @@
  },
  "self_assessed_total": 100.0,
  "failures": [],
- "seconds": 16.4
+ "seconds": 20.5
 }

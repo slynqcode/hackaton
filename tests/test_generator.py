@@ -13,7 +13,7 @@ CFGS = [
     {"interactions": ["partial_fx", "cutoff_fx"], "faults": {"duplicate_invoice": 2, "payment_allocation": 1, "fx_error": 1, "period_cutoff": 1}},
     {"faults": {"duplicate_invoice": 3, "payment_allocation": 3, "fx_error": 3, "period_cutoff": 3}},
     {"company_offset_minutes": 0, "interactions": ["partial_fx", "cutoff_fx"]},
-    {"n_invoices": 90}, {"n_invoices": 40}, {"period_months": 1}, {"rounding": "half_even"}, {"rounding": "half_up", "currencies": ["KZT", "JPY", "USD"]},
+    {"n_invoices": 80}, {"n_invoices": 30}, {"period_months": 1}, {"rounding": "half_even"}, {"rounding": "half_up", "currencies": ["KZT", "JPY", "USD"]},
 ]
 
 
@@ -109,3 +109,42 @@ def test_detector_matches_truth_on_many_seeds():
     for s in range(200, 240):
         ep = generate_episode(s, {"interactions": ["partial_fx", "cutoff_fx"]} if s % 2 else {})
         assert detect(ep.tables, ep.manifest, ep.policy) == truth_tuples(ep.truth), s
+
+
+def test_shipped_configs_meet_proposed_sizes():
+    import json, os
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for split in ("train", "dev", "hidden_like"):
+        for e in json.load(open(os.path.join(root, "configs", f"{split}.json")))["episodes"]:
+            c = generate_episode(e["seed"], e["config"]).manifest["counts"]
+            assert 200 <= c["ledger_rows"] <= 2000 and 20 <= c["documents"] <= 200, (split, e["name"], c)
+
+
+def test_random_configs_never_crash_and_always_certify():
+    import random
+    rng = random.Random(2026)
+    for _ in range(120):
+        f = {t: rng.randint(0, 3) for t in FAULT_TYPES}
+        inter = rng.sample(["partial_fx", "cutoff_fx"], rng.randint(0, 2))
+        while sum(f.values()) + 2 * len(inter) > 12:
+            t = rng.choice(FAULT_TYPES); f[t] = max(0, f[t] - 1)
+        cfg = {"faults": f, "interactions": inter, "n_invoices": rng.randint(30, 80), "n_entities": rng.randint(3, 14)}
+        if rng.random() < 0.3:
+            cfg["currencies"] = rng.sample(["USD", "EUR", "GBP", "KZT", "JPY", "KWD", "CHF"], rng.randint(2, 4))
+        ep = generate_episode(rng.randrange(10**6), cfg)
+        assert certify(ep)["passed"], cfg
+
+
+def test_advances_are_legitimate_unapplied_cash():
+    ep = generate_episode(12, {"faults": {k: 0 for k in FAULT_TYPES}})
+    adv = [p for p in ep.tables["payments"] if p["invoice_refs"] == []]
+    assert len(adv) == 2
+    un = {r["payment_id"] for r in ep.tables["ledger"] if r["account"] == "UNAPPLIED"}
+    assert {p["payment_id"] for p in adv} <= un and detect(ep.tables, ep.manifest, ep.policy) == []
+
+
+def test_invalid_configs_are_rejected():
+    for bad in ({"n_entities": 2}, {"n_invoices": 200}, {"currencies": ["USD"]}, {"rounding": "up"},
+                {"period_months": 7}, {"faults": {"fx_error": -1}}, {"distractors": {"refunds": 1.5}}):
+        with pytest.raises(ValueError):
+            resolve_config(bad)

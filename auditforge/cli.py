@@ -12,7 +12,9 @@ from . import ENV_VERSION
 from .certificate import certify
 from .generator import generate_episode, write_episode
 from .mutants import run_mutation_suite
-from .policies import FlagAll, Oracle, RandomExplorer, ReferenceSolver, SimpleReconciler
+from .policies import FlagAll, Oracle, RandomExplorer, ReferenceSolver, SimpleReconciler, ZeroAgent
+from .explain import explain
+from . import fuzz
 from .remote import RemoteEnv
 from .runner import run_episode
 from . import selfchecks
@@ -40,7 +42,7 @@ def run_policies(split: str, mode: str, isolated: bool, traj=None, extra_referen
     per = {}
     for e in spec["episodes"]:
         ep = generate_episode(e["seed"], e["config"])
-        pols = make_policies(ep, e["seed"]) + ([ReferenceSolver()] if extra_reference else [])
+        pols = make_policies(ep, e["seed"]) + ([ReferenceSolver(), ZeroAgent()] if extra_reference else [])
         for pol in pols:
             if isolated:
                 env = RemoteEnv(mode=mode)
@@ -66,6 +68,7 @@ def cmd_gen(args):
             base = write_episode(ep, os.path.join(out, split))
             cert = certify(ep)
             json.dump(cert, open(os.path.join(base, "evaluator", "certificate.json"), "w"), indent=1)
+            open(os.path.join(base, "evaluator", "explain.md"), "w").write(explain(ep))
             index.append({"split": split, "name": e["name"], "episode_id": ep.episode_id, "seed": e["seed"],
                           "issues": len(ep.truth["issues"]), "certified": cert["passed"], "counts": ep.manifest["counts"]})
     json.dump({"env_version": ENV_VERSION, "episodes": index}, open(os.path.join(out, "index.json"), "w"), indent=1)
@@ -92,6 +95,17 @@ def markdown_table(summary):
     return "\n".join(lines)
 
 
+def cmd_explain(args):
+    ep = generate_episode(args.seed, json.loads(args.config) if args.config else None)
+    print(explain(ep))
+
+
+def cmd_fuzz(args):
+    r = fuzz.run_all()
+    json.dump(r, open(P("reports", "fuzz_report.json"), "w"), indent=1)
+    print(json.dumps(r, indent=1))
+
+
 def cmd_mutation(args):
     r = run_mutation_suite()
     json.dump(r, open(P("reports", "mutation_report.json"), "w"), indent=1)
@@ -102,7 +116,7 @@ def cmd_mutation(args):
 def cmd_analysis(args):
     """Measured failure analysis: per-type errors of the naive reconciler + distractor ablation."""
     NO_DIS = {"installments": 0, "refunds": 0, "multi_invoice": 0, "recurring": 0, "same_amount_near": 0,
-              "boundary_invoices": 0, "boundary_cross_ok": 0, "cross_ccy_ok": 0}
+              "boundary_invoices": 0, "boundary_cross_ok": 0, "cross_ccy_ok": 0, "advances": 0}
     NOFAULT = {k: 0 for k in ("duplicate_invoice", "payment_allocation", "fx_error", "period_cutoff")}
     seeds = list(range(9301, 9316))
     variants = {"naive": dict(), "+tz_aware": dict(tz_aware=True), "+tz_aware+allocated_amount": dict(tz_aware=True, use_allocated=True)}
@@ -167,9 +181,16 @@ def cmd_verify(args):
     rc = selfchecks.reward_checks()
     res = selfchecks.run_checks(rc)
     mut = cmd_mutation(None)
+    fz = fuzz.run_all(quick=True)
+    json.dump(fz, open(P("reports", "fuzz_report.json"), "w"), indent=1)
+    print(f"[reward fuzzer] {fz['soundness']['submissions']} random submissions, unsound awards: {fz['soundness']['n_violations']}; "
+          f"blind best reward {fz['blind_search']['max_best_reward']:+.2f}; seed regeneration: without secret "
+          f"{fz['regeneration']['recovered_without_secret']}, with secret {fz['regeneration']['recovered_with_secret']}")
+    if not fz["passed"]:
+        fails.append("reward fuzzer failed")
     ok_r, n_r = _pct(res)
-    total_r = n_r + 1
-    ok_total = ok_r + (1 if not mut["survivors"] else 0)
+    total_r = n_r + 2
+    ok_total = ok_r + (1 if not mut["survivors"] else 0) + (1 if fz["passed"] else 0)
     sc["reward_reliability"] = {"passed": ok_total, "total": total_r, "points": round(25 * ok_total / total_r, 2), "max": 25,
                                 "mutation_score": mut["mutation_score"]}
     fails.extend(f"reward: {k}: {v}" for k, v in res.items() if v is not True)
@@ -188,7 +209,8 @@ def cmd_verify(args):
               ("reference_solver F1 == 1", all(r["f1"] == 1.0 for r in per["reference_solver"])),
               ("flag_all mean return < -0.5", summ["flag_all"]["return"] < -0.5),
               ("simple_reconciler worse than reference", summ["simple_reconciler"]["f1"] < summ["reference_solver"]["f1"] - 0.2),
-              ("random_explorer F1 < 0.3", summ["random_explorer"]["f1"] < 0.3)]
+              ("random_explorer F1 < 0.3", summ["random_explorer"]["f1"] < 0.3),
+              ("zero_agent: +1 on clean, -1 otherwise", all(r["reward"] == (1.0 if r["n_issues"] == 0 else -1.0) for r in per["zero_agent"]))]
     for n, v in expect:
         print(f"  {'ok ' if v else 'FAIL'} {n}")
         if not v:
@@ -218,9 +240,12 @@ def cmd_verify(args):
 
 def main():
     ap = argparse.ArgumentParser(prog="auditforge")
-    ap.add_argument("cmd", choices=["gen", "baselines", "mutation", "analysis", "verify"])
+    ap.add_argument("cmd", choices=["gen", "baselines", "mutation", "analysis", "verify", "explain", "fuzz"])
+    ap.add_argument("--seed", type=int, default=4242, help="explain: episode seed")
+    ap.add_argument("--config", default=None, help='explain: JSON config, e.g. \'{"interactions":["partial_fx"]}\'')
     args = ap.parse_args()
-    {"gen": cmd_gen, "baselines": cmd_baselines, "mutation": cmd_mutation, "analysis": cmd_analysis, "verify": cmd_verify}[args.cmd](args)
+    {"gen": cmd_gen, "baselines": cmd_baselines, "mutation": cmd_mutation, "analysis": cmd_analysis, "verify": cmd_verify,
+     "explain": cmd_explain, "fuzz": cmd_fuzz}[args.cmd](args)
 
 
 if __name__ == "__main__":

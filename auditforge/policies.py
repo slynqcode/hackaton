@@ -215,3 +215,12 @@ class ReferenceSolver:
             fs.append({"type": typ, "affected_ids": list(ids), "claimed_amount_minor": amt, "currency": ccy,
                        "evidence_ids": ev, "explanation": "reference solver"})
         yield _submit(info["episode_id"], fs)
+
+
+class ZeroAgent:
+    """Diagnostic, not one of the four required baselines: submits an empty answer at step 1.
+    Shows what 'always stay silent' earns: +1 on clean books, -1 whenever there is any error."""
+    name = "zero_agent"
+
+    def run(self, obs, info):
+        yield _submit(info["episode_id"], [])

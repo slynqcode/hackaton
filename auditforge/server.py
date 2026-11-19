@@ -3,6 +3,7 @@ The policy process never imports this module and never sees truth/provenance/see
 from __future__ import annotations
 
 import json
+import os
 import sys
 
 from .env import AuditEnv
@@ -15,7 +16,9 @@ def main() -> None:
             msg = json.loads(line)
             op = msg.get("op")
             if op == "reset":
-                env = AuditEnv(mode=msg.get("mode", "train"), **msg.get("limits", {}))
+                # the secret comes from this process's environment only, never from the agent-facing channel
+                env = AuditEnv(mode=msg.get("mode", "train"), secret=os.environ.get("AUDITFORGE_SECRET") or None,
+                               **msg.get("limits", {}))
                 obs, info = env.reset(msg["seed"], msg.get("config"))
                 out = {"obs": obs, "info": info}
             elif op == "step":

@@ -1,0 +1,145 @@
+{
+ "episode_id": "ep-310c5b5d46ce",
+ "issues": [
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "F-34948",
+    "F-52266"
+   ],
+   "expected_amount_minor": 4710000,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "doc_6518680",
+     "doc_8831126"
+    ]
+   ],
+   "issue_id": "ISS-3d17eaf183"
+  },
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "F-67173",
+    "F-91909"
+   ],
+   "expected_amount_minor": 1508320,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "doc_6990449",
+     "doc_9597238"
+    ]
+   ],
+   "issue_id": "ISS-bb698a902e"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "F-87681",
+    "P-43466"
+   ],
+   "expected_amount_minor": 3795129,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "doc_5551089",
+     "r30169037"
+    ]
+   ],
+   "issue_id": "ISS-cddbbd6d8d"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "F-10920",
+    "P-22171"
+   ],
+   "expected_amount_minor": 6843000,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "doc_2704375",
+     "r62882265"
+    ]
+   ],
+   "issue_id": "ISS-c533528bcf"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "P-69773"
+   ],
+   "expected_amount_minor": 46058021,
+   "currency": "KZT",
+   "acceptable_evidence_sets": [
+    [
+     "doc_6429152",
+     "fx:2026-06-29:GBP:KZT",
+     "r03898838"
+    ],
+    [
+     "doc_6429152",
+     "fx:2026-06-29:GBP:KZT",
+     "r27277244"
+    ]
+   ],
+   "issue_id": "ISS-9758d0cbb2"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "P-89549"
+   ],
+   "expected_amount_minor": 49431960,
+   "currency": "KZT",
+   "acceptable_evidence_sets": [
+    [
+     "doc_6428867",
+     "fx:2026-06-01:GBP:KZT",
+     "r56892650"
+    ],
+    [
+     "doc_6428867",
+     "fx:2026-06-01:GBP:KZT",
+     "r67750280"
+    ]
+   ],
+   "issue_id": "ISS-fdf179a8a8"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "F-68761"
+   ],
+   "expected_amount_minor": 1258080,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "doc_6037510",
+     "r31144743"
+    ],
+    [
+     "doc_6037510",
+     "r29109763"
+    ]
+   ],
+   "issue_id": "ISS-cddd1a52e3"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "P-15311"
+   ],
+   "expected_amount_minor": 1432204,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "doc_1939461",
+     "r32544624"
+    ]
+   ],
+   "issue_id": "ISS-8fcdc091ef"
+  }
+ ]
+}

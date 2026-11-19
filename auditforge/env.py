@@ -42,16 +42,25 @@ ERRORS = {
 
 class AuditEnv:
     def __init__(self, mode: str = "train", max_steps: int = MAX_STEPS, time_limit_s: float = TIME_LIMIT_S,
-                 clock: Callable[[], float] = time.monotonic):
+                 clock: Callable[[], float] = time.monotonic, secret: str | None = None):
+        """secret: evaluator-only string mixed into every generated episode. Without it the generator is public, so
+        anyone who knows seed range + config can regenerate an episode and read its truth (measured: ~13 s for 2000
+        seeds). Closed runs MUST set it (RemoteEnv passes it to the evaluator process via AUDITFORGE_SECRET)."""
         if mode not in ("train", "eval"):
             raise ValueError("mode must be 'train' or 'eval'")
+        self._secret = secret
         self.mode, self.max_steps, self.time_limit_s, self._clock = mode, max_steps, time_limit_s, clock
         self._ep: Episode | None = None
         self._done = False
 
     # ------------------------------------------------------------------ lifecycle
     def reset(self, seed: int | None = None, config: dict | None = None, episode: Episode | None = None):
-        ep = episode if episode is not None else generate_episode(int(seed), config)
+        if episode is None:
+            cfg = dict(config or {})
+            if self._secret:
+                cfg["id_salt"] = f"{self._secret}|{cfg.get('id_salt', '')}"
+            episode = generate_episode(int(seed), cfg)
+        ep = episode
         self._ep = ep
         self._steps, self._done, self._truncated, self._result, self._reason = 0, False, False, None, None
         self._t0 = self._clock()
@@ -63,6 +72,7 @@ class AuditEnv:
             "fx": {fx_record_id(r): r for r in t["fx"]},
         }
         self._docs = {r["doc_id"]: r for r in t["invoices"] + t["payments"]}
+        self._known_ids = frozenset(self._idx["ledger"]) | frozenset(self._docs) | frozenset(self._idx["fx"])
         obs = {"task": TASK_TEXT, "manifest": copy.deepcopy(ep.manifest), "policy_summary": policy_summary(ep.policy),
                "steps_remaining": self.max_steps}
         info = {"episode_id": ep.episode_id, "env_version": ENV_VERSION, "schema_version": SCHEMA_VERSION, "mode": self.mode}
@@ -120,7 +130,9 @@ class AuditEnv:
         return self._submit(a)
 
     def _list(self, a: dict) -> dict:
-        table, cursor, limit = a.get("table"), a.get("cursor"), a.get("limit", PAGE_MAX)
+        table, cursor, limit = a.get("table"), a.get("cursor"), a.get("limit")
+        if limit is None:
+            limit = PAGE_MAX
         if table not in TABLES:
             return self._err("unknown_table" if isinstance(table, str) else "invalid_argument")
         if isinstance(limit, bool) or not isinstance(limit, int) or limit < 1:
@@ -155,7 +167,8 @@ class AuditEnv:
         inspection = self._steps - 1
         try:
             findings = validate_submission(a.get("findings"), self._ep.episode_id)
-            self._result = grade(findings, self._ep.truth["issues"], self._ep.policy["amount_tolerance_minor"], inspection)
+            self._result = grade(findings, self._ep.truth["issues"], self._ep.policy["amount_tolerance_minor"], inspection,
+                                 self._known_ids)
             reason, obs = "submitted", self._obs(result={"status": "submitted"})
         except InvalidSubmission as e:
             self._result = invalid_result(e.code, inspection)
@@ -164,7 +177,7 @@ class AuditEnv:
 
     def _finish(self, truncated: bool, reason: str, obs: dict, graded: bool = False):
         if not graded:  # truncation: empty final answer is graded
-            self._result = grade([], self._ep.truth["issues"], self._ep.policy["amount_tolerance_minor"], self._steps)
+            self._result = grade([], self._ep.truth["issues"], self._ep.policy["amount_tolerance_minor"], self._steps, self._known_ids)
         self._done, self._truncated, self._reason = True, truncated, reason
         reward, info = 0.0, {"step": self._steps}
         if self.mode == "train":

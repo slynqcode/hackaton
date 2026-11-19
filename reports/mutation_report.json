@@ -1,6 +1,6 @@
 {
- "mutants": 37,
- "killed": 37,
+ "mutants": 38,
+ "killed": 38,
  "mutation_score": 1.0,
  "survivors": [],
  "details": {
@@ -38,6 +38,12 @@
    "killed": true,
    "killed_by": [
     "missing_evidence_is_not_a_match_but_superset_is"
+   ]
+  },
+  "evidence_existence_not_checked": {
+   "killed": true,
+   "killed_by": [
+    "invented_evidence_ids_are_never_accepted"
    ]
   },
   "amount_check_removed": {
@@ -118,13 +124,17 @@
   "greedy_matching": {
    "killed": true,
    "killed_by": [
-    "matching_is_one_to_one_maximum_cardinality"
+    "full_correct_answer_beats_silence_on_faulty_books",
+    "perfect_answer_reward_is_one_minus_step_cost",
+    "partial_answer_is_penalised_for_missed_errors"
    ]
   },
   "many_to_one_matching": {
    "killed": true,
    "killed_by": [
-    "duplicate_findings_give_no_benefit"
+    "full_correct_answer_beats_silence_on_faulty_books",
+    "perfect_answer_reward_is_one_minus_step_cost",
+    "partial_answer_is_penalised_for_missed_errors"
    ]
   },
   "f1_empty_empty_is_zero": {

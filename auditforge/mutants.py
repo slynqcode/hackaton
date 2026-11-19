@@ -56,6 +56,7 @@ MUTANTS = {
     "evidence_nonempty_suffices": [(G, "_evidence_ok", lambda f, t: bool(f["evidence_ids"]))],
     "evidence_only_first_set": [(G, "_evidence_ok", lambda f, t: set(t["acceptable_evidence_sets"][0]) <= f["evidence_ids"])],
     "evidence_must_equal_set": [(G, "_evidence_ok", lambda f, t: any(set(s) == f["evidence_ids"] for s in t["acceptable_evidence_sets"]))],
+    "evidence_existence_not_checked": [(G, "_evidence_real", lambda f, known: True)],
     "amount_check_removed": [(G, "_amount_ok", lambda f, t, tol: True)],
     "amount_tolerance_1000": [(G, "_amount_ok", lambda f, t, tol: abs(f["claimed_amount_minor"] - t["expected_amount_minor"]) <= 1000)],
     "amount_exact_only": [(G, "_amount_ok", lambda f, t, tol: f["claimed_amount_minor"] == t["expected_amount_minor"])],

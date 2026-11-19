@@ -7,7 +7,8 @@ Normalisation
   * affected_ids  : strip() each id, deduplicate, compare as a SET (order irrelevant, case-sensitive)
   * currency      : strip().upper()
   * amount        : exact integer minor units; |claimed - expected| <= policy.amount_tolerance_minor
-  * evidence      : finding.evidence_ids must be a SUPERSET of at least one acceptable evidence set
+  * evidence      : finding.evidence_ids must be a SUPERSET of at least one acceptable evidence set, and
+                    EVERY cited evidence id must be a real record id of the episode (no invented support)
 Ambiguous matches
   * one-to-one maximum-cardinality bipartite matching (Kuhn). Candidate edges per finding are ordered
     by (|amount diff|, issue_id); findings are processed in submission order. A finding that cannot be
@@ -91,15 +92,19 @@ def _evidence_ok(f: dict, t: dict) -> bool:
     return any(set(s) <= f["evidence_ids"] for s in t["acceptable_evidence_sets"])
 
 
+def _evidence_real(f: dict, known_ids) -> bool:
+    return known_ids is None or f["evidence_ids"] <= known_ids
+
+
 def is_match(f: dict, t: dict, tol: int) -> bool:
     return _type_ok(f, t) and _ids_ok(f, t) and _amount_ok(f, t, tol) and _currency_ok(f, t) and _evidence_ok(f, t)
 
 
 # ---------------------------------------------------------------- matching
-def match_findings(findings: list, issues: list, tol: int) -> dict:
+def match_findings(findings: list, issues: list, tol: int, known_ids=None) -> dict:
     adj = []
     for f in findings:
-        c = [j for j, t in enumerate(issues) if is_match(f, t, tol)]
+        c = [j for j, t in enumerate(issues) if _evidence_real(f, known_ids) and is_match(f, t, tol)]
         c.sort(key=lambda j: (abs(f["claimed_amount_minor"] - issues[j]["expected_amount_minor"]), issues[j]["issue_id"]))
         adj.append(c)
     owner: dict = {}
@@ -138,8 +143,10 @@ def terminal_reward(f1: float, inspection_steps: int) -> float:
     return max(-1.0, min(1.0, r))
 
 
-def grade(findings: list, truth_issues: list, tol: int, inspection_steps: int) -> dict:
-    owner = match_findings(findings, truth_issues, tol)
+def grade(findings: list, truth_issues: list, tol: int, inspection_steps: int, known_ids=None) -> dict:
+    """known_ids: set of every record id of the episode (row_id, doc_id, fx:..). When given, a finding that cites a
+    non-existent evidence id can never be a TP. The environment always passes it."""
+    owner = match_findings(findings, truth_issues, tol, known_ids)
     tp = len(owner)
     fp = len(findings) - tp
     fn = len(truth_issues) - tp
