@@ -1,0 +1,44 @@
+{
+ "schema_version": "1.0",
+ "episode_id": "ep-d48b59bb52e3",
+ "env_version": "1.0.0",
+ "base_currency": "EUR",
+ "currencies": [
+  "EUR",
+  "GBP",
+  "KZT"
+ ],
+ "currency_exponents": {
+  "EUR": 2,
+  "GBP": 2,
+  "KZT": 2
+ },
+ "period_start": "2026-09-01T00:00:00+05:30",
+ "period_end": "2026-12-01T00:00:00+05:30",
+ "timezone": "UTC+05:30",
+ "counts": {
+  "ledger_rows": 352,
+  "invoices": 84,
+  "payments": 54,
+  "documents": 138,
+  "fx_rates": 888
+ },
+ "rounding": {
+  "mode": "half_even",
+  "fx_rate_format": "decimal string, 10 dp"
+ },
+ "formats": {
+  "time": "ISO-8601 with UTC offset",
+  "money": "integer minor units; exponent per currency in currency_exponents",
+  "fx": "decimal strings",
+  "null": "explicit null (ledger.csv uses the literal null)"
+ },
+ "files": [
+  "manifest.json",
+  "ledger.csv",
+  "invoices.jsonl",
+  "payments.jsonl",
+  "fx.csv",
+  "policy.json"
+ ]
+}

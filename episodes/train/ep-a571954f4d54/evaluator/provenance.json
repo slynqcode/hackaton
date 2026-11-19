@@ -1,0 +1,430 @@
+{
+ "schema_version": "1.0",
+ "env_version": "1.0.0",
+ "seed": 1003,
+ "config": {
+  "n_invoices": 62,
+  "n_entities": 9,
+  "faults": {
+   "duplicate_invoice": 1,
+   "payment_allocation": 1,
+   "fx_error": 1,
+   "period_cutoff": 1
+  },
+  "interactions": [
+   "partial_fx"
+  ],
+  "distractors": {
+   "installments": 3,
+   "refunds": 2,
+   "multi_invoice": 2,
+   "recurring": 2,
+   "same_amount_near": 3,
+   "boundary_invoices": 8,
+   "boundary_cross_ok": 4,
+   "cross_ccy_ok": 6
+  },
+  "company_offset_minutes": null,
+  "period_months": null,
+  "rounding": null,
+  "currencies": null,
+  "id_style": null,
+  "id_salt": ""
+ },
+ "setup": {
+  "company_offset_minutes": 180,
+  "currencies": [
+   "GBP",
+   "USD",
+   "EUR"
+  ],
+  "rounding": "half_even",
+  "history": {
+   "special_counts": {
+    "installments": 3,
+    "refunds": 2,
+    "multi": 4
+   }
+  },
+  "n_issues": 6
+ },
+ "faults": [
+  {
+   "issue_id": "ISS-2ffc314609",
+   "type": "payment_allocation",
+   "operator": "payment_allocation_op",
+   "group": "partial_fx",
+   "role": "primary",
+   "params": {
+    "mode": "partial",
+    "allocated_minor": 39248,
+    "payment_amount_minor": 83508
+   }
+  },
+  {
+   "issue_id": "ISS-72fcbd7eb4",
+   "type": "fx_error",
+   "operator": "fx_error_op",
+   "group": "partial_fx",
+   "role": "dependent",
+   "params": {
+    "variant": "utc_date",
+    "wrong_date": "2026-06-30",
+    "wrong_rate": null,
+    "booked_minor": 51145,
+    "correct_minor": 50759,
+    "allocated_minor": 39248
+   },
+   "caused_by": "ISS-2ffc314609"
+  },
+  {
+   "issue_id": "ISS-b4ff5da435",
+   "type": "duplicate_invoice",
+   "operator": "duplicate_invoice_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "source_invoice": "INV-64754",
+    "duplicate_invoice": "INV-27553",
+    "duplicate_issued_at": "2026-06-03T04:52:00+03:00",
+    "lines_reordered": true
+   }
+  },
+  {
+   "issue_id": "ISS-0e5fd9c1cb",
+   "type": "payment_allocation",
+   "operator": "payment_allocation_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "mode": "partial",
+    "allocated_minor": 1385132,
+    "payment_amount_minor": 3297935
+   }
+  },
+  {
+   "issue_id": "ISS-049d3f57d8",
+   "type": "fx_error",
+   "operator": "fx_error_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "variant": "invoice_date",
+    "wrong_date": "2026-06-20",
+    "wrong_rate": null,
+    "booked_minor": 5412805,
+    "correct_minor": 5451500,
+    "allocated_minor": 6368283
+   }
+  },
+  {
+   "issue_id": "ISS-28771f7340",
+   "type": "period_cutoff",
+   "operator": "period_cutoff_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "document": "PAY-04419",
+    "document_timestamp": "2026-07-01T10:23:00+03:00",
+    "document_side": "after",
+    "posted_at": "2026-06-30T14:47:00+03:00",
+    "posted_side": "in"
+   }
+  }
+ ],
+ "causal_links": [
+  {
+   "scenario": "partial_fx",
+   "cause": "ISS-2ffc314609",
+   "effect": "ISS-72fcbd7eb4",
+   "mechanism": "FX conversion applied to the allocated part; wrong rate date taken from the UTC date of the payment"
+  }
+ ],
+ "changes": [
+  {
+   "op": "add",
+   "table": "ledger",
+   "id": "JE00413191",
+   "record": {
+    "row_id": "JE00413191",
+    "timestamp": "2026-06-03T07:08:00+05:00",
+    "account": "AR",
+    "debit_minor": 1977000,
+    "credit_minor": 0,
+    "currency": "GBP",
+    "entity_id": "CUST-159",
+    "invoice_id": "INV-27553",
+    "payment_id": null
+   },
+   "doc_key": "I0040#D",
+   "issue_ids": [
+    "ISS-b4ff5da435"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE01555721",
+   "field": "debit_minor",
+   "before": 2833500,
+   "after": 1190069,
+   "doc_key": "P0034",
+   "issue_ids": [
+    "ISS-0e5fd9c1cb"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE09532935",
+   "field": "credit_minor",
+   "before": 2833500,
+   "after": 1190069,
+   "doc_key": "P0034",
+   "issue_ids": [
+    "ISS-0e5fd9c1cb"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE17187782",
+   "field": "debit_minor",
+   "before": 107999,
+   "after": 51145,
+   "doc_key": "P0035",
+   "issue_ids": [
+    "ISS-2ffc314609",
+    "ISS-72fcbd7eb4"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE28803599",
+   "field": "debit_minor",
+   "before": 5451500,
+   "after": 5412805,
+   "doc_key": "P0004",
+   "issue_ids": [
+    "ISS-049d3f57d8"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE37115430",
+   "field": "timestamp",
+   "before": "2026-07-01T19:24:00+09:00",
+   "after": "2026-06-30T20:47:00+09:00",
+   "doc_key": "P0039",
+   "issue_ids": [
+    "ISS-28771f7340"
+   ]
+  },
+  {
+   "op": "add",
+   "table": "ledger",
+   "id": "JE46482122",
+   "record": {
+    "row_id": "JE46482122",
+    "timestamp": "2026-07-01T04:14:00+02:00",
+    "account": "UNAPPLIED",
+    "debit_minor": 0,
+    "credit_minor": 44260,
+    "currency": "GBP",
+    "entity_id": "CUST-271",
+    "invoice_id": null,
+    "payment_id": "PAY-45536"
+   },
+   "doc_key": "P0035",
+   "issue_ids": [
+    "ISS-2ffc314609",
+    "ISS-72fcbd7eb4"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE56350919",
+   "field": "credit_minor",
+   "before": 3297935,
+   "after": 1385132,
+   "doc_key": "P0034",
+   "issue_ids": [
+    "ISS-0e5fd9c1cb"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE59426072",
+   "field": "credit_minor",
+   "before": 83508,
+   "after": 39248,
+   "doc_key": "P0035",
+   "issue_ids": [
+    "ISS-2ffc314609",
+    "ISS-72fcbd7eb4"
+   ]
+  },
+  {
+   "op": "add",
+   "table": "ledger",
+   "id": "JE71270575",
+   "record": {
+    "row_id": "JE71270575",
+    "timestamp": "2026-07-01T08:28:00+08:00",
+    "account": "UNAPPLIED",
+    "debit_minor": 0,
+    "credit_minor": 1912803,
+    "currency": "EUR",
+    "entity_id": "CUST-127",
+    "invoice_id": null,
+    "payment_id": "PAY-59823"
+   },
+   "doc_key": "P0034",
+   "issue_ids": [
+    "ISS-0e5fd9c1cb"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE73575176",
+   "field": "credit_minor",
+   "before": 5451500,
+   "after": 5412805,
+   "doc_key": "P0004",
+   "issue_ids": [
+    "ISS-049d3f57d8"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE77753179",
+   "field": "credit_minor",
+   "before": 107999,
+   "after": 51145,
+   "doc_key": "P0035",
+   "issue_ids": [
+    "ISS-2ffc314609",
+    "ISS-72fcbd7eb4"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "JE96566132",
+   "field": "timestamp",
+   "before": "2026-07-01T19:24:00+09:00",
+   "after": "2026-06-30T20:47:00+09:00",
+   "doc_key": "P0039",
+   "issue_ids": [
+    "ISS-28771f7340"
+   ]
+  },
+  {
+   "op": "add",
+   "table": "ledger",
+   "id": "JE96928355",
+   "record": {
+    "row_id": "JE96928355",
+    "timestamp": "2026-06-03T07:08:00+05:00",
+    "account": "REVENUE",
+    "debit_minor": 0,
+    "credit_minor": 1977000,
+    "currency": "GBP",
+    "entity_id": "CUST-159",
+    "invoice_id": "INV-27553",
+    "payment_id": null
+   },
+   "doc_key": "I0040#D",
+   "issue_ids": [
+    "ISS-b4ff5da435"
+   ]
+  },
+  {
+   "op": "add",
+   "table": "invoices",
+   "id": "DOC-5735328",
+   "record": {
+    "doc_id": "DOC-5735328",
+    "invoice_id": "INV-27553",
+    "entity_id": "CUST-159",
+    "issued_at": "2026-06-03T03:52:00+02:00",
+    "due_at": "2026-07-18T03:52:00+02:00",
+    "currency": "GBP",
+    "total_minor": 1977000,
+    "line_items": [
+     {
+      "line_no": 1,
+      "description": "Analytics package",
+      "quantity": 8,
+      "unit_price_minor": 228500,
+      "amount_minor": 1828000,
+      "po_ref": "PO-864762"
+     },
+     {
+      "line_no": 2,
+      "description": "Hardware lease",
+      "quantity": 1,
+      "unit_price_minor": 149000,
+      "amount_minor": 149000,
+      "po_ref": "PO-864762"
+     }
+    ]
+   },
+   "doc_key": "I0040#D",
+   "issue_ids": [
+    "ISS-b4ff5da435"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "payments",
+   "id": "DOC-6499403",
+   "field": "invoice_refs",
+   "before": [
+    {
+     "invoice_id": "INV-09585",
+     "allocated_minor": 3297935
+    }
+   ],
+   "after": [
+    {
+     "invoice_id": "INV-09585",
+     "allocated_minor": 1385132
+    }
+   ],
+   "doc_key": "P0034",
+   "issue_ids": [
+    "ISS-0e5fd9c1cb"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "payments",
+   "id": "DOC-8060171",
+   "field": "invoice_refs",
+   "before": [
+    {
+     "invoice_id": "INV-87394",
+     "allocated_minor": 83508
+    }
+   ],
+   "after": [
+    {
+     "invoice_id": "INV-87394",
+     "allocated_minor": 39248
+    }
+   ],
+   "doc_key": "P0035",
+   "issue_ids": [
+    "ISS-2ffc314609",
+    "ISS-72fcbd7eb4"
+   ]
+  }
+ ]
+}

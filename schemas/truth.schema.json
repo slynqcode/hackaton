@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "evaluator-only truth.json",
+  "type": "object", "required": ["episode_id", "issues"],
+  "properties": {"episode_id": {"type": "string"},
+    "issues": {"type": "array", "maxItems": 12, "items": {"type": "object",
+      "required": ["issue_id", "type", "affected_ids", "expected_amount_minor", "currency", "acceptable_evidence_sets"],
+      "properties": {"issue_id": {"type": "string"}, "type": {"type": "string"}, "affected_ids": {"type": "array", "items": {"type": "string"}},
+                     "expected_amount_minor": {"type": "integer"}, "currency": {"type": "string"},
+                     "acceptable_evidence_sets": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}}}}}
+}

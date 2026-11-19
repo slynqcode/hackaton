@@ -1,0 +1,3 @@
+# Runtime: Python 3.11+ standard library only (no network, no paid APIs, no GPU).
+# Dev/test only (pinned):
+pytest==9.1.1

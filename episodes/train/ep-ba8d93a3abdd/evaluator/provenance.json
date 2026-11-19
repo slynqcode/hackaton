@@ -1,0 +1,52 @@
+{
+ "schema_version": "1.0",
+ "env_version": "1.0.0",
+ "seed": 1002,
+ "config": {
+  "n_invoices": 62,
+  "n_entities": 9,
+  "faults": {
+   "duplicate_invoice": 0,
+   "payment_allocation": 0,
+   "fx_error": 0,
+   "period_cutoff": 0
+  },
+  "interactions": [],
+  "distractors": {
+   "installments": 3,
+   "refunds": 2,
+   "multi_invoice": 2,
+   "recurring": 2,
+   "same_amount_near": 3,
+   "boundary_invoices": 8,
+   "boundary_cross_ok": 4,
+   "cross_ccy_ok": 6
+  },
+  "company_offset_minutes": null,
+  "period_months": null,
+  "rounding": null,
+  "currencies": null,
+  "id_style": null,
+  "id_salt": ""
+ },
+ "setup": {
+  "company_offset_minutes": -300,
+  "currencies": [
+   "USD",
+   "GBP",
+   "JPY"
+  ],
+  "rounding": "half_even",
+  "history": {
+   "special_counts": {
+    "installments": 3,
+    "refunds": 2,
+    "multi": 4
+   }
+  },
+  "n_issues": 0
+ },
+ "faults": [],
+ "causal_links": [],
+ "changes": []
+}

@@ -1,0 +1,305 @@
+{
+ "env_version": "1.0.0",
+ "episodes": [
+  {
+   "split": "train",
+   "name": "default",
+   "episode_id": "ep-5a8c415bf259",
+   "seed": 1001,
+   "issues": 4,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 317,
+    "invoices": 80,
+    "payments": 46,
+    "documents": 126,
+    "fx_rates": 522
+   }
+  },
+  {
+   "split": "train",
+   "name": "clean",
+   "episode_id": "ep-ba8d93a3abdd",
+   "seed": 1002,
+   "issues": 0,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 286,
+    "invoices": 79,
+    "payments": 45,
+    "documents": 124,
+    "fx_rates": 714
+   }
+  },
+  {
+   "split": "train",
+   "name": "partial_fx_boundary",
+   "episode_id": "ep-a571954f4d54",
+   "seed": 1003,
+   "issues": 6,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 304,
+    "invoices": 82,
+    "payments": 42,
+    "documents": 124,
+    "fx_rates": 522
+   }
+  },
+  {
+   "split": "train",
+   "name": "cutoff_fx_boundary",
+   "episode_id": "ep-96f0ae0427c5",
+   "seed": 1004,
+   "issues": 6,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 317,
+    "invoices": 84,
+    "payments": 53,
+    "documents": 137,
+    "fx_rates": 888
+   }
+  },
+  {
+   "split": "train",
+   "name": "both_interactions_plus_duplicates",
+   "episode_id": "ep-652d6463a331",
+   "seed": 1005,
+   "issues": 6,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 319,
+    "invoices": 82,
+    "payments": 47,
+    "documents": 129,
+    "fx_rates": 528
+   }
+  },
+  {
+   "split": "train",
+   "name": "multi_fault",
+   "episode_id": "ep-437d96435c67",
+   "seed": 1006,
+   "issues": 8,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 291,
+    "invoices": 84,
+    "payments": 45,
+    "documents": 129,
+    "fx_rates": 528
+   }
+  },
+  {
+   "split": "train",
+   "name": "clean_utc_company",
+   "episode_id": "ep-58d910a52741",
+   "seed": 1007,
+   "issues": 0,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 298,
+    "invoices": 78,
+    "payments": 53,
+    "documents": 131,
+    "fx_rates": 708
+   }
+  },
+  {
+   "split": "train",
+   "name": "large_default",
+   "episode_id": "ep-f83166620d62",
+   "seed": 1008,
+   "issues": 4,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 377,
+    "invoices": 97,
+    "payments": 59,
+    "documents": 156,
+    "fx_rates": 522
+   }
+  },
+  {
+   "split": "train",
+   "name": "fx_and_cutoff_heavy",
+   "episode_id": "ep-a2acd1d7b12a",
+   "seed": 1009,
+   "issues": 5,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 339,
+    "invoices": 83,
+    "payments": 53,
+    "documents": 136,
+    "fx_rates": 714
+   }
+  },
+  {
+   "split": "train",
+   "name": "max_twelve_issues",
+   "episode_id": "ep-02f1e971d3ad",
+   "seed": 1010,
+   "issues": 12,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 352,
+    "invoices": 90,
+    "payments": 65,
+    "documents": 155,
+    "fx_rates": 894
+   }
+  },
+  {
+   "split": "dev",
+   "name": "default",
+   "episode_id": "ep-ebda08615297",
+   "seed": 2001,
+   "issues": 4,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 333,
+    "invoices": 84,
+    "payments": 68,
+    "documents": 152,
+    "fx_rates": 894
+   }
+  },
+  {
+   "split": "dev",
+   "name": "clean",
+   "episode_id": "ep-04d3c13a2588",
+   "seed": 2002,
+   "issues": 0,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 304,
+    "invoices": 80,
+    "payments": 45,
+    "documents": 125,
+    "fx_rates": 708
+   }
+  },
+  {
+   "split": "dev",
+   "name": "partial_fx_boundary",
+   "episode_id": "ep-d48b59bb52e3",
+   "seed": 2003,
+   "issues": 6,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 352,
+    "invoices": 84,
+    "payments": 54,
+    "documents": 138,
+    "fx_rates": 888
+   }
+  },
+  {
+   "split": "dev",
+   "name": "cutoff_fx_boundary",
+   "episode_id": "ep-e25ff1c384e4",
+   "seed": 2004,
+   "issues": 6,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 334,
+    "invoices": 84,
+    "payments": 63,
+    "documents": 147,
+    "fx_rates": 894
+   }
+  },
+  {
+   "split": "dev",
+   "name": "both_interactions_plus_duplicates",
+   "episode_id": "ep-640380c63134",
+   "seed": 2005,
+   "issues": 6,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 347,
+    "invoices": 84,
+    "payments": 62,
+    "documents": 146,
+    "fx_rates": 894
+   }
+  },
+  {
+   "split": "dev",
+   "name": "multi_fault",
+   "episode_id": "ep-3792f84fb775",
+   "seed": 2006,
+   "issues": 8,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 366,
+    "invoices": 86,
+    "payments": 60,
+    "documents": 146,
+    "fx_rates": 714
+   }
+  },
+  {
+   "split": "dev",
+   "name": "clean_utc_company",
+   "episode_id": "ep-f108e0ef69e4",
+   "seed": 2007,
+   "issues": 0,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 268,
+    "invoices": 76,
+    "payments": 44,
+    "documents": 120,
+    "fx_rates": 528
+   }
+  },
+  {
+   "split": "dev",
+   "name": "large_default",
+   "episode_id": "ep-0b077130bb25",
+   "seed": 2008,
+   "issues": 4,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 327,
+    "invoices": 99,
+    "payments": 50,
+    "documents": 149,
+    "fx_rates": 528
+   }
+  },
+  {
+   "split": "dev",
+   "name": "fx_and_cutoff_heavy",
+   "episode_id": "ep-380c11121fe3",
+   "seed": 2009,
+   "issues": 5,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 298,
+    "invoices": 81,
+    "payments": 49,
+    "documents": 130,
+    "fx_rates": 522
+   }
+  },
+  {
+   "split": "dev",
+   "name": "max_twelve_issues",
+   "episode_id": "ep-6d32de12a92c",
+   "seed": 2010,
+   "issues": 12,
+   "certified": true,
+   "counts": {
+    "ledger_rows": 346,
+    "invoices": 90,
+    "payments": 56,
+    "documents": 146,
+    "fx_rates": 882
+   }
+  }
+ ]
+}

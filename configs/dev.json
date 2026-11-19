@@ -1,0 +1,117 @@
+{
+ "config_version": "1.0.0",
+ "split": "dev",
+ "episodes": [
+  {
+   "name": "default",
+   "seed": 2001,
+   "config": {}
+  },
+  {
+   "name": "clean",
+   "seed": 2002,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "partial_fx_boundary",
+   "seed": 2003,
+   "config": {
+    "interactions": [
+     "partial_fx"
+    ]
+   }
+  },
+  {
+   "name": "cutoff_fx_boundary",
+   "seed": 2004,
+   "config": {
+    "interactions": [
+     "cutoff_fx"
+    ]
+   }
+  },
+  {
+   "name": "both_interactions_plus_duplicates",
+   "seed": 2005,
+   "config": {
+    "interactions": [
+     "partial_fx",
+     "cutoff_fx"
+    ],
+    "faults": {
+     "duplicate_invoice": 2,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "multi_fault",
+   "seed": 2006,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 2,
+     "payment_allocation": 2,
+     "fx_error": 2,
+     "period_cutoff": 2
+    }
+   }
+  },
+  {
+   "name": "clean_utc_company",
+   "seed": 2007,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    },
+    "company_offset_minutes": 0
+   }
+  },
+  {
+   "name": "large_default",
+   "seed": 2008,
+   "config": {
+    "n_invoices": 80
+   }
+  },
+  {
+   "name": "fx_and_cutoff_heavy",
+   "seed": 2009,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 1,
+     "fx_error": 2,
+     "period_cutoff": 2
+    }
+   }
+  },
+  {
+   "name": "max_twelve_issues",
+   "seed": 2010,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 2,
+     "payment_allocation": 2,
+     "fx_error": 2,
+     "period_cutoff": 2
+    },
+    "interactions": [
+     "partial_fx",
+     "cutoff_fx"
+    ]
+   }
+  }
+ ]
+}

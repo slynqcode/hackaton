@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "step(action)",
+  "oneOf": [
+    {"properties": {"action": {"const": "list_records"}, "table": {"enum": ["ledger", "invoices", "payments", "fx"]},
+                    "cursor": {"type": ["string", "null"]}, "limit": {"type": "integer", "minimum": 1, "description": "clamped to 50"}},
+     "required": ["action", "table"]},
+    {"properties": {"action": {"const": "get_record"}, "table": {"enum": ["ledger", "invoices", "payments", "fx", "policy", "manifest"]}, "id": {"type": "string"}},
+     "required": ["action", "table", "id"]},
+    {"properties": {"action": {"const": "get_document"}, "doc_id": {"type": "string"}}, "required": ["action", "doc_id"]},
+    {"properties": {"action": {"const": "calculator"}, "expression": {"type": "string", "maxLength": 300}}, "required": ["action", "expression"]},
+    {"properties": {"action": {"const": "submit"}, "findings": {"$ref": "findings.schema.json"}}, "required": ["action", "findings"]}
+  ]
+}

@@ -1,0 +1,46 @@
+{
+ "env_version": "1.0.0",
+ "scorecard": {
+  "contract_and_isolation": {
+   "passed": 20,
+   "total": 20,
+   "points": 25.0,
+   "max": 25
+  },
+  "data_and_truth": {
+   "passed": 40,
+   "total": 40,
+   "points": 25.0,
+   "max": 25
+  },
+  "reward_reliability": {
+   "passed": 34,
+   "total": 34,
+   "points": 25.0,
+   "max": 25,
+   "mutation_score": 1.0
+  },
+  "reproducibility_and_generalisation": {
+   "passed": 25,
+   "total": 25,
+   "points": 15.0,
+   "max": 15
+  },
+  "engineering": {
+   "passed": 5,
+   "total": 5,
+   "points": 10,
+   "max": 10,
+   "detail": {
+    "one_command_run": true,
+    "versioned_configs": true,
+    "trajectory_logs": true,
+    "measured_failure_analysis": true,
+    "honest_limitations": true
+   }
+  }
+ },
+ "self_assessed_total": 100.0,
+ "failures": [],
+ "seconds": 16.4
+}

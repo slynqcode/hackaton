@@ -1,0 +1,71 @@
+{
+ "episode_id": "ep-02f1e971d3ad",
+ "passed": true,
+ "checks": [
+  {
+   "name": "clean_books_satisfy_invariants",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "provenance_diff_roundtrip",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "reconstructed_clean_equals_generated_clean",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "every_issue_has_recorded_causal_change",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "declared_discrepancies_are_exactly_those_present",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence_ids_exist",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "evidence_sets_independently_sufficient",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "affected_ids_exist",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "public_files_contain_no_evaluator_vocabulary",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "issue_ids_not_in_public_files",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "formats_iso_offset_integer_minor_decimal_fx",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "manifest_counts_match",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "size_within_bounds",
+   "passed": true,
+   "detail": ""
+  }
+ ]
+}

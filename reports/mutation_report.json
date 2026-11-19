@@ -1,0 +1,249 @@
+{
+ "mutants": 37,
+ "killed": 37,
+ "mutation_score": 1.0,
+ "survivors": [],
+ "details": {
+  "currency_check_removed": {
+   "killed": true,
+   "killed_by": [
+    "wrong_currency_is_not_a_match"
+   ]
+  },
+  "evidence_check_removed": {
+   "killed": true,
+   "killed_by": [
+    "missing_evidence_is_not_a_match_but_superset_is"
+   ]
+  },
+  "evidence_any_overlap_suffices": {
+   "killed": true,
+   "killed_by": [
+    "missing_evidence_is_not_a_match_but_superset_is"
+   ]
+  },
+  "evidence_nonempty_suffices": {
+   "killed": true,
+   "killed_by": [
+    "missing_evidence_is_not_a_match_but_superset_is"
+   ]
+  },
+  "evidence_only_first_set": {
+   "killed": true,
+   "killed_by": [
+    "any_acceptable_evidence_set_counts"
+   ]
+  },
+  "evidence_must_equal_set": {
+   "killed": true,
+   "killed_by": [
+    "missing_evidence_is_not_a_match_but_superset_is"
+   ]
+  },
+  "amount_check_removed": {
+   "killed": true,
+   "killed_by": [
+    "amount_tolerance_is_exactly_policy_value"
+   ]
+  },
+  "amount_tolerance_1000": {
+   "killed": true,
+   "killed_by": [
+    "amount_tolerance_is_exactly_policy_value"
+   ]
+  },
+  "amount_exact_only": {
+   "killed": true,
+   "killed_by": [
+    "amount_tolerance_is_exactly_policy_value",
+    "matching_is_one_to_one_maximum_cardinality"
+   ]
+  },
+  "amount_tolerance_exclusive": {
+   "killed": true,
+   "killed_by": [
+    "amount_tolerance_is_exactly_policy_value",
+    "matching_is_one_to_one_maximum_cardinality"
+   ]
+  },
+  "amount_relative_10pct": {
+   "killed": true,
+   "killed_by": [
+    "amount_tolerance_is_exactly_policy_value"
+   ]
+  },
+  "ids_check_removed": {
+   "killed": true,
+   "killed_by": [
+    "guessed_ids_are_false_positives",
+    "affected_ids_order_and_whitespace_irrelevant_but_subset_or_superset_fail"
+   ]
+  },
+  "ids_subset_accepted": {
+   "killed": true,
+   "killed_by": [
+    "affected_ids_order_and_whitespace_irrelevant_but_subset_or_superset_fail"
+   ]
+  },
+  "ids_superset_accepted": {
+   "killed": true,
+   "killed_by": [
+    "affected_ids_order_and_whitespace_irrelevant_but_subset_or_superset_fail"
+   ]
+  },
+  "ids_any_overlap": {
+   "killed": true,
+   "killed_by": [
+    "affected_ids_order_and_whitespace_irrelevant_but_subset_or_superset_fail"
+   ]
+  },
+  "ids_order_sensitive": {
+   "killed": true,
+   "killed_by": [
+    "affected_ids_order_and_whitespace_irrelevant_but_subset_or_superset_fail"
+   ]
+  },
+  "ids_not_stripped": {
+   "killed": true,
+   "killed_by": [
+    "affected_ids_order_and_whitespace_irrelevant_but_subset_or_superset_fail"
+   ]
+  },
+  "type_check_removed": {
+   "killed": true,
+   "killed_by": [
+    "wrong_type_is_not_a_match"
+   ]
+  },
+  "greedy_matching": {
+   "killed": true,
+   "killed_by": [
+    "matching_is_one_to_one_maximum_cardinality"
+   ]
+  },
+  "many_to_one_matching": {
+   "killed": true,
+   "killed_by": [
+    "duplicate_findings_give_no_benefit"
+   ]
+  },
+  "f1_empty_empty_is_zero": {
+   "killed": true,
+   "killed_by": [
+    "silence_on_clean_books_is_best",
+    "false_accusations_on_clean_books_lose_to_silence",
+    "formula_values_and_zero_denominators"
+   ]
+  },
+  "f1_is_precision_only": {
+   "killed": true,
+   "killed_by": [
+    "partial_answer_is_penalised_for_missed_errors"
+   ]
+  },
+  "f1_is_recall_only": {
+   "killed": true,
+   "killed_by": [
+    "partial_answer_is_penalised_for_missed_errors",
+    "false_accusations_on_clean_books_lose_to_silence",
+    "duplicate_findings_give_no_benefit"
+   ]
+  },
+  "f1_ignores_false_negatives": {
+   "killed": true,
+   "killed_by": [
+    "full_correct_answer_beats_silence_on_faulty_books",
+    "partial_answer_is_penalised_for_missed_errors",
+    "silence_on_faulty_books_is_minus_one"
+   ]
+  },
+  "f1_ignores_false_positives": {
+   "killed": true,
+   "killed_by": [
+    "partial_answer_is_penalised_for_missed_errors",
+    "false_accusations_on_clean_books_lose_to_silence",
+    "duplicate_findings_give_no_benefit"
+   ]
+  },
+  "precision_zero_div_is_one": {
+   "killed": true,
+   "killed_by": [
+    "formula_values_and_zero_denominators"
+   ]
+  },
+  "recall_zero_div_is_one": {
+   "killed": true,
+   "killed_by": [
+    "formula_values_and_zero_denominators"
+   ]
+  },
+  "reward_not_clipped": {
+   "killed": true,
+   "killed_by": [
+    "reward_is_clipped_and_formula_exact"
+   ]
+  },
+  "reward_not_rescaled": {
+   "killed": true,
+   "killed_by": [
+    "full_correct_answer_beats_silence_on_faulty_books",
+    "silence_on_faulty_books_is_minus_one",
+    "flag_everything_scores_badly"
+   ]
+  },
+  "step_cost_10x": {
+   "killed": true,
+   "killed_by": [
+    "perfect_answer_reward_is_one_minus_step_cost",
+    "step_cost_only_slightly_separates_equal_answers",
+    "step_cost_never_flips_correct_vs_wrong"
+   ]
+  },
+  "step_cost_removed": {
+   "killed": true,
+   "killed_by": [
+    "perfect_answer_reward_is_one_minus_step_cost",
+    "step_cost_only_slightly_separates_equal_answers",
+    "reward_is_clipped_and_formula_exact"
+   ]
+  },
+  "step_cost_rewards_steps": {
+   "killed": true,
+   "killed_by": [
+    "perfect_answer_reward_is_one_minus_step_cost",
+    "flag_everything_on_clean_books_is_minus_one",
+    "step_cost_only_slightly_separates_equal_answers"
+   ]
+  },
+  "invalid_submission_reward_zero": {
+   "killed": true,
+   "killed_by": [
+    "invalid_structures_end_episode_with_minus_one"
+   ]
+  },
+  "episode_id_not_checked": {
+   "killed": true,
+   "killed_by": [
+    "invalid_structures_end_episode_with_minus_one"
+   ]
+  },
+  "max_findings_31": {
+   "killed": true,
+   "killed_by": [
+    "invalid_structures_end_episode_with_minus_one"
+   ]
+  },
+  "max_evidence_11": {
+   "killed": true,
+   "killed_by": [
+    "invalid_structures_end_episode_with_minus_one"
+   ]
+  },
+  "max_explanation_2000": {
+   "killed": true,
+   "killed_by": [
+    "invalid_structures_end_episode_with_minus_one"
+   ]
+  }
+ }
+}

@@ -1,0 +1,210 @@
+{
+ "config_version": "1.0.0",
+ "split": "local_hidden_like",
+ "note": "organiser-style stand-in; real closed seeds are secret",
+ "episodes": [
+  {
+   "name": "clean_0",
+   "seed": 9001,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "clean_1",
+   "seed": 9002,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "clean_2",
+   "seed": 9003,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "clean_3",
+   "seed": 9004,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "clean_4",
+   "seed": 9005,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 0,
+     "fx_error": 0,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "interacting_0",
+   "seed": 9101,
+   "config": {
+    "interactions": [
+     "partial_fx"
+    ]
+   }
+  },
+  {
+   "name": "interacting_1",
+   "seed": 9102,
+   "config": {
+    "interactions": [
+     "cutoff_fx"
+    ]
+   }
+  },
+  {
+   "name": "interacting_2",
+   "seed": 9103,
+   "config": {
+    "interactions": [
+     "partial_fx",
+     "cutoff_fx"
+    ]
+   }
+  },
+  {
+   "name": "interacting_3",
+   "seed": 9104,
+   "config": {
+    "interactions": [
+     "partial_fx",
+     "cutoff_fx"
+    ]
+   }
+  },
+  {
+   "name": "interacting_4",
+   "seed": 9105,
+   "config": {
+    "interactions": [
+     "cutoff_fx"
+    ]
+   }
+  },
+  {
+   "name": "mixed_0",
+   "seed": 9201,
+   "config": {}
+  },
+  {
+   "name": "mixed_1",
+   "seed": 9202,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 2,
+     "payment_allocation": 1,
+     "fx_error": 1,
+     "period_cutoff": 1
+    }
+   }
+  },
+  {
+   "name": "mixed_2",
+   "seed": 9203,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 1,
+     "payment_allocation": 2,
+     "fx_error": 2,
+     "period_cutoff": 0
+    }
+   }
+  },
+  {
+   "name": "mixed_3",
+   "seed": 9204,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 0,
+     "payment_allocation": 1,
+     "fx_error": 1,
+     "period_cutoff": 2
+    }
+   }
+  },
+  {
+   "name": "mixed_4",
+   "seed": 9205,
+   "config": {
+    "n_invoices": 75
+   }
+  },
+  {
+   "name": "mixed_5",
+   "seed": 9206,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 3,
+     "payment_allocation": 0,
+     "fx_error": 1,
+     "period_cutoff": 1
+    }
+   }
+  },
+  {
+   "name": "mixed_6",
+   "seed": 9207,
+   "config": {
+    "company_offset_minutes": -300
+   }
+  },
+  {
+   "name": "mixed_7",
+   "seed": 9208,
+   "config": {
+    "faults": {
+     "duplicate_invoice": 1,
+     "payment_allocation": 1,
+     "fx_error": 0,
+     "period_cutoff": 1
+    },
+    "interactions": [
+     "cutoff_fx"
+    ]
+   }
+  },
+  {
+   "name": "mixed_8",
+   "seed": 9209,
+   "config": {
+    "period_months": 1
+   }
+  },
+  {
+   "name": "mixed_9",
+   "seed": 9210,
+   "config": {
+    "period_months": 3
+   }
+  }
+ ]
+}

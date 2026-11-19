@@ -1,0 +1,145 @@
+{
+ "episode_id": "ep-3792f84fb775",
+ "issues": [
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "F-51191",
+    "F-54762"
+   ],
+   "expected_amount_minor": 1130000,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_0933404",
+     "doc_2255331"
+    ]
+   ],
+   "issue_id": "ISS-d5dde5b4cc"
+  },
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "F-13688",
+    "F-50427"
+   ],
+   "expected_amount_minor": 8532000,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_2183411",
+     "doc_4182978"
+    ]
+   ],
+   "issue_id": "ISS-f9b0f4eba7"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "F-75417",
+    "P-35683"
+   ],
+   "expected_amount_minor": 2118280,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "doc_4527683",
+     "r93862606"
+    ]
+   ],
+   "issue_id": "ISS-93283c9d16"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "F-79796",
+    "P-65128"
+   ],
+   "expected_amount_minor": 396000,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_4229413",
+     "r78944971"
+    ]
+   ],
+   "issue_id": "ISS-9f75fe572d"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "P-88317"
+   ],
+   "expected_amount_minor": 17235,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_8116514",
+     "fx:2026-09-02:EUR:USD",
+     "r54792058"
+    ],
+    [
+     "doc_8116514",
+     "fx:2026-09-02:EUR:USD",
+     "r77884607"
+    ]
+   ],
+   "issue_id": "ISS-36eae3deaf"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "P-69875"
+   ],
+   "expected_amount_minor": 46521,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_4026729",
+     "fx:2026-06-30:JPY:USD",
+     "r00305903"
+    ],
+    [
+     "doc_4026729",
+     "fx:2026-06-30:JPY:USD",
+     "r64016864"
+    ]
+   ],
+   "issue_id": "ISS-427d24f3cb"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "P-94633"
+   ],
+   "expected_amount_minor": 3296688,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "doc_2957564",
+     "r21923231"
+    ]
+   ],
+   "issue_id": "ISS-5503b503bc"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "F-20616"
+   ],
+   "expected_amount_minor": 808500,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_0008021",
+     "r16923265"
+    ],
+    [
+     "doc_0008021",
+     "r31746813"
+    ]
+   ],
+   "issue_id": "ISS-3d1b1872c1"
+  }
+ ]
+}
