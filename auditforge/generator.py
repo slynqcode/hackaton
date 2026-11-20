@@ -36,6 +36,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "distractors": {
         "installments": 3, "refunds": 2, "multi_invoice": 2, "recurring": 2,
         "same_amount_near": 3, "boundary_invoices": 8, "boundary_cross_ok": 4, "cross_ccy_ok": 6, "advances": 2,
+        "split_po": 2, "late_postings": 3,
     },
     "company_offset_minutes": None,
     "period_months": None,
@@ -359,6 +360,32 @@ def build_history(ctx: Ctx, rng) -> dict:
             l["po_ref"] = po2
         _new_inv(ctx, rng, e, t0 + timedelta(days=rng.randint(1, 6), minutes=rng.randrange(600)), {"pair"},
                  lines=lines, po=po2)
+
+    # split deliveries (v1.2): a second invoice on the SAME purchase order with different line items. Legit:
+    # a duplicate needs the same entity, po_ref AND line set, so "same po_ref" alone is not a valid shortcut.
+    day = timedelta(days=1)
+    _key = lambda i: i.key
+    _sig = lambda ls: sorted((l["description"], l["quantity"], l["unit_price_minor"]) for l in ls)
+    for s in range(dis.get("split_po", 0)):
+        cands = sorted((i for i in ctx.invs.values() if not i.tags and ctx.start + day <= i.issued <= ctx.end - 10 * day), key=_key)
+        if not cands:
+            break
+        a = rng.choice(cands)
+        a.tags.add("split")
+        lines = _make_lines(rng, a.ccy, a.po)
+        while _sig(lines) == _sig(a.lines):
+            lines = _make_lines(rng, a.ccy, a.po)
+        _new_inv(ctx, rng, a.ent, a.issued + timedelta(days=rng.randint(2, 8), minutes=rng.randrange(600)), {"split"},
+                 lines=lines, po=a.po)
+    # late postings (v1.2): booked 1-4 days after issue but inside the same period. Legit: only a posting in a
+    # different period than the document is a cutoff error, so "posting delay > a few hours" is not a valid shortcut.
+    for s in range(dis.get("late_postings", 0)):
+        cands = sorted((i for i in ctx.invs.values() if not i.tags and ctx.start + day <= i.issued <= ctx.end - 6 * day), key=_key)
+        if not cands:
+            break
+        inv = rng.choice(cands)
+        inv.tags.add("late_post")
+        inv.post_ts = inv.issued + timedelta(minutes=rng.randint(1440, 4 * 1440))
 
     # payments for invoices ---------------------------------------------------------------
     inv_list = list(ctx.invs.values())

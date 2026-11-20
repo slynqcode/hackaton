@@ -9,6 +9,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import os
 
 from .env import AuditEnv, MAX_STEPS
 from .generator import generate_episode
@@ -551,12 +552,12 @@ def contract_checks():
     @check
     def isolated_process_env_matches_in_process_env_and_holds_no_truth():
         from .remote import RemoteEnv
-        r = RemoteEnv(mode="eval")
+        r = RemoteEnv(mode="eval", secret="same-secret")
         try:
             obs, info = r.reset(SEED)
             assert not hasattr(r, "_ep") and not hasattr(r, "truth")
             assert r._p.pid != __import__("os").getpid()
-            env = AuditEnv(mode="eval"); obs2, info2 = env.reset(SEED)
+            env = AuditEnv(mode="eval", secret="same-secret"); obs2, info2 = env.reset(SEED)
             assert obs == obs2 and info == info2
             a = {"action": "list_records", "table": "payments", "limit": 7}
             assert r.step(a) == env.step(a)
@@ -586,6 +587,52 @@ def contract_checks():
             assert obs == AuditEnv(mode="eval", secret="s3cr3t-xyz").reset(SEED)[0]
             o = r.step({"action": "get_record", "table": "ledger", "id": "s3cr3t-xyz"})[0]
             assert "s3cr3t" not in json.dumps(o)
+
+    @check
+    def agent_cannot_change_mode_limits_or_rerun_eval_over_the_pipe():
+        from .remote import RemoteEnv
+        with RemoteEnv(mode="eval") as r:
+            for bad in ({"op": "reset", "seed": SEED, "mode": "train"},
+                        {"op": "reset", "seed": SEED, "limits": {"max_steps": 100000}}):
+                assert r._call(bad, allow_fatal=True) == {"fatal": "forbidden_field"}
+            r.reset(SEED)
+            assert r._call({"op": "reset", "seed": SEED}, allow_fatal=True) == {"fatal": "eval_single_episode"}
+            o, rw, te, tr, inf = r.step({"action": "submit", "findings": {"episode_id": "x", "findings": []}})
+            assert rw == 0.0 and set(inf) == {"step"}
+
+    @check
+    def eval_without_organiser_secret_is_still_not_regenerable():
+        from .remote import RemoteEnv
+        with RemoteEnv(mode="eval") as r:
+            obs, info = r.reset(SEED)
+            r.step({"action": "submit", "findings": {"episode_id": info["episode_id"], "findings": []}})
+            assert r.evaluation()["secret_source"] == "ephemeral"
+        assert obs["manifest"] != AuditEnv(mode="eval").reset(SEED)[0]["manifest"]
+
+    @check
+    def secret_is_not_in_evaluator_environment():
+        from .remote import RemoteEnv
+        with RemoteEnv(mode="eval", secret="s3cr3t-env-probe") as r:
+            r.reset(SEED)
+            path = f"/proc/{r._p.pid}/environ"
+            if os.path.exists(path):
+                assert b"s3cr3t-env-probe" not in open(path, "rb").read()
+        tmp = __import__("tempfile").gettempdir()
+        assert not [n for n in os.listdir(tmp) if n.startswith("af-secret-")]   # temp secret file removed
+
+    @check
+    def malformed_cursors_and_seeds_are_errors_not_crashes():
+        env, obs, info = _fresh()
+        for c in ("c\u00b2", "c\u0661\u0660", "c" + "9" * 5000, "c-1", "c 1", "c", 5):
+            o = env.step({"action": "list_records", "table": "ledger", "cursor": c})[0]
+            assert not o["ok"] and o["error"]["code"] == "invalid_cursor", c
+        for bad in (None, "1", 1.5, True, -1):
+            try:
+                AuditEnv().reset(bad)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError(f"seed {bad!r} accepted")
 
     @check
     def list_records_without_limit_uses_full_page():

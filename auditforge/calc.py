@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 from decimal import Decimal, DivisionByZero, InvalidOperation, localcontext
 
-_TOK = re.compile(r"\s*(\d+(?:\.\d+)?|[()+\-*/])")
+_TOK = re.compile(r"\s*([0-9]+(?:\.[0-9]+)?|[()+\-*/])", re.ASCII)   # ASCII digits only
 MAX_LEN, MAX_DIGITS = 300, 60
 
 

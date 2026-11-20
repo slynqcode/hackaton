@@ -1,0 +1,145 @@
+{
+ "episode_id": "ep-506c5fd4e971",
+ "issues": [
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "F-22602",
+    "F-29154"
+   ],
+   "expected_amount_minor": 4830000,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "doc_4127061",
+     "doc_8303800"
+    ]
+   ],
+   "issue_id": "ISS-28b289ce64"
+  },
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "F-18243",
+    "F-53032"
+   ],
+   "expected_amount_minor": 684000,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_1952454",
+     "doc_5811244"
+    ]
+   ],
+   "issue_id": "ISS-c97cc0f44f"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "F-53363",
+    "P-68773"
+   ],
+   "expected_amount_minor": 559770,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "doc_5612672",
+     "r94888071"
+    ]
+   ],
+   "issue_id": "ISS-31d9c6af8d"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "F-74330",
+    "P-56976"
+   ],
+   "expected_amount_minor": 1571426,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "doc_1876923",
+     "r12141247"
+    ]
+   ],
+   "issue_id": "ISS-6162916ee1"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "P-73543"
+   ],
+   "expected_amount_minor": 77389,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "doc_5942991",
+     "fx:2026-07-14:GBP:EUR",
+     "r84414142"
+    ],
+    [
+     "doc_5942991",
+     "fx:2026-07-14:GBP:EUR",
+     "r67179030"
+    ]
+   ],
+   "issue_id": "ISS-f26dc548c4"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "P-58584"
+   ],
+   "expected_amount_minor": 446143,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "doc_3324798",
+     "fx:2026-08-01:GBP:EUR",
+     "r22960281"
+    ],
+    [
+     "doc_3324798",
+     "fx:2026-08-01:GBP:EUR",
+     "r00271957"
+    ]
+   ],
+   "issue_id": "ISS-3c81413265"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "F-89553"
+   ],
+   "expected_amount_minor": 2636000,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "doc_2076374",
+     "r21029196"
+    ],
+    [
+     "doc_2076374",
+     "r89764722"
+    ]
+   ],
+   "issue_id": "ISS-4e0b9d30f4"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "P-91684"
+   ],
+   "expected_amount_minor": 472072,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "doc_9087395",
+     "r26849250"
+    ]
+   ],
+   "issue_id": "ISS-a5838ce0f7"
+  }
+ ]
+}

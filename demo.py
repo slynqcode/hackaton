@@ -4,14 +4,17 @@ Shows one episode with both interacting scenarios: what the books look like, wha
 import json
 import sys
 
-from auditforge.generator import generate_episode
+from auditforge.env import AuditEnv
 from auditforge.policies import FlagAll, Oracle, ReferenceSolver, SimpleReconciler
 from auditforge.remote import RemoteEnv
 from auditforge.runner import run_episode
 
 seed = int(sys.argv[1]) if len(sys.argv) > 1 else 4242
 cfg = {"interactions": ["partial_fx", "cutoff_fx"]}
-ep = generate_episode(seed, cfg)   # harness-side copy (needed only by the oracle and for this printout)
+# the organiser's secret: the evaluator process gets it, the policies never do. A fixed demo value keeps the
+# printout repeatable; a real closed run uses a private one (see README).
+secret = sys.argv[2] if len(sys.argv) > 2 else "demo-secret"
+h = AuditEnv(mode="eval", secret=secret); h.reset(seed, cfg); ep = h._ep   # harness-side copy (oracle + printout)
 print(f"episode {ep.episode_id}: {ep.manifest['counts']}  tz={ep.manifest['timezone']}  base={ep.manifest['base_currency']}")
 print("hidden truth (evaluator-only):")
 for i in ep.truth["issues"]:
@@ -19,7 +22,7 @@ for i in ep.truth["issues"]:
 print("causal links:", [l["scenario"] + ": " + l["mechanism"] for l in ep.provenance["causal_links"]])
 print()
 for pol in (SimpleReconciler(), FlagAll(), ReferenceSolver(), Oracle(ep.truth)):
-    env = RemoteEnv(mode="eval")
+    env = RemoteEnv(mode="eval", secret=secret)
     try:
         r = run_episode(pol, seed, cfg, env=env)["evaluation"]
     finally:

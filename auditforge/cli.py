@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import secrets
 import os
 import statistics
 import sys
@@ -17,6 +18,7 @@ from .explain import explain
 from . import fuzz
 from .remote import RemoteEnv
 from .runner import run_episode
+from .env import AuditEnv
 from . import selfchecks
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,12 +47,18 @@ def _summ(rows):
 def run_policies(split: str, mode: str, isolated: bool, traj=None, extra_reference=True):
     spec = load_split(split)
     per = {}
+    # isolated eval = the organisers' setting: a fresh random secret per run, known to the harness (needed only by
+    # the oracle's solvability check) and to the evaluator process, never to the policies
+    run_secret = secrets.token_hex(16) if isolated and mode == "eval" else None
     for e in spec["episodes"]:
-        ep = generate_episode(e["seed"], e["config"])
+        if run_secret:
+            h = AuditEnv(mode="eval", secret=run_secret); h.reset(e["seed"], e["config"]); ep = h._ep
+        else:
+            ep = generate_episode(e["seed"], e["config"])
         pols = make_policies(ep, e["seed"]) + ([ReferenceSolver(), ZeroAgent()] if extra_reference else [])
         for pol in pols:
             if isolated:
-                env = RemoteEnv(mode=mode)
+                env = RemoteEnv(mode=mode, secret=run_secret)
                 try:
                     r = run_episode(pol, e["seed"], e["config"], env=env, traj=traj)
                 finally:
@@ -129,7 +137,7 @@ def cmd_mutation(args):
 def cmd_analysis(args):
     """Measured failure analysis: per-type errors of the naive reconciler + distractor ablation."""
     NO_DIS = {"installments": 0, "refunds": 0, "multi_invoice": 0, "recurring": 0, "same_amount_near": 0,
-              "boundary_invoices": 0, "boundary_cross_ok": 0, "cross_ccy_ok": 0, "advances": 0}
+              "boundary_invoices": 0, "boundary_cross_ok": 0, "cross_ccy_ok": 0, "advances": 0, "split_po": 0, "late_postings": 0}
     NOFAULT = {k: 0 for k in ("duplicate_invoice", "payment_allocation", "fx_error", "period_cutoff")}
     seeds = list(range(9301, 9316))
     variants = {"naive": dict(), "+tz_aware": dict(tz_aware=True), "+tz_aware+allocated_amount": dict(tz_aware=True, use_allocated=True)}

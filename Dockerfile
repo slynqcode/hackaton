@@ -7,4 +7,5 @@ COPY . .
 ENV PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1
 # Limits suggested by the task: 2 CPU, 4 GB RAM, no GPU:
 #   docker run --rm --network none --cpus 2 --memory 4g auditforge
-CMD ["make", "verify"]
+# python:3.11-slim has no `make`, so run the same two steps directly (identical to `make verify`)
+CMD ["sh", "-c", "python -m auditforge.cli verify && python -m pytest -q"]

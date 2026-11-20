@@ -1,5 +1,5 @@
 {
- "env_version": "1.1.0",
+ "env_version": "1.2.0",
  "summary": {
   "train": {
    "random_explorer": {
@@ -12,19 +12,19 @@
     "f1": 0.2,
     "return": -0.609,
     "inspection_steps": 23.5,
-    "wall_s": 0.003696769600000138
+    "wall_s": 0.004847174400003951
    },
    "simple_reconciler": {
     "episodes": 10,
-    "tp": 42,
-    "fp": 129,
-    "fn": 9,
-    "precision": 0.24561403508771928,
-    "recall": 0.8235294117647058,
-    "f1": 0.3297330303248397,
-    "return": -0.38573393935032063,
-    "inspection_steps": 27,
-    "wall_s": 0.004197332900000461
+    "tp": 39,
+    "fp": 137,
+    "fn": 12,
+    "precision": 0.2215909090909091,
+    "recall": 0.7647058823529411,
+    "f1": 0.3138010761168656,
+    "return": -0.42019784776626884,
+    "inspection_steps": 31,
+    "wall_s": 0.005375915900003747
    },
    "flag_all": {
     "episodes": 10,
@@ -35,8 +35,8 @@
     "recall": 0.0,
     "f1": 0.0,
     "return": -1.0,
-    "inspection_steps": 3.8,
-    "wall_s": 0.0019735462000003423
+    "inspection_steps": 4,
+    "wall_s": 0.002357324099983771
    },
    "oracle": {
     "episodes": 10,
@@ -48,7 +48,7 @@
     "f1": 1.0,
     "return": 1.0,
     "inspection_steps": 0,
-    "wall_s": 0.00034807030000045814
+    "wall_s": 0.00039120039999716025
    },
    "reference_solver": {
     "episodes": 10,
@@ -60,7 +60,7 @@
     "f1": 1.0,
     "return": 0.9478,
     "inspection_steps": 26.1,
-    "wall_s": 0.006181458500000047
+    "wall_s": 0.008243062900010045
    },
    "zero_agent": {
     "episodes": 10,
@@ -72,7 +72,7 @@
     "f1": 0.2,
     "return": -0.6,
     "inspection_steps": 0,
-    "wall_s": 0.00031207390000034254
+    "wall_s": 0.0003668695000044409
    }
   },
   "dev": {
@@ -86,19 +86,19 @@
     "f1": 0.1,
     "return": -0.8024,
     "inspection_steps": 20.3,
-    "wall_s": 0.002589006699999885
+    "wall_s": 0.003303438399996139
    },
    "simple_reconciler": {
     "episodes": 10,
     "tp": 36,
-    "fp": 146,
+    "fp": 153,
     "fn": 15,
-    "precision": 0.1978021978021978,
+    "precision": 0.19047619047619047,
     "recall": 0.7058823529411765,
-    "f1": 0.2716992104296809,
-    "return": -0.5026015791406382,
-    "inspection_steps": 27.8,
-    "wall_s": 0.003281020699999715
+    "f1": 0.2681396483307447,
+    "return": -0.5133207033385105,
+    "inspection_steps": 30.6,
+    "wall_s": 0.0042393552000021375
    },
    "flag_all": {
     "episodes": 10,
@@ -109,8 +109,8 @@
     "recall": 0.0,
     "f1": 0.0,
     "return": -1.0,
-    "inspection_steps": 3.8,
-    "wall_s": 0.0014450699000001066
+    "inspection_steps": 3.7,
+    "wall_s": 0.001854613100010738
    },
    "oracle": {
     "episodes": 10,
@@ -122,7 +122,7 @@
     "f1": 1.0,
     "return": 1.0,
     "inspection_steps": 0,
-    "wall_s": 0.00027834430000055476
+    "wall_s": 0.00032568370000944923
    },
    "reference_solver": {
     "episodes": 10,
@@ -132,9 +132,9 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "return": 0.9498,
-    "inspection_steps": 25.1,
-    "wall_s": 0.005084305599999439
+    "return": 0.9511999999999999,
+    "inspection_steps": 24.4,
+    "wall_s": 0.006348884499993801
    },
    "zero_agent": {
     "episodes": 10,
@@ -146,7 +146,7 @@
     "f1": 0.2,
     "return": -0.6,
     "inspection_steps": 0,
-    "wall_s": 0.00027797210000031215
+    "wall_s": 0.0003329232999988108
    }
   }
  },
@@ -184,7 +184,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.003070965999999231,
+     "wall_s": 0.0025371689999929004,
      "name": "default",
      "seed": 1001,
      "n_issues": 4
@@ -220,7 +220,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0048087240000000975,
+     "wall_s": 0.005676465000021835,
      "name": "clean",
      "seed": 1002,
      "n_issues": 0
@@ -256,7 +256,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.004226331000001693,
+     "wall_s": 0.005416410999998789,
      "name": "partial_fx_boundary",
      "seed": 1003,
      "n_issues": 6
@@ -292,7 +292,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.004069933000000248,
+     "wall_s": 0.005246941999985211,
      "name": "cutoff_fx_boundary",
      "seed": 1004,
      "n_issues": 6
@@ -328,7 +328,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.004649297000000274,
+     "wall_s": 0.0066748679999477645,
      "name": "both_interactions_plus_duplicates",
      "seed": 1005,
      "n_issues": 6
@@ -364,7 +364,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0032574820000021987,
+     "wall_s": 0.004587343000025612,
      "name": "multi_fault",
      "seed": 1006,
      "n_issues": 8
@@ -400,7 +400,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.001922325999998975,
+     "wall_s": 0.0027222530000017287,
      "name": "clean_utc_company",
      "seed": 1007,
      "n_issues": 0
@@ -436,7 +436,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.00507917400000224,
+     "wall_s": 0.006727323999996315,
      "name": "large_default",
      "seed": 1008,
      "n_issues": 4
@@ -472,7 +472,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0027624819999978456,
+     "wall_s": 0.003658977000043251,
      "name": "fx_and_cutoff_heavy",
      "seed": 1009,
      "n_issues": 5
@@ -508,7 +508,7 @@
        "fn": 3
       }
      },
-     "wall_s": 0.0031209809999985794,
+     "wall_s": 0.005223992000026101,
      "name": "max_twelve_issues",
      "seed": 1010,
      "n_issues": 12
@@ -517,12 +517,264 @@
    "simple_reconciler": [
     {
      "tp": 4,
-     "fp": 14,
+     "fp": 13,
      "fn": 0,
-     "precision": 0.2222222222222222,
+     "precision": 0.23529411764705882,
      "recall": 1.0,
+     "f1": 0.38095238095238093,
+     "reward": -0.29009523809523813,
+     "inspection_steps": 26,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 1,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 1,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 1,
+       "fp": 6,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 1,
+       "fp": 2,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.004815973000006579,
+     "name": "default",
+     "seed": 1001,
+     "n_issues": 4
+    },
+    {
+     "tp": 0,
+     "fp": 15,
+     "fn": 0,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "reward": -1.0,
+     "inspection_steps": 40,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 0,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 0,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 6,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 4,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.005280298000002404,
+     "name": "clean",
+     "seed": 1002,
+     "n_issues": 0
+    },
+    {
+     "tp": 5,
+     "fp": 8,
+     "fn": 1,
+     "precision": 0.38461538461538464,
+     "recall": 0.8333333333333334,
+     "f1": 0.5263157894736842,
+     "reward": -0.015368421052631642,
+     "inspection_steps": 34,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 1,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 2,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 1,
+       "fp": 3,
+       "fn": 1
+      },
+      "period_cutoff": {
+       "tp": 1,
+       "fp": 0,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.0054322749999755615,
+     "name": "partial_fx_boundary",
+     "seed": 1003,
+     "n_issues": 6
+    },
+    {
+     "tp": 4,
+     "fp": 12,
+     "fn": 2,
+     "precision": 0.25,
+     "recall": 0.6666666666666666,
      "f1": 0.36363636363636365,
-     "reward": -0.3287272727272727,
+     "reward": -0.3267272727272727,
+     "inspection_steps": 27,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 1,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 1,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 1,
+       "fp": 4,
+       "fn": 1
+      },
+      "period_cutoff": {
+       "tp": 1,
+       "fp": 3,
+       "fn": 1
+      }
+     },
+     "wall_s": 0.004970736000018405,
+     "name": "cutoff_fx_boundary",
+     "seed": 1004,
+     "n_issues": 6
+    },
+    {
+     "tp": 3,
+     "fp": 16,
+     "fn": 3,
+     "precision": 0.15789473684210525,
+     "recall": 0.5,
+     "f1": 0.24,
+     "reward": -0.5840000000000001,
+     "inspection_steps": 32,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 2,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 1,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 6,
+       "fn": 2
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 5,
+       "fn": 1
+      }
+     },
+     "wall_s": 0.005315558000006604,
+     "name": "both_interactions_plus_duplicates",
+     "seed": 1005,
+     "n_issues": 6
+    },
+    {
+     "tp": 5,
+     "fp": 17,
+     "fn": 3,
+     "precision": 0.22727272727272727,
+     "recall": 0.625,
+     "f1": 0.3333333333333333,
+     "reward": -0.39133333333333337,
+     "inspection_steps": 29,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 2,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 2,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 1,
+       "fp": 5,
+       "fn": 1
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 7,
+       "fn": 2
+      }
+     },
+     "wall_s": 0.005429859999992459,
+     "name": "multi_fault",
+     "seed": 1006,
+     "n_issues": 8
+    },
+    {
+     "tp": 0,
+     "fp": 15,
+     "fn": 0,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "reward": -1.0,
+     "inspection_steps": 31,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 0,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 0,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 7,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 3,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.004948732999991989,
+     "name": "clean_utc_company",
+     "seed": 1007,
+     "n_issues": 0
+    },
+    {
+     "tp": 4,
+     "fp": 13,
+     "fn": 0,
+     "precision": 0.23529411764705882,
+     "recall": 1.0,
+     "f1": 0.38095238095238093,
+     "reward": -0.29409523809523813,
      "inspection_steps": 28,
      "by_type": {
       "duplicate_invoice": {
@@ -537,281 +789,29 @@
       },
       "fx_error": {
        "tp": 1,
+       "fp": 2,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 1,
        "fp": 6,
        "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 1,
-       "fp": 3,
-       "fn": 0
       }
      },
-     "wall_s": 0.00721824200000043,
-     "name": "default",
-     "seed": 1001,
-     "n_issues": 4
-    },
-    {
-     "tp": 0,
-     "fp": 7,
-     "fn": 0,
-     "precision": 0.0,
-     "recall": 0.0,
-     "f1": 0.0,
-     "reward": -1.0,
-     "inspection_steps": 20,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 0,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 0,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 2,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.0030923119999997084,
-     "name": "clean",
-     "seed": 1002,
-     "n_issues": 0
-    },
-    {
-     "tp": 4,
-     "fp": 19,
-     "fn": 2,
-     "precision": 0.17391304347826086,
-     "recall": 0.6666666666666666,
-     "f1": 0.27586206896551724,
-     "reward": -0.5122758620689656,
-     "inspection_steps": 32,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 1,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 2,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 1,
-       "fp": 9,
-       "fn": 1
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 5,
-       "fn": 1
-      }
-     },
-     "wall_s": 0.003977136999999686,
-     "name": "partial_fx_boundary",
-     "seed": 1003,
-     "n_issues": 6
-    },
-    {
-     "tp": 6,
-     "fp": 14,
-     "fn": 0,
-     "precision": 0.3,
-     "recall": 1.0,
-     "f1": 0.46153846153846156,
-     "reward": -0.12892307692307686,
-     "inspection_steps": 26,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 1,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 1,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 2,
-       "fp": 5,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 2,
-       "fp": 4,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.003826305000000474,
-     "name": "cutoff_fx_boundary",
-     "seed": 1004,
-     "n_issues": 6
-    },
-    {
-     "tp": 3,
-     "fp": 12,
-     "fn": 3,
-     "precision": 0.2,
-     "recall": 0.5,
-     "f1": 0.2857142857142857,
-     "reward": -0.4745714285714286,
-     "inspection_steps": 23,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 2,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 1,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 4,
-       "fn": 2
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 1
-      }
-     },
-     "wall_s": 0.0035287390000000585,
-     "name": "both_interactions_plus_duplicates",
-     "seed": 1005,
-     "n_issues": 6
-    },
-    {
-     "tp": 8,
-     "fp": 10,
-     "fn": 0,
-     "precision": 0.4444444444444444,
-     "recall": 1.0,
-     "f1": 0.6153846153846154,
-     "reward": 0.17876923076923085,
-     "inspection_steps": 26,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 2,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 2,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 2,
-       "fp": 2,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 2,
-       "fp": 3,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.004013425000000126,
-     "name": "multi_fault",
-     "seed": 1006,
-     "n_issues": 8
-    },
-    {
-     "tp": 0,
-     "fp": 11,
-     "fn": 0,
-     "precision": 0.0,
-     "recall": 0.0,
-     "f1": 0.0,
-     "reward": -1.0,
-     "inspection_steps": 24,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 0,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.0037872610000029283,
-     "name": "clean_utc_company",
-     "seed": 1007,
-     "n_issues": 0
-    },
-    {
-     "tp": 4,
-     "fp": 15,
-     "fn": 0,
-     "precision": 0.21052631578947367,
-     "recall": 1.0,
-     "f1": 0.34782608695652173,
-     "reward": -0.36434782608695654,
-     "inspection_steps": 30,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 1,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 1,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 1,
-       "fp": 5,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 1,
-       "fp": 5,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.004259225999998506,
+     "wall_s": 0.006333482000002277,
      "name": "large_default",
      "seed": 1008,
      "n_issues": 4
     },
     {
-     "tp": 5,
-     "fp": 9,
-     "fn": 0,
-     "precision": 0.35714285714285715,
-     "recall": 1.0,
-     "f1": 0.5263157894736842,
-     "reward": -0.011368421052631639,
-     "inspection_steps": 32,
+     "tp": 4,
+     "fp": 11,
+     "fn": 1,
+     "precision": 0.26666666666666666,
+     "recall": 0.8,
+     "f1": 0.4,
+     "reward": -0.25799999999999995,
+     "inspection_steps": 29,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -825,29 +825,29 @@
       },
       "fx_error": {
        "tp": 2,
-       "fp": 2,
+       "fp": 5,
        "fn": 0
       },
       "period_cutoff": {
-       "tp": 2,
-       "fp": 2,
-       "fn": 0
+       "tp": 1,
+       "fp": 1,
+       "fn": 1
       }
      },
-     "wall_s": 0.004387486000002383,
+     "wall_s": 0.005429058000004261,
      "name": "fx_and_cutoff_heavy",
      "seed": 1009,
      "n_issues": 5
     },
     {
-     "tp": 8,
-     "fp": 18,
-     "fn": 4,
-     "precision": 0.3076923076923077,
-     "recall": 0.6666666666666666,
-     "f1": 0.42105263157894735,
-     "reward": -0.2158947368421053,
-     "inspection_steps": 29,
+     "tp": 10,
+     "fp": 17,
+     "fn": 2,
+     "precision": 0.37037037037037035,
+     "recall": 0.8333333333333334,
+     "f1": 0.5128205128205128,
+     "reward": -0.042358974358974455,
+     "inspection_steps": 34,
      "by_type": {
       "duplicate_invoice": {
        "tp": 2,
@@ -860,17 +860,17 @@
        "fn": 0
       },
       "fx_error": {
-       "tp": 1,
-       "fp": 7,
-       "fn": 3
+       "tp": 3,
+       "fp": 8,
+       "fn": 1
       },
       "period_cutoff": {
        "tp": 2,
-       "fp": 6,
+       "fp": 4,
        "fn": 1
       }
      },
-     "wall_s": 0.0038831960000003107,
+     "wall_s": 0.005803186000036931,
      "name": "max_twelve_issues",
      "seed": 1010,
      "n_issues": 12
@@ -885,7 +885,7 @@
      "recall": 0.0,
      "f1": 0.0,
      "reward": -1.0,
-     "inspection_steps": 4,
+     "inspection_steps": 3,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -908,7 +908,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0024873310000010918,
+     "wall_s": 0.0021731100000010883,
      "name": "default",
      "seed": 1001,
      "n_issues": 4
@@ -921,7 +921,7 @@
      "recall": 0.0,
      "f1": 0.0,
      "reward": -1.0,
-     "inspection_steps": 3,
+     "inspection_steps": 4,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -944,7 +944,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0015149609999980385,
+     "wall_s": 0.00228458800000908,
      "name": "clean",
      "seed": 1002,
      "n_issues": 0
@@ -980,7 +980,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0018555139999989478,
+     "wall_s": 0.002424231999953008,
      "name": "partial_fx_boundary",
      "seed": 1003,
      "n_issues": 6
@@ -1016,7 +1016,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.001751117000001301,
+     "wall_s": 0.0022140340000191827,
      "name": "cutoff_fx_boundary",
      "seed": 1004,
      "n_issues": 6
@@ -1029,7 +1029,7 @@
      "recall": 0.0,
      "f1": 0.0,
      "reward": -1.0,
-     "inspection_steps": 3,
+     "inspection_steps": 4,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -1052,7 +1052,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0020818460000029404,
+     "wall_s": 0.0022795779999569277,
      "name": "both_interactions_plus_duplicates",
      "seed": 1005,
      "n_issues": 6
@@ -1088,7 +1088,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0019131719999982977,
+     "wall_s": 0.002488105999987056,
      "name": "multi_fault",
      "seed": 1006,
      "n_issues": 8
@@ -1124,7 +1124,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.001744566999999364,
+     "wall_s": 0.0021479249999742933,
      "name": "clean_utc_company",
      "seed": 1007,
      "n_issues": 0
@@ -1137,7 +1137,7 @@
      "recall": 0.0,
      "f1": 0.0,
      "reward": -1.0,
-     "inspection_steps": 4,
+     "inspection_steps": 5,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -1160,7 +1160,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0021594399999997904,
+     "wall_s": 0.002724037000007229,
      "name": "large_default",
      "seed": 1008,
      "n_issues": 4
@@ -1196,7 +1196,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0023744710000030977,
+     "wall_s": 0.0025013679999688065,
      "name": "fx_and_cutoff_heavy",
      "seed": 1009,
      "n_issues": 5
@@ -1232,7 +1232,7 @@
        "fn": 3
       }
      },
-     "wall_s": 0.0018530430000005538,
+     "wall_s": 0.0023362629999610363,
      "name": "max_twelve_issues",
      "seed": 1010,
      "n_issues": 12
@@ -1270,7 +1270,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0003556410000022936,
+     "wall_s": 0.00031327700003203063,
      "name": "default",
      "seed": 1001,
      "n_issues": 4
@@ -1306,7 +1306,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00024488000000033594,
+     "wall_s": 0.0003407789999982924,
      "name": "clean",
      "seed": 1002,
      "n_issues": 0
@@ -1342,7 +1342,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0003920790000009333,
+     "wall_s": 0.0004395889999955216,
      "name": "partial_fx_boundary",
      "seed": 1003,
      "n_issues": 6
@@ -1378,7 +1378,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0003729830000018808,
+     "wall_s": 0.00037280099996905847,
      "name": "cutoff_fx_boundary",
      "seed": 1004,
      "n_issues": 6
@@ -1414,7 +1414,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.000353121999999928,
+     "wall_s": 0.00035736000000952117,
      "name": "both_interactions_plus_duplicates",
      "seed": 1005,
      "n_issues": 6
@@ -1450,7 +1450,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0003557490000005714,
+     "wall_s": 0.000461400999995476,
      "name": "multi_fault",
      "seed": 1006,
      "n_issues": 8
@@ -1486,7 +1486,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00034891099999967423,
+     "wall_s": 0.00031894799997189693,
      "name": "clean_utc_company",
      "seed": 1007,
      "n_issues": 0
@@ -1522,7 +1522,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0003088799999986236,
+     "wall_s": 0.00042667100001381186,
      "name": "large_default",
      "seed": 1008,
      "n_issues": 4
@@ -1558,7 +1558,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0003784469999992268,
+     "wall_s": 0.000397884999983944,
      "name": "fx_and_cutoff_heavy",
      "seed": 1009,
      "n_issues": 5
@@ -1594,7 +1594,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00037001100000111364,
+     "wall_s": 0.00048329300000204967,
      "name": "max_twelve_issues",
      "seed": 1010,
      "n_issues": 12
@@ -1608,8 +1608,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.94,
-     "inspection_steps": 30,
+     "reward": 0.958,
+     "inspection_steps": 21,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -1632,7 +1632,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.008533236000001665,
+     "wall_s": 0.0069534630000021025,
      "name": "default",
      "seed": 1001,
      "n_issues": 4
@@ -1644,8 +1644,8 @@
      "precision": 0.0,
      "recall": 0.0,
      "f1": 1.0,
-     "reward": 0.958,
-     "inspection_steps": 21,
+     "reward": 0.94,
+     "inspection_steps": 30,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -1668,7 +1668,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.005077204999999196,
+     "wall_s": 0.008675852999999734,
      "name": "clean",
      "seed": 1002,
      "n_issues": 0
@@ -1680,8 +1680,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.94,
-     "inspection_steps": 30,
+     "reward": 0.938,
+     "inspection_steps": 31,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -1704,157 +1704,13 @@
        "fn": 0
       }
      },
-     "wall_s": 0.007007608999998638,
+     "wall_s": 0.009236253999972632,
      "name": "partial_fx_boundary",
      "seed": 1003,
      "n_issues": 6
     },
     {
      "tp": 6,
-     "fp": 0,
-     "fn": 0,
-     "precision": 1.0,
-     "recall": 1.0,
-     "f1": 1.0,
-     "reward": 0.946,
-     "inspection_steps": 27,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 1,
-       "fp": 0,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 1,
-       "fp": 0,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.005880689000001382,
-     "name": "cutoff_fx_boundary",
-     "seed": 1004,
-     "n_issues": 6
-    },
-    {
-     "tp": 6,
-     "fp": 0,
-     "fn": 0,
-     "precision": 1.0,
-     "recall": 1.0,
-     "f1": 1.0,
-     "reward": 0.958,
-     "inspection_steps": 21,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 1,
-       "fp": 0,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 1,
-       "fp": 0,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.005025099000000921,
-     "name": "both_interactions_plus_duplicates",
-     "seed": 1005,
-     "n_issues": 6
-    },
-    {
-     "tp": 8,
-     "fp": 0,
-     "fn": 0,
-     "precision": 1.0,
-     "recall": 1.0,
-     "f1": 1.0,
-     "reward": 0.94,
-     "inspection_steps": 30,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 2,
-       "fp": 0,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.006655895999998052,
-     "name": "multi_fault",
-     "seed": 1006,
-     "n_issues": 8
-    },
-    {
-     "tp": 0,
-     "fp": 0,
-     "fn": 0,
-     "precision": 0.0,
-     "recall": 0.0,
-     "f1": 1.0,
-     "reward": 0.94,
-     "inspection_steps": 30,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 0,
-       "fp": 0,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 0,
-       "fp": 0,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 0,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 0,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.006276620000001287,
-     "name": "clean_utc_company",
-     "seed": 1007,
-     "n_issues": 0
-    },
-    {
-     "tp": 4,
      "fp": 0,
      "fn": 0,
      "precision": 1.0,
@@ -1874,6 +1730,150 @@
        "fn": 0
       },
       "fx_error": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.007082876000026772,
+     "name": "cutoff_fx_boundary",
+     "seed": 1004,
+     "n_issues": 6
+    },
+    {
+     "tp": 6,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "reward": 0.954,
+     "inspection_steps": 23,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 1,
+       "fp": 0,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 1,
+       "fp": 0,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.007646846000000096,
+     "name": "both_interactions_plus_duplicates",
+     "seed": 1005,
+     "n_issues": 6
+    },
+    {
+     "tp": 8,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "reward": 0.946,
+     "inspection_steps": 27,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 2,
+       "fp": 0,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.00893179100000907,
+     "name": "multi_fault",
+     "seed": 1006,
+     "n_issues": 8
+    },
+    {
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 1.0,
+     "reward": 0.946,
+     "inspection_steps": 27,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 0,
+       "fp": 0,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 0,
+       "fp": 0,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 0,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 0,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.007871847999979309,
+     "name": "clean_utc_company",
+     "seed": 1007,
+     "n_issues": 0
+    },
+    {
+     "tp": 4,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "reward": 0.942,
+     "inspection_steps": 29,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 1,
+       "fp": 0,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 1,
+       "fp": 0,
+       "fn": 0
+      },
+      "fx_error": {
        "tp": 1,
        "fp": 0,
        "fn": 0
@@ -1884,7 +1884,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.005980186999998693,
+     "wall_s": 0.009182664000036311,
      "name": "large_default",
      "seed": 1008,
      "n_issues": 4
@@ -1896,8 +1896,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.948,
-     "inspection_steps": 26,
+     "reward": 0.946,
+     "inspection_steps": 27,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -1920,7 +1920,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.005982615000000635,
+     "wall_s": 0.00842990300003521,
      "name": "fx_and_cutoff_heavy",
      "seed": 1009,
      "n_issues": 5
@@ -1956,7 +1956,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.005395429000000007,
+     "wall_s": 0.008419131000039215,
      "name": "max_twelve_issues",
      "seed": 1010,
      "n_issues": 12
@@ -1994,7 +1994,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.00029422500000109153,
+     "wall_s": 0.00031740500003252237,
      "name": "default",
      "seed": 1001,
      "n_issues": 4
@@ -2030,7 +2030,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00021054299999789805,
+     "wall_s": 0.00045965900000055626,
      "name": "clean",
      "seed": 1002,
      "n_issues": 0
@@ -2066,7 +2066,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0003044130000020573,
+     "wall_s": 0.00040461399999003334,
      "name": "partial_fx_boundary",
      "seed": 1003,
      "n_issues": 6
@@ -2102,7 +2102,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0003221899999985567,
+     "wall_s": 0.00031560700000454744,
      "name": "cutoff_fx_boundary",
      "seed": 1004,
      "n_issues": 6
@@ -2138,7 +2138,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0002752040000011391,
+     "wall_s": 0.0003031030000215651,
      "name": "both_interactions_plus_duplicates",
      "seed": 1005,
      "n_issues": 6
@@ -2174,7 +2174,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.00037653500000089934,
+     "wall_s": 0.0003845269999942502,
      "name": "multi_fault",
      "seed": 1006,
      "n_issues": 8
@@ -2210,7 +2210,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0003328060000029609,
+     "wall_s": 0.000383112000008623,
      "name": "clean_utc_company",
      "seed": 1007,
      "n_issues": 0
@@ -2246,7 +2246,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.00034201299999736534,
+     "wall_s": 0.0003669349999881888,
      "name": "large_default",
      "seed": 1008,
      "n_issues": 4
@@ -2282,7 +2282,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.00033440800000050785,
+     "wall_s": 0.0003900099999896156,
      "name": "fx_and_cutoff_heavy",
      "seed": 1009,
      "n_issues": 5
@@ -2318,7 +2318,7 @@
        "fn": 3
       }
      },
-     "wall_s": 0.0003284020000009491,
+     "wall_s": 0.0003437230000145064,
      "name": "max_twelve_issues",
      "seed": 1010,
      "n_issues": 12
@@ -2358,7 +2358,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0018034819999996898,
+     "wall_s": 0.0023065770000130215,
      "name": "default",
      "seed": 2001,
      "n_issues": 4
@@ -2394,7 +2394,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0012584249999996189,
+     "wall_s": 0.0017358119999926203,
      "name": "clean",
      "seed": 2002,
      "n_issues": 0
@@ -2430,7 +2430,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.001638392000000266,
+     "wall_s": 0.002366894999966007,
      "name": "partial_fx_boundary",
      "seed": 2003,
      "n_issues": 6
@@ -2466,7 +2466,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0037235429999995517,
+     "wall_s": 0.004587233999984619,
      "name": "cutoff_fx_boundary",
      "seed": 2004,
      "n_issues": 6
@@ -2502,7 +2502,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0035074749999992605,
+     "wall_s": 0.004617903999985629,
      "name": "both_interactions_plus_duplicates",
      "seed": 2005,
      "n_issues": 6
@@ -2538,7 +2538,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.003920572000001954,
+     "wall_s": 0.004961829000023954,
      "name": "multi_fault",
      "seed": 2006,
      "n_issues": 8
@@ -2574,7 +2574,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00204114699999991,
+     "wall_s": 0.0025713850000101957,
      "name": "clean_utc_company",
      "seed": 2007,
      "n_issues": 0
@@ -2610,7 +2610,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0023773909999995624,
+     "wall_s": 0.003247938000015438,
      "name": "large_default",
      "seed": 2008,
      "n_issues": 4
@@ -2646,7 +2646,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0027419339999994463,
+     "wall_s": 0.004356812999958493,
      "name": "fx_and_cutoff_heavy",
      "seed": 2009,
      "n_issues": 5
@@ -2682,7 +2682,7 @@
        "fn": 3
       }
      },
-     "wall_s": 0.0028777059999995913,
+     "wall_s": 0.0022819970000114154,
      "name": "max_twelve_issues",
      "seed": 2010,
      "n_issues": 12
@@ -2690,14 +2690,14 @@
    ],
    "simple_reconciler": [
     {
-     "tp": 4,
-     "fp": 9,
-     "fn": 0,
-     "precision": 0.3076923076923077,
-     "recall": 1.0,
-     "f1": 0.47058823529411764,
-     "reward": -0.12482352941176472,
-     "inspection_steps": 33,
+     "tp": 3,
+     "fp": 12,
+     "fn": 1,
+     "precision": 0.2,
+     "recall": 0.75,
+     "f1": 0.3157894736842105,
+     "reward": -0.41242105263157897,
+     "inspection_steps": 22,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -2711,29 +2711,29 @@
       },
       "fx_error": {
        "tp": 1,
-       "fp": 3,
+       "fp": 5,
        "fn": 0
       },
       "period_cutoff": {
-       "tp": 1,
-       "fp": 1,
-       "fn": 0
+       "tp": 0,
+       "fp": 2,
+       "fn": 1
       }
      },
-     "wall_s": 0.003081489999999576,
+     "wall_s": 0.003813110000010056,
      "name": "default",
      "seed": 2001,
      "n_issues": 4
     },
     {
      "tp": 0,
-     "fp": 14,
+     "fp": 20,
      "fn": 0,
      "precision": 0.0,
      "recall": 0.0,
      "f1": 0.0,
      "reward": -1.0,
-     "inspection_steps": 27,
+     "inspection_steps": 32,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -2747,29 +2747,29 @@
       },
       "fx_error": {
        "tp": 0,
-       "fp": 5,
+       "fp": 8,
        "fn": 0
       },
       "period_cutoff": {
        "tp": 0,
-       "fp": 4,
+       "fp": 7,
        "fn": 0
       }
      },
-     "wall_s": 0.00282395099999988,
+     "wall_s": 0.0036888650000150847,
      "name": "clean",
      "seed": 2002,
      "n_issues": 0
     },
     {
-     "tp": 3,
-     "fp": 15,
-     "fn": 3,
-     "precision": 0.16666666666666666,
-     "recall": 0.5,
-     "f1": 0.25,
-     "reward": -0.548,
-     "inspection_steps": 24,
+     "tp": 5,
+     "fp": 18,
+     "fn": 1,
+     "precision": 0.21739130434782608,
+     "recall": 0.8333333333333334,
+     "f1": 0.3448275862068966,
+     "reward": -0.4043448275862068,
+     "inspection_steps": 47,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -2782,30 +2782,30 @@
        "fn": 0
       },
       "fx_error": {
-       "tp": 0,
-       "fp": 7,
-       "fn": 2
+       "tp": 1,
+       "fp": 6,
+       "fn": 1
       },
       "period_cutoff": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 1
+       "tp": 1,
+       "fp": 7,
+       "fn": 0
       }
      },
-     "wall_s": 0.002849690999997989,
+     "wall_s": 0.005223596999996971,
      "name": "partial_fx_boundary",
      "seed": 2003,
      "n_issues": 6
     },
     {
-     "tp": 5,
-     "fp": 15,
-     "fn": 1,
-     "precision": 0.25,
-     "recall": 0.8333333333333334,
-     "f1": 0.38461538461538464,
-     "reward": -0.2767692307692307,
-     "inspection_steps": 23,
+     "tp": 4,
+     "fp": 16,
+     "fn": 2,
+     "precision": 0.2,
+     "recall": 0.6666666666666666,
+     "f1": 0.3076923076923077,
+     "reward": -0.43661538461538457,
+     "inspection_steps": 26,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -2818,33 +2818,141 @@
        "fn": 0
       },
       "fx_error": {
-       "tp": 2,
-       "fp": 7,
-       "fn": 0
+       "tp": 1,
+       "fp": 6,
+       "fn": 1
       },
       "period_cutoff": {
        "tp": 1,
-       "fp": 3,
+       "fp": 5,
        "fn": 1
       }
      },
-     "wall_s": 0.0028281019999987222,
+     "wall_s": 0.0038830350000012004,
      "name": "cutoff_fx_boundary",
      "seed": 2004,
      "n_issues": 6
     },
     {
      "tp": 3,
-     "fp": 18,
+     "fp": 13,
      "fn": 3,
-     "precision": 0.14285714285714285,
+     "precision": 0.1875,
      "recall": 0.5,
-     "f1": 0.2222222222222222,
-     "reward": -0.6255555555555556,
-     "inspection_steps": 35,
+     "f1": 0.2727272727272727,
+     "reward": -0.5165454545454546,
+     "inspection_steps": 31,
      "by_type": {
       "duplicate_invoice": {
        "tp": 2,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 1,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 2,
+       "fn": 2
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 6,
+       "fn": 1
+      }
+     },
+     "wall_s": 0.004177088999995249,
+     "name": "both_interactions_plus_duplicates",
+     "seed": 2005,
+     "n_issues": 6
+    },
+    {
+     "tp": 7,
+     "fp": 14,
+     "fn": 1,
+     "precision": 0.3333333333333333,
+     "recall": 0.875,
+     "f1": 0.4827586206896552,
+     "reward": -0.10048275862068962,
+     "inspection_steps": 33,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 2,
+       "fp": 3,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 2,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 1,
+       "fp": 5,
+       "fn": 1
+      },
+      "period_cutoff": {
+       "tp": 2,
+       "fp": 4,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.0042894869999940965,
+     "name": "multi_fault",
+     "seed": 2006,
+     "n_issues": 8
+    },
+    {
+     "tp": 0,
+     "fp": 11,
+     "fn": 0,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "reward": -1.0,
+     "inspection_steps": 26,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 0,
+       "fp": 4,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 0,
+       "fp": 2,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 4,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 1,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.003447913000002245,
+     "name": "clean_utc_company",
+     "seed": 2007,
+     "n_issues": 0
+    },
+    {
+     "tp": 3,
+     "fp": 21,
+     "fn": 1,
+     "precision": 0.125,
+     "recall": 0.75,
+     "f1": 0.21428571428571427,
+     "reward": -0.6414285714285715,
+     "inspection_steps": 35,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 1,
        "fp": 3,
        "fn": 0
       },
@@ -2856,136 +2964,28 @@
       "fx_error": {
        "tp": 0,
        "fp": 10,
-       "fn": 2
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 1
-      }
-     },
-     "wall_s": 0.0031343370000023185,
-     "name": "both_interactions_plus_duplicates",
-     "seed": 2005,
-     "n_issues": 6
-    },
-    {
-     "tp": 5,
-     "fp": 16,
-     "fn": 3,
-     "precision": 0.23809523809523808,
-     "recall": 0.625,
-     "f1": 0.3448275862068966,
-     "reward": -0.36834482758620685,
-     "inspection_steps": 29,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 2,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 2,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 1,
-       "fp": 8,
-       "fn": 1
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 2
-      }
-     },
-     "wall_s": 0.0030344289999995055,
-     "name": "multi_fault",
-     "seed": 2006,
-     "n_issues": 8
-    },
-    {
-     "tp": 0,
-     "fp": 9,
-     "fn": 0,
-     "precision": 0.0,
-     "recall": 0.0,
-     "f1": 0.0,
-     "reward": -1.0,
-     "inspection_steps": 21,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 0,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 3,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 1,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.002634567000001198,
-     "name": "clean_utc_company",
-     "seed": 2007,
-     "n_issues": 0
-    },
-    {
-     "tp": 3,
-     "fp": 14,
-     "fn": 1,
-     "precision": 0.17647058823529413,
-     "recall": 0.75,
-     "f1": 0.2857142857142857,
-     "reward": -0.4925714285714286,
-     "inspection_steps": 32,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 1,
-       "fp": 3,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 1,
-       "fp": 2,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 7,
        "fn": 1
       },
       "period_cutoff": {
        "tp": 1,
-       "fp": 2,
+       "fp": 6,
        "fn": 0
       }
      },
-     "wall_s": 0.0034426309999986415,
+     "wall_s": 0.004871444000002612,
      "name": "large_default",
      "seed": 2008,
      "n_issues": 4
     },
     {
-     "tp": 4,
-     "fp": 16,
-     "fn": 1,
-     "precision": 0.2,
-     "recall": 0.8,
-     "f1": 0.32,
-     "reward": -0.41,
-     "inspection_steps": 25,
+     "tp": 3,
+     "fp": 14,
+     "fn": 2,
+     "precision": 0.17647058823529413,
+     "recall": 0.6,
+     "f1": 0.2727272727272727,
+     "reward": -0.5065454545454546,
+     "inspection_steps": 26,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -2998,30 +2998,30 @@
        "fn": 0
       },
       "fx_error": {
-       "tp": 1,
-       "fp": 6,
-       "fn": 1
+       "tp": 2,
+       "fp": 3,
+       "fn": 0
       },
       "period_cutoff": {
-       "tp": 2,
-       "fp": 5,
-       "fn": 0
+       "tp": 0,
+       "fp": 6,
+       "fn": 2
       }
      },
-     "wall_s": 0.0028805239999982746,
+     "wall_s": 0.004756372000031206,
      "name": "fx_and_cutoff_heavy",
      "seed": 2009,
      "n_issues": 5
     },
     {
-     "tp": 9,
-     "fp": 20,
-     "fn": 3,
-     "precision": 0.3103448275862069,
-     "recall": 0.75,
-     "f1": 0.43902439024390244,
-     "reward": -0.17995121951219512,
-     "inspection_steps": 29,
+     "tp": 8,
+     "fp": 14,
+     "fn": 4,
+     "precision": 0.36363636363636365,
+     "recall": 0.6666666666666666,
+     "f1": 0.47058823529411764,
+     "reward": -0.11482352941176471,
+     "inspection_steps": 28,
      "by_type": {
       "duplicate_invoice": {
        "tp": 2,
@@ -3034,17 +3034,17 @@
        "fn": 0
       },
       "fx_error": {
-       "tp": 3,
-       "fp": 6,
-       "fn": 1
+       "tp": 2,
+       "fp": 4,
+       "fn": 2
       },
       "period_cutoff": {
        "tp": 1,
-       "fp": 9,
+       "fp": 5,
        "fn": 2
       }
      },
-     "wall_s": 0.0061004850000010435,
+     "wall_s": 0.004242639999972653,
      "name": "max_twelve_issues",
      "seed": 2010,
      "n_issues": 12
@@ -3055,114 +3055,6 @@
      "tp": 0,
      "fp": 30,
      "fn": 4,
-     "precision": 0.0,
-     "recall": 0.0,
-     "f1": 0.0,
-     "reward": -1.0,
-     "inspection_steps": 4,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 0,
-       "fp": 8,
-       "fn": 1
-      },
-      "payment_allocation": {
-       "tp": 0,
-       "fp": 8,
-       "fn": 1
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 7,
-       "fn": 1
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 7,
-       "fn": 1
-      }
-     },
-     "wall_s": 0.0013287579999996524,
-     "name": "default",
-     "seed": 2001,
-     "n_issues": 4
-    },
-    {
-     "tp": 0,
-     "fp": 30,
-     "fn": 0,
-     "precision": 0.0,
-     "recall": 0.0,
-     "f1": 0.0,
-     "reward": -1.0,
-     "inspection_steps": 4,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 0,
-       "fp": 8,
-       "fn": 0
-      },
-      "payment_allocation": {
-       "tp": 0,
-       "fp": 8,
-       "fn": 0
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 7,
-       "fn": 0
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 7,
-       "fn": 0
-      }
-     },
-     "wall_s": 0.0012630879999981914,
-     "name": "clean",
-     "seed": 2002,
-     "n_issues": 0
-    },
-    {
-     "tp": 0,
-     "fp": 30,
-     "fn": 6,
-     "precision": 0.0,
-     "recall": 0.0,
-     "f1": 0.0,
-     "reward": -1.0,
-     "inspection_steps": 4,
-     "by_type": {
-      "duplicate_invoice": {
-       "tp": 0,
-       "fp": 8,
-       "fn": 1
-      },
-      "payment_allocation": {
-       "tp": 0,
-       "fp": 8,
-       "fn": 2
-      },
-      "fx_error": {
-       "tp": 0,
-       "fp": 7,
-       "fn": 2
-      },
-      "period_cutoff": {
-       "tp": 0,
-       "fp": 7,
-       "fn": 1
-      }
-     },
-     "wall_s": 0.0012623769999997592,
-     "name": "partial_fx_boundary",
-     "seed": 2003,
-     "n_issues": 6
-    },
-    {
-     "tp": 0,
-     "fp": 30,
-     "fn": 6,
      "precision": 0.0,
      "recall": 0.0,
      "f1": 0.0,
@@ -3182,6 +3074,114 @@
       "fx_error": {
        "tp": 0,
        "fp": 7,
+       "fn": 1
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 7,
+       "fn": 1
+      }
+     },
+     "wall_s": 0.0016040799999927913,
+     "name": "default",
+     "seed": 2001,
+     "n_issues": 4
+    },
+    {
+     "tp": 0,
+     "fp": 30,
+     "fn": 0,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "reward": -1.0,
+     "inspection_steps": 3,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 0,
+       "fp": 8,
+       "fn": 0
+      },
+      "payment_allocation": {
+       "tp": 0,
+       "fp": 8,
+       "fn": 0
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 7,
+       "fn": 0
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 7,
+       "fn": 0
+      }
+     },
+     "wall_s": 0.001701129000025503,
+     "name": "clean",
+     "seed": 2002,
+     "n_issues": 0
+    },
+    {
+     "tp": 0,
+     "fp": 30,
+     "fn": 6,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "reward": -1.0,
+     "inspection_steps": 4,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 0,
+       "fp": 8,
+       "fn": 1
+      },
+      "payment_allocation": {
+       "tp": 0,
+       "fp": 8,
+       "fn": 2
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 7,
+       "fn": 2
+      },
+      "period_cutoff": {
+       "tp": 0,
+       "fp": 7,
+       "fn": 1
+      }
+     },
+     "wall_s": 0.002021313000000191,
+     "name": "partial_fx_boundary",
+     "seed": 2003,
+     "n_issues": 6
+    },
+    {
+     "tp": 0,
+     "fp": 30,
+     "fn": 6,
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "reward": -1.0,
+     "inspection_steps": 4,
+     "by_type": {
+      "duplicate_invoice": {
+       "tp": 0,
+       "fp": 8,
+       "fn": 1
+      },
+      "payment_allocation": {
+       "tp": 0,
+       "fp": 8,
+       "fn": 1
+      },
+      "fx_error": {
+       "tp": 0,
+       "fp": 7,
        "fn": 2
       },
       "period_cutoff": {
@@ -3190,7 +3190,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0013746290000007377,
+     "wall_s": 0.0019483419999914986,
      "name": "cutoff_fx_boundary",
      "seed": 2004,
      "n_issues": 6
@@ -3226,7 +3226,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.001441460999998867,
+     "wall_s": 0.0020010169999977734,
      "name": "both_interactions_plus_duplicates",
      "seed": 2005,
      "n_issues": 6
@@ -3262,7 +3262,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0013518230000002518,
+     "wall_s": 0.0020312020000119446,
      "name": "multi_fault",
      "seed": 2006,
      "n_issues": 8
@@ -3275,7 +3275,7 @@
      "recall": 0.0,
      "f1": 0.0,
      "reward": -1.0,
-     "inspection_steps": 4,
+     "inspection_steps": 3,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -3298,7 +3298,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.001233554000002357,
+     "wall_s": 0.0014861740000355894,
      "name": "clean_utc_company",
      "seed": 2007,
      "n_issues": 0
@@ -3334,7 +3334,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0014769190000016863,
+     "wall_s": 0.002041323000014472,
      "name": "large_default",
      "seed": 2008,
      "n_issues": 4
@@ -3347,7 +3347,7 @@
      "recall": 0.0,
      "f1": 0.0,
      "reward": -1.0,
-     "inspection_steps": 3,
+     "inspection_steps": 4,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -3370,7 +3370,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.001358313000000777,
+     "wall_s": 0.0019111720000069,
      "name": "fx_and_cutoff_heavy",
      "seed": 2009,
      "n_issues": 5
@@ -3406,7 +3406,7 @@
        "fn": 3
       }
      },
-     "wall_s": 0.002359776999998786,
+     "wall_s": 0.0018003790000307163,
      "name": "max_twelve_issues",
      "seed": 2010,
      "n_issues": 12
@@ -3444,7 +3444,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00024914200000125675,
+     "wall_s": 0.0002915320000056454,
      "name": "default",
      "seed": 2001,
      "n_issues": 4
@@ -3480,7 +3480,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00021124199999889015,
+     "wall_s": 0.00025480800002242177,
      "name": "clean",
      "seed": 2002,
      "n_issues": 0
@@ -3516,7 +3516,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00022353900000027238,
+     "wall_s": 0.00039966999997886887,
      "name": "partial_fx_boundary",
      "seed": 2003,
      "n_issues": 6
@@ -3552,7 +3552,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0002645230000020149,
+     "wall_s": 0.0002969569999891064,
      "name": "cutoff_fx_boundary",
      "seed": 2004,
      "n_issues": 6
@@ -3588,7 +3588,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0002697560000015642,
+     "wall_s": 0.00034997099999145576,
      "name": "both_interactions_plus_duplicates",
      "seed": 2005,
      "n_issues": 6
@@ -3624,7 +3624,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00026681599999989203,
+     "wall_s": 0.00036800300000550124,
      "name": "multi_fault",
      "seed": 2006,
      "n_issues": 8
@@ -3660,7 +3660,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00018244299999992108,
+     "wall_s": 0.00022736900001518734,
      "name": "clean_utc_company",
      "seed": 2007,
      "n_issues": 0
@@ -3696,7 +3696,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00028968900000236886,
+     "wall_s": 0.0002911079999989852,
      "name": "large_default",
      "seed": 2008,
      "n_issues": 4
@@ -3732,7 +3732,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00034512599999914073,
+     "wall_s": 0.0003977280000526662,
      "name": "fx_and_cutoff_heavy",
      "seed": 2009,
      "n_issues": 5
@@ -3768,7 +3768,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0004811670000002266,
+     "wall_s": 0.0003796910000346543,
      "name": "max_twelve_issues",
      "seed": 2010,
      "n_issues": 12
@@ -3782,8 +3782,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.946,
-     "inspection_steps": 27,
+     "reward": 0.958,
+     "inspection_steps": 21,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -3806,7 +3806,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.004673699999997893,
+     "wall_s": 0.005546721999962756,
      "name": "default",
      "seed": 2001,
      "n_issues": 4
@@ -3818,8 +3818,8 @@
      "precision": 0.0,
      "recall": 0.0,
      "f1": 1.0,
-     "reward": 0.946,
-     "inspection_steps": 27,
+     "reward": 0.958,
+     "inspection_steps": 21,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -3842,7 +3842,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.004742930999999118,
+     "wall_s": 0.005801621999978579,
      "name": "clean",
      "seed": 2002,
      "n_issues": 0
@@ -3854,8 +3854,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.956,
-     "inspection_steps": 22,
+     "reward": 0.938,
+     "inspection_steps": 31,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -3878,7 +3878,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00425921999999801,
+     "wall_s": 0.007507100999987415,
      "name": "partial_fx_boundary",
      "seed": 2003,
      "n_issues": 6
@@ -3890,8 +3890,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.95,
-     "inspection_steps": 25,
+     "reward": 0.954,
+     "inspection_steps": 23,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -3914,7 +3914,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.004587908999997836,
+     "wall_s": 0.006063612999980705,
      "name": "cutoff_fx_boundary",
      "seed": 2004,
      "n_issues": 6
@@ -3926,8 +3926,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.948,
-     "inspection_steps": 26,
+     "reward": 0.946,
+     "inspection_steps": 27,
      "by_type": {
       "duplicate_invoice": {
        "tp": 2,
@@ -3950,7 +3950,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.004992923999999732,
+     "wall_s": 0.006627500999968561,
      "name": "both_interactions_plus_duplicates",
      "seed": 2005,
      "n_issues": 6
@@ -3986,7 +3986,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.00428317000000078,
+     "wall_s": 0.006171897999990961,
      "name": "multi_fault",
      "seed": 2006,
      "n_issues": 8
@@ -3998,8 +3998,8 @@
      "precision": 0.0,
      "recall": 0.0,
      "f1": 1.0,
-     "reward": 0.956,
-     "inspection_steps": 22,
+     "reward": 0.958,
+     "inspection_steps": 21,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -4022,7 +4022,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.004062597000000778,
+     "wall_s": 0.005131820000030984,
      "name": "clean_utc_company",
      "seed": 2007,
      "n_issues": 0
@@ -4034,8 +4034,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.946,
-     "inspection_steps": 27,
+     "reward": 0.952,
+     "inspection_steps": 24,
      "by_type": {
       "duplicate_invoice": {
        "tp": 1,
@@ -4058,7 +4058,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.005139288999998826,
+     "wall_s": 0.006776086000002124,
      "name": "large_default",
      "seed": 2008,
      "n_issues": 4
@@ -4070,8 +4070,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.958,
-     "inspection_steps": 21,
+     "reward": 0.94,
+     "inspection_steps": 30,
      "by_type": {
       "duplicate_invoice": {
        "tp": 0,
@@ -4094,7 +4094,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.004532427000000894,
+     "wall_s": 0.007232722000026115,
      "name": "fx_and_cutoff_heavy",
      "seed": 2009,
      "n_issues": 5
@@ -4106,8 +4106,8 @@
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
-     "reward": 0.938,
-     "inspection_steps": 31,
+     "reward": 0.954,
+     "inspection_steps": 23,
      "by_type": {
       "duplicate_invoice": {
        "tp": 2,
@@ -4130,7 +4130,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.009568889000000524,
+     "wall_s": 0.00662976000000981,
      "name": "max_twelve_issues",
      "seed": 2010,
      "n_issues": 12
@@ -4168,7 +4168,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0002716639999995607,
+     "wall_s": 0.00029168600002549283,
      "name": "default",
      "seed": 2001,
      "n_issues": 4
@@ -4204,7 +4204,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0002544760000020574,
+     "wall_s": 0.00025610700004108367,
      "name": "clean",
      "seed": 2002,
      "n_issues": 0
@@ -4240,7 +4240,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.00022810000000106356,
+     "wall_s": 0.0004486949999886747,
      "name": "partial_fx_boundary",
      "seed": 2003,
      "n_issues": 6
@@ -4276,7 +4276,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0002639020000003711,
+     "wall_s": 0.0002633299999956762,
      "name": "cutoff_fx_boundary",
      "seed": 2004,
      "n_issues": 6
@@ -4312,7 +4312,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.0002737760000002254,
+     "wall_s": 0.0003418269999997392,
      "name": "both_interactions_plus_duplicates",
      "seed": 2005,
      "n_issues": 6
@@ -4348,7 +4348,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.0002328200000007996,
+     "wall_s": 0.00030709499998238243,
      "name": "multi_fault",
      "seed": 2006,
      "n_issues": 8
@@ -4384,7 +4384,7 @@
        "fn": 0
       }
      },
-     "wall_s": 0.0002412189999994041,
+     "wall_s": 0.000248424000005798,
      "name": "clean_utc_company",
      "seed": 2007,
      "n_issues": 0
@@ -4420,7 +4420,7 @@
        "fn": 1
       }
      },
-     "wall_s": 0.00029649700000078383,
+     "wall_s": 0.0003104889999576699,
      "name": "large_default",
      "seed": 2008,
      "n_issues": 4
@@ -4456,7 +4456,7 @@
        "fn": 2
       }
      },
-     "wall_s": 0.00026623499999800515,
+     "wall_s": 0.00043960499999684544,
      "name": "fx_and_cutoff_heavy",
      "seed": 2009,
      "n_issues": 5
@@ -4492,7 +4492,7 @@
        "fn": 3
       }
      },
-     "wall_s": 0.00045103200000085053,
+     "wall_s": 0.0004219749999947453,
      "name": "max_twelve_issues",
      "seed": 2010,
      "n_issues": 12

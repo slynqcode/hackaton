@@ -1,21 +1,21 @@
 {
  "passed": true,
  "soundness": {
-  "submissions": 1200,
-  "tp_awarded": 3433,
+  "submissions": 3200,
+  "tp_awarded": 9067,
   "violations": [],
   "n_violations": 0
  },
  "blind_search": {
   "episodes": 10,
-  "tries_per_episode": 100,
+  "tries_per_episode": 300,
   "mean_best_reward": -1.0,
   "max_best_reward": -1.0
  },
  "regeneration": {
-  "seed_range": 120,
+  "seed_range": 400,
   "recovered_without_secret": true,
   "recovered_with_secret": false,
-  "seconds": 2.0
+  "seconds": 8.1
  }
 }

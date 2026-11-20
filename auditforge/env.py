@@ -11,6 +11,7 @@ Isolation model
 from __future__ import annotations
 
 import copy
+import re
 import time
 from typing import Any, Callable
 
@@ -45,7 +46,7 @@ class AuditEnv:
                  clock: Callable[[], float] = time.monotonic, secret: str | None = None):
         """secret: evaluator-only string mixed into every generated episode. Without it the generator is public, so
         anyone who knows seed range + config can regenerate an episode and read its truth (measured: ~13 s for 2000
-        seeds). Closed runs MUST set it (RemoteEnv passes it to the evaluator process via AUDITFORGE_SECRET)."""
+        seeds). RemoteEnv in eval mode always runs with one (organisers' file, or random inside the evaluator)."""
         if mode not in ("train", "eval"):
             raise ValueError("mode must be 'train' or 'eval'")
         self._secret = secret
@@ -56,6 +57,8 @@ class AuditEnv:
     # ------------------------------------------------------------------ lifecycle
     def reset(self, seed: int | None = None, config: dict | None = None, episode: Episode | None = None):
         if episode is None:
+            if not isinstance(seed, int) or isinstance(seed, bool) or not 0 <= seed < 2 ** 63:
+                raise ValueError("seed must be an int in [0, 2**63)")
             cfg = dict(config or {})
             if self._secret:
                 cfg["id_salt"] = f"{self._secret}|{cfg.get('id_salt', '')}"
@@ -140,7 +143,8 @@ class AuditEnv:
         limit = min(limit, PAGE_MAX)
         off = 0
         if cursor is not None:
-            if not (isinstance(cursor, str) and cursor.startswith("c") and cursor[1:].isdigit()):
+            # ASCII digits only, bounded length: str.isdigit() accepts Unicode digits and int() caps at 4300 digits
+            if not (isinstance(cursor, str) and re.fullmatch(r"c[0-9]{1,9}", cursor)):
                 return self._err("invalid_cursor")
             off = int(cursor[1:])
         rows = self._ep.tables[table]
