@@ -2,6 +2,7 @@
     python demo.py [seed]
 Shows one episode with both interacting scenarios: what the books look like, what each policy does, how it is scored."""
 import json
+import secrets
 import sys
 
 from auditforge.env import AuditEnv
@@ -11,9 +12,9 @@ from auditforge.runner import run_episode
 
 seed = int(sys.argv[1]) if len(sys.argv) > 1 else 4242
 cfg = {"interactions": ["partial_fx", "cutoff_fx"]}
-# the organiser's secret: the evaluator process gets it, the policies never do. A fixed demo value keeps the
-# printout repeatable; a real closed run uses a private one (see README).
-secret = sys.argv[2] if len(sys.argv) > 2 else "demo-secret"
+# the organiser's secret: the evaluator process gets it, the policies never do. Random by default (the hidden
+# episode differs every run); pass your own as the 2nd argument to repeat a printout exactly.
+secret = sys.argv[2] if len(sys.argv) > 2 else secrets.token_hex(16)
 h = AuditEnv(mode="eval", secret=secret); h.reset(seed, cfg); ep = h._ep   # harness-side copy (oracle + printout)
 print(f"episode {ep.episode_id}: {ep.manifest['counts']}  tz={ep.manifest['timezone']}  base={ep.manifest['base_currency']}")
 print("hidden truth (evaluator-only):")

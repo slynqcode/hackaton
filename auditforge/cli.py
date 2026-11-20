@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import secrets
 import os
 import statistics
 import sys
@@ -47,9 +48,9 @@ def run_policies(split: str, mode: str, isolated: bool, traj=None, extra_referen
     spec = load_split(split)
     per = {}
     # isolated eval = the organisers' setting: a secret known to the harness (needed only by the oracle's
-    # solvability check) and to the evaluator process, never to the policies. Locally it is a fixed, openly
-    # labelled value so the reports repeat run to run; a real closed run passes a private one (AUDITFORGE_SECRET_FILE).
-    run_secret = (os.environ.get("AUDITFORGE_LOCAL_SECRET") or f"local-hidden-like-{ENV_VERSION}") if isolated and mode == "eval" else None
+    # solvability check) and to the evaluator process, never to the policies. Random per run by default; a fixed
+    # value only on explicit request (AUDITFORGE_LOCAL_SECRET), never for a closed run.
+    run_secret = (os.environ.get("AUDITFORGE_LOCAL_SECRET") or secrets.token_hex(16)) if isolated and mode == "eval" else None
     for e in spec["episodes"]:
         if run_secret:
             h = AuditEnv(mode="eval", secret=run_secret); h.reset(e["seed"], e["config"]); ep = h._ep

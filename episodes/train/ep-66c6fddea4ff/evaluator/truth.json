@@ -1,0 +1,114 @@
+{
+ "episode_id": "ep-66c6fddea4ff",
+ "issues": [
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "INV-92050",
+    "PAY-41431"
+   ],
+   "expected_amount_minor": 2032120,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-8790023",
+     "JE43411514"
+    ]
+   ],
+   "issue_id": "ISS-4664a48d31"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "PAY-41431"
+   ],
+   "expected_amount_minor": 16321,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-8790023",
+     "JE71996814",
+     "fx:2026-09-30:EUR:GBP"
+    ],
+    [
+     "DOC-8790023",
+     "JE78203579",
+     "fx:2026-09-30:EUR:GBP"
+    ]
+   ],
+   "issue_id": "ISS-8d40e67781"
+  },
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "INV-24174",
+    "INV-98745"
+   ],
+   "expected_amount_minor": 1480000,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-0778015",
+     "DOC-5815295"
+    ]
+   ],
+   "issue_id": "ISS-3764af58df"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "INV-15302",
+    "PAY-68246"
+   ],
+   "expected_amount_minor": 6596523,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-3100189",
+     "JE92770894"
+    ]
+   ],
+   "issue_id": "ISS-3901d8950b"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "PAY-61836"
+   ],
+   "expected_amount_minor": 292531,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-9090553",
+     "JE07835434",
+     "fx:2026-10-02:EUR:GBP"
+    ],
+    [
+     "DOC-9090553",
+     "JE16828977",
+     "fx:2026-10-02:EUR:GBP"
+    ]
+   ],
+   "issue_id": "ISS-f72be7b8cc"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "INV-37585"
+   ],
+   "expected_amount_minor": 2261321000,
+   "currency": "KZT",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-1060970",
+     "JE43922524"
+    ],
+    [
+     "DOC-1060970",
+     "JE21414631"
+    ]
+   ],
+   "issue_id": "ISS-50ba70a3a8"
+  }
+ ]
+}

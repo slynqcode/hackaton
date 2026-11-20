@@ -614,11 +614,54 @@ def contract_checks():
         from .remote import RemoteEnv
         with RemoteEnv(mode="eval", secret="s3cr3t-env-probe") as r:
             r.reset(SEED)
-            path = f"/proc/{r._p.pid}/environ"
-            if os.path.exists(path):
-                assert b"s3cr3t-env-probe" not in open(path, "rb").read()
+            for name in ("environ", "cmdline"):
+                path = f"/proc/{r._p.pid}/{name}"
+                if os.path.exists(path):
+                    assert b"s3cr3t-env-probe" not in open(path, "rb").read(), name
+                    assert b"secret" not in open(path, "rb").read().lower() or name == "environ", name
         tmp = __import__("tempfile").gettempdir()
-        assert not [n for n in os.listdir(tmp) if n.startswith("af-secret-")]   # temp secret file removed
+        assert not [n for n in os.listdir(tmp) if n.startswith("af-secret-")]   # no secret file is ever written
+
+    @check
+    def eval_scores_go_to_harness_channel_only():
+        from .remote import RemoteEnv
+        with RemoteEnv(mode="eval") as r:
+            obs, info = r.reset(SEED)
+            r.step({"action": "submit", "findings": {"episode_id": info["episode_id"], "findings": []}})
+            assert r._call({"op": "evaluation"}, allow_fatal=True) == {"fatal": "harness_only"}
+            ev = r.evaluation()
+            assert "f1" in ev and ev["secret_source"] == "ephemeral"
+        with RemoteEnv(mode="eval") as r:
+            r.reset(SEED)
+            try:
+                r.evaluation()
+            except RuntimeError as e:
+                assert "episode_not_finished" in str(e)
+            else:
+                raise AssertionError("evaluation before the end")
+
+    @check
+    def train_mode_ignores_harness_secret_environment():
+        from .remote import RemoteEnv
+        old = os.environ.get("AUDITFORGE_SECRET")
+        os.environ["AUDITFORGE_SECRET"] = "harness-only-secret"
+        try:
+            with RemoteEnv(mode="train") as r:
+                obs = r.reset(SEED)[0]
+            assert obs == AuditEnv(mode="train").reset(SEED)[0]                        # public episode
+            assert obs != AuditEnv(mode="train", secret="harness-only-secret").reset(SEED)[0]
+        finally:
+            if old is None:
+                os.environ.pop("AUDITFORGE_SECRET", None)
+            else:
+                os.environ["AUDITFORGE_SECRET"] = old
+
+    @check
+    def bad_config_is_a_clean_error():
+        from .remote import RemoteEnv
+        with RemoteEnv(mode="train") as r:
+            assert r._call({"op": "reset", "seed": SEED, "config": {"n_invoices": 10 ** 7}}, allow_fatal=True) == {"fatal": "bad_config"}
+            assert r._call({"op": "ping"}) == {"ok": True}
 
     @check
     def malformed_cursors_and_seeds_are_errors_not_crashes():
