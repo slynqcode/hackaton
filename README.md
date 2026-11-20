@@ -37,7 +37,6 @@ make verify            # = python -m auditforge.cli verify  &&  python -m pytest
 | `trajectories.jsonl` | траектории 5 политик на 10 train-эпизодах (без эталона в наблюдениях) |
 | `reports/` | `scorecard.json`, `baselines.json`, `hidden_like_eval.json`, `mutation_report.json`, `failure_analysis.md` |
 | `docs/DESIGN.md` | записка о дизайне |
-| `docs/IDEAS.md` | идеи дальнейшего усиления проекта |
 | `docs/RISKS.md` | найденные и исправленные проблемы, прогноз ошибок у жюри |
 | `CHANGELOG.md` | история версий |
 | `schemas/` | JSON Schema для findings, действий и truth |
