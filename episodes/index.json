@@ -1,10 +1,10 @@
 {
- "env_version": "1.3.1",
+ "env_version": "1.3.2",
  "episodes": [
   {
    "split": "train",
    "name": "default",
-   "episode_id": "ep-f5dd33f3372c",
+   "episode_id": "ep-318c5f5a9458",
    "seed": 1001,
    "issues": 4,
    "certified": true,
@@ -19,7 +19,7 @@
   {
    "split": "train",
    "name": "clean",
-   "episode_id": "ep-ab4e0c2d234a",
+   "episode_id": "ep-dab86d5bdfc3",
    "seed": 1002,
    "issues": 0,
    "certified": true,
@@ -34,12 +34,12 @@
   {
    "split": "train",
    "name": "partial_fx_boundary",
-   "episode_id": "ep-3e4a4edb987e",
+   "episode_id": "ep-92f0fca2fea9",
    "seed": 1003,
    "issues": 6,
    "certified": true,
    "counts": {
-    "ledger_rows": 353,
+    "ledger_rows": 354,
     "invoices": 86,
     "payments": 64,
     "documents": 150,
@@ -49,7 +49,7 @@
   {
    "split": "train",
    "name": "cutoff_fx_boundary",
-   "episode_id": "ep-d29ad93d4046",
+   "episode_id": "ep-9547700cf4f9",
    "seed": 1004,
    "issues": 6,
    "certified": true,
@@ -64,7 +64,7 @@
   {
    "split": "train",
    "name": "both_interactions_plus_duplicates",
-   "episode_id": "ep-311376aaa470",
+   "episode_id": "ep-5a85a12d1c28",
    "seed": 1005,
    "issues": 6,
    "certified": true,
@@ -79,7 +79,7 @@
   {
    "split": "train",
    "name": "multi_fault",
-   "episode_id": "ep-cd91c75a7ecc",
+   "episode_id": "ep-8a45a0fc10d2",
    "seed": 1006,
    "issues": 8,
    "certified": true,
@@ -94,7 +94,7 @@
   {
    "split": "train",
    "name": "clean_utc_company",
-   "episode_id": "ep-4138b0447c76",
+   "episode_id": "ep-5cc18820fa47",
    "seed": 1007,
    "issues": 0,
    "certified": true,
@@ -109,12 +109,12 @@
   {
    "split": "train",
    "name": "large_default",
-   "episode_id": "ep-ee2606f424b3",
+   "episode_id": "ep-b36c75d178cb",
    "seed": 1008,
    "issues": 4,
    "certified": true,
    "counts": {
-    "ledger_rows": 388,
+    "ledger_rows": 386,
     "invoices": 100,
     "payments": 68,
     "documents": 168,
@@ -124,7 +124,7 @@
   {
    "split": "train",
    "name": "fx_and_cutoff_heavy",
-   "episode_id": "ep-b091c8e053bd",
+   "episode_id": "ep-37f3eb777058",
    "seed": 1009,
    "issues": 5,
    "certified": true,
@@ -139,12 +139,12 @@
   {
    "split": "train",
    "name": "max_twelve_issues",
-   "episode_id": "ep-ad76b7669d46",
+   "episode_id": "ep-24344d8e1ef8",
    "seed": 1010,
    "issues": 12,
    "certified": true,
    "counts": {
-    "ledger_rows": 364,
+    "ledger_rows": 367,
     "invoices": 92,
     "payments": 65,
     "documents": 157,
@@ -154,12 +154,12 @@
   {
    "split": "dev",
    "name": "default",
-   "episode_id": "ep-d57147cb95bf",
+   "episode_id": "ep-7736ce85be24",
    "seed": 2001,
    "issues": 4,
    "certified": true,
    "counts": {
-    "ledger_rows": 322,
+    "ledger_rows": 320,
     "invoices": 83,
     "payments": 58,
     "documents": 141,
@@ -169,7 +169,7 @@
   {
    "split": "dev",
    "name": "clean",
-   "episode_id": "ep-1446b0a3afb8",
+   "episode_id": "ep-e2574ef439cc",
    "seed": 2002,
    "issues": 0,
    "certified": true,
@@ -184,7 +184,7 @@
   {
    "split": "dev",
    "name": "partial_fx_boundary",
-   "episode_id": "ep-e7cc0f532a88",
+   "episode_id": "ep-f8b02ff64d45",
    "seed": 2003,
    "issues": 6,
    "certified": true,
@@ -199,7 +199,7 @@
   {
    "split": "dev",
    "name": "cutoff_fx_boundary",
-   "episode_id": "ep-f9f97e238c4c",
+   "episode_id": "ep-89f01c473a66",
    "seed": 2004,
    "issues": 6,
    "certified": true,
@@ -214,7 +214,7 @@
   {
    "split": "dev",
    "name": "both_interactions_plus_duplicates",
-   "episode_id": "ep-f66866a11caa",
+   "episode_id": "ep-f88f873196e0",
    "seed": 2005,
    "issues": 6,
    "certified": true,
@@ -229,12 +229,12 @@
   {
    "split": "dev",
    "name": "multi_fault",
-   "episode_id": "ep-618490c58e37",
+   "episode_id": "ep-449fb060d047",
    "seed": 2006,
    "issues": 8,
    "certified": true,
    "counts": {
-    "ledger_rows": 351,
+    "ledger_rows": 353,
     "invoices": 86,
     "payments": 65,
     "documents": 151,
@@ -244,7 +244,7 @@
   {
    "split": "dev",
    "name": "clean_utc_company",
-   "episode_id": "ep-09c8f06067d8",
+   "episode_id": "ep-e19bc9e1acf1",
    "seed": 2007,
    "issues": 0,
    "certified": true,
@@ -259,12 +259,12 @@
   {
    "split": "dev",
    "name": "large_default",
-   "episode_id": "ep-c57048155e16",
+   "episode_id": "ep-46c7ff936f1e",
    "seed": 2008,
    "issues": 4,
    "certified": true,
    "counts": {
-    "ledger_rows": 424,
+    "ledger_rows": 426,
     "invoices": 102,
     "payments": 76,
     "documents": 178,
@@ -274,7 +274,7 @@
   {
    "split": "dev",
    "name": "fx_and_cutoff_heavy",
-   "episode_id": "ep-b5f39ac6d2bf",
+   "episode_id": "ep-dc78573232db",
    "seed": 2009,
    "issues": 5,
    "certified": true,
@@ -289,7 +289,7 @@
   {
    "split": "dev",
    "name": "max_twelve_issues",
-   "episode_id": "ep-e81c4e5abef8",
+   "episode_id": "ep-963c60db9972",
    "seed": 2010,
    "issues": 12,
    "certified": true,

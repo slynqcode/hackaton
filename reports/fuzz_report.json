@@ -2,7 +2,7 @@
  "passed": true,
  "soundness": {
   "submissions": 3200,
-  "tp_awarded": 9048,
+  "tp_awarded": 8994,
   "violations": [],
   "n_violations": 0
  },
@@ -16,6 +16,6 @@
   "seed_range": 400,
   "recovered_without_secret": true,
   "recovered_with_secret": false,
-  "seconds": 7.2
+  "seconds": 6.7
  }
 }

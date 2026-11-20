@@ -24,6 +24,10 @@ from .env import MAX_STEPS, TIME_LIMIT_S, AuditEnv
 FORBIDDEN_RESET_FIELDS = ("mode", "limits")
 
 
+class _Garbage(Exception):
+    pass
+
+
 def _args(argv=None):
     ap = argparse.ArgumentParser(prog="auditforge.server")
     ap.add_argument("--mode", choices=("train", "eval"), default="train")
@@ -67,9 +71,24 @@ def main(argv=None) -> None:
             harness.flush()
             reported = True
 
+    def garbage_step():
+        """v1.3.2: an unreadable message during a live episode is an invalid action: it costs a step like any other."""
+        obs, r, term, trunc, info = env.step({"action": "__malformed_message__"})
+        if term or trunc:
+            report()
+        return {"obs": obs, "reward": r, "terminated": term, "truncated": trunc, "info": info}
+
+    def live():
+        return env is not None and not env._done
+
     for line in lines:
         try:
-            msg = json.loads(line)
+            try:
+                msg = json.loads(line)
+            except ValueError:
+                msg = None
+                if live():
+                    raise _Garbage()
             op = msg.get("op") if isinstance(msg, dict) else None
             if op == "reset":
                 if any(k in msg for k in FORBIDDEN_RESET_FIELDS):
@@ -108,8 +127,12 @@ def main(argv=None) -> None:
                 out = {"ok": True}
             elif op == "close":
                 break
+            elif live():
+                out = garbage_step()
             else:
                 out = {"fatal": "bad_op"}
+        except _Garbage:
+            out = garbage_step()
         except Exception:  # never leak tracebacks to the agent side
             out = {"fatal": "internal_error"}
         sys.stdout.write(json.dumps(out) + "\n")

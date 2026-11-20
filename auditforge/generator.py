@@ -672,9 +672,14 @@ def plan_faults(ctx: Ctx, rng) -> tuple[dict, list]:
     used_inv: set = set()
     used_doc: set = set()
 
-    def single_receipts(extra_tag=None, cross=None):
+    def in_period(ts):
+        return ts is not None and ctx.side(ts) == "in"
+
+    def single_receipts(extra_tag=None, cross=None, period_only=False):
         out = []
         for p in ctx.pays.values():
+            if period_only and not (in_period(p.ts) and in_period(p.post_ts)):
+                continue
             if p.refund or len(p.allocs) != 1 or "installment" in p.tags or "on_account" in p.tags or p.key in used_pay:
                 continue
             if p.allocs[0][0] in used_inv or ("pay", p.key) in used_doc:
@@ -752,12 +757,16 @@ def plan_faults(ctx: Ctx, rng) -> tuple[dict, list]:
     # ---- independent faults
     for _ in range(cfg["faults"]["duplicate_invoice"]):
         cands = [i for i in ctx.invs.values() if not i.tags and i.key not in used_inv and ("inv", i.key) not in used_doc]
-        src = rng.choice(cands)
+        # v1.3.2: an independent error belongs to the audited period (an auditor would not count a May duplicate
+        # in a March-April audit). Source and copy both fall inside [period_start, period_end).
+        inside = [i for i in cands if ctx.start + timedelta(hours=2) <= i.issued and i.issued + timedelta(days=4, hours=2) < ctx.end
+                  and in_period(i.post_ts)]
+        src = rng.choice(inside or cands)
         used_inv.add(src.key)
         used_doc.add(("inv", src.key))
         delta = rng.randint(60, 4 * 1440)
         issued = src.issued + timedelta(minutes=delta)
-        if issued >= ctx.wend - timedelta(hours=1):
+        if issued >= ctx.wend - timedelta(hours=1):   # (inside: issued < period end by the choice of src)
             issued = src.issued + timedelta(minutes=60)
         dup = Inv(f"{src.key}#D", src.ent, src.ccy, issued, issued + (src.due - src.issued), [], src.po,
                   rng.choice(DOC_OFFSETS), rng.choice(DOC_OFFSETS), None, {"dup"})
@@ -765,12 +774,12 @@ def plan_faults(ctx: Ctx, rng) -> tuple[dict, list]:
         F["dups"].append({"inv": dup, "src_lines": copy.deepcopy(src.lines), "shuffle": rng.randrange(10**9)})
         plan.append({"type": "duplicate_invoice", "src": src, "dup": dup, "group": None})
     for _ in range(cfg["faults"]["payment_allocation"]):
-        p = rng.choice(single_receipts())
+        p = rng.choice(single_receipts(period_only=True) or single_receipts())
         claim_pay(p)
         mode = alloc_plan(p, rng.choice(["partial", "partial", "missing"]))
         plan.append({"type": "payment_allocation", "pay": p, "group": None})
     for _ in range(cfg["faults"]["fx_error"]):
-        p = rng.choice(single_receipts(cross=True))
+        p = rng.choice(single_receipts(cross=True, period_only=True) or single_receipts(cross=True))
         claim_pay(p)
         inv = ctx.invs[p.allocs[0][0]]
         variants = ["prev_day", "typo"]

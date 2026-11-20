@@ -1,0 +1,114 @@
+{
+ "episode_id": "ep-f8b02ff64d45",
+ "issues": [
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "INV-67824",
+    "PAY-52892"
+   ],
+   "expected_amount_minor": 1536037,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-2186340",
+     "JE38417762"
+    ]
+   ],
+   "issue_id": "ISS-f569036de3"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "PAY-52892"
+   ],
+   "expected_amount_minor": 10682,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-2186340",
+     "JE44849785",
+     "fx:2026-04-30:USD:JPY"
+    ],
+    [
+     "DOC-2186340",
+     "JE20684575",
+     "fx:2026-04-30:USD:JPY"
+    ]
+   ],
+   "issue_id": "ISS-2ee96c76f1"
+  },
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "INV-44431",
+    "INV-65664"
+   ],
+   "expected_amount_minor": 3683500,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-0006339",
+     "DOC-8650328"
+    ]
+   ],
+   "issue_id": "ISS-9d63145c58"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "INV-39764",
+    "PAY-78450"
+   ],
+   "expected_amount_minor": 121151,
+   "currency": "USD",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-7444614",
+     "JE23464581"
+    ]
+   ],
+   "issue_id": "ISS-025c3598b2"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "PAY-46218"
+   ],
+   "expected_amount_minor": 20064,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-8178503",
+     "JE08157883",
+     "fx:2026-04-30:USD:JPY"
+    ],
+    [
+     "DOC-8178503",
+     "JE29360379",
+     "fx:2026-04-30:USD:JPY"
+    ]
+   ],
+   "issue_id": "ISS-57a02ca56e"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "INV-81859"
+   ],
+   "expected_amount_minor": 334825,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "DOC-5237582",
+     "JE91588640"
+    ],
+    [
+     "DOC-5237582",
+     "JE36677536"
+    ]
+   ],
+   "issue_id": "ISS-d164108865"
+  }
+ ]
+}

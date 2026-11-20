@@ -657,6 +657,17 @@ def contract_checks():
                 os.environ["AUDITFORGE_SECRET"] = old
 
     @check
+    def malformed_messages_during_an_episode_cost_a_step():
+        from .remote import RemoteEnv
+        with RemoteEnv(mode="eval") as r:
+            r.reset(SEED)
+            for raw in ("not json", '{"op":"zzz"}', '{"x": ' + "9" * 5000 + "}"):
+                r._p.stdin.write(raw + "\n"); r._p.stdin.flush()
+                o = json.loads(r._p.stdout.readline())
+                assert o["obs"]["ok"] is False and o["reward"] == 0.0, raw
+            assert o["obs"]["steps_remaining"] == 97
+
+    @check
     def bad_config_is_a_clean_error():
         from .remote import RemoteEnv
         with RemoteEnv(mode="train") as r:

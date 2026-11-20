@@ -4,8 +4,8 @@ Policy: `simple_reconciler` (same-entity+total duplicates, string-date cutoff, t
 
 | reconciler variant | with distractors | distractors removed |
 |---|---|---|
-| naive | 0.267 | 0.539 |
-| +tz_aware | 0.497 | 0.963 |
+| naive | 0.258 | 0.609 |
+| +tz_aware | 0.499 | 0.978 |
 | +tz_aware+allocated_amount | 0.507 | 1.000 |
 
 Per-type counts of the naive variant (sum over episodes, distractors on):
@@ -15,7 +15,7 @@ Per-type counts of the naive variant (sum over episodes, distractors on):
 | duplicate_invoice | 15 | 57 | 0 |
 | payment_allocation | 15 | 60 | 0 |
 | fx_error | 10 | 108 | 5 |
-| period_cutoff | 11 | 52 | 4 |
+| period_cutoff | 9 | 51 | 6 |
 
 Clean companies (10 episodes, 0 errors), naive: **171 false accusations**, mean return -1.000 (silence scores about 0.96).
 
@@ -30,7 +30,7 @@ Each rule reads public tables only and skips the real logic (period of document 
 | error type | shortcut rule | TP | FP (false accusations) | FN |
 |---|---|---|---|---|
 | period_cutoff | posting delay outside 0-4 h | 45 | 200 | 1 |
-| period_cutoff | posting before the document or 4-24 h after it | 41 | 114 | 5 |
+| period_cutoff | posting before the document or 4-24 h after it | 40 | 114 | 6 |
 | duplicate_invoice | same entity + po_ref | 37 | 80 | 0 |
 | duplicate_invoice | same entity + po_ref + currency + total | 37 | 40 | 0 |
 | payment_allocation | refs null or sum(refs) != amount | 42 | 160 | 0 |

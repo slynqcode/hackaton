@@ -1,0 +1,110 @@
+{
+ "episode_id": "ep-92f0fca2fea9",
+ "issues": [
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "RCP/030812",
+    "SI/093680"
+   ],
+   "expected_amount_minor": 913839,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "D01553387",
+     "L14729684"
+    ]
+   ],
+   "issue_id": "ISS-4fe2a2afe4"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "RCP/030812"
+   ],
+   "expected_amount_minor": 13761,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "D01553387",
+     "L94437599",
+     "fx:2026-03-31:EUR:JPY"
+    ],
+    [
+     "D01553387",
+     "L41911981",
+     "fx:2026-03-31:EUR:JPY"
+    ]
+   ],
+   "issue_id": "ISS-1a418d985b"
+  },
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "SI/064883",
+    "SI/082010"
+   ],
+   "expected_amount_minor": 1944990,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "D01975506",
+     "D07111275"
+    ]
+   ],
+   "issue_id": "ISS-042359f61e"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "RCP/094696",
+    "SI/054096"
+   ],
+   "expected_amount_minor": 1009802,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "D00164644",
+     "L75712260"
+    ]
+   ],
+   "issue_id": "ISS-a41c50377a"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "RCP/015754"
+   ],
+   "expected_amount_minor": 23150069,
+   "currency": "KZT",
+   "acceptable_evidence_sets": [
+    [
+     "D04393077",
+     "L64853521",
+     "fx:2026-03-14:JPY:KZT"
+    ],
+    [
+     "D04393077",
+     "L68452084",
+     "fx:2026-03-14:JPY:KZT"
+    ]
+   ],
+   "issue_id": "ISS-5f158bcc1e"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "RCP/065211"
+   ],
+   "expected_amount_minor": 4930218,
+   "currency": "JPY",
+   "acceptable_evidence_sets": [
+    [
+     "D03756460",
+     "L2703635"
+    ]
+   ],
+   "issue_id": "ISS-8511bde991"
+  }
+ ]
+}

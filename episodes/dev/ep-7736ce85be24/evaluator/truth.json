@@ -1,0 +1,77 @@
+{
+ "episode_id": "ep-7736ce85be24",
+ "issues": [
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "SI/031938",
+    "SI/086877"
+   ],
+   "expected_amount_minor": 2949000,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "D05316784",
+     "D08118183"
+    ]
+   ],
+   "issue_id": "ISS-cbff12a548"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "RCP/050374",
+    "SI/045402"
+   ],
+   "expected_amount_minor": 1619743,
+   "currency": "GBP",
+   "acceptable_evidence_sets": [
+    [
+     "D06158295",
+     "L33811471"
+    ]
+   ],
+   "issue_id": "ISS-1a5e3fe2d2"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "RCP/005941"
+   ],
+   "expected_amount_minor": 119075,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "D05478863",
+     "L46652407",
+     "fx:2026-09-02:GBP:EUR"
+    ],
+    [
+     "D05478863",
+     "L23322642",
+     "fx:2026-09-02:GBP:EUR"
+    ]
+   ],
+   "issue_id": "ISS-12f567db1c"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "SI/015864"
+   ],
+   "expected_amount_minor": 6040000,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "D03607304",
+     "L20962074"
+    ],
+    [
+     "D03607304",
+     "L77830792"
+    ]
+   ],
+   "issue_id": "ISS-5883e02846"
+  }
+ ]
+}

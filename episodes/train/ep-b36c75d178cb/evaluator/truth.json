@@ -1,0 +1,73 @@
+{
+ "episode_id": "ep-b36c75d178cb",
+ "issues": [
+  {
+   "type": "duplicate_invoice",
+   "affected_ids": [
+    "SI/066321",
+    "SI/069388"
+   ],
+   "expected_amount_minor": 630000,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "D01141703",
+     "D02070219"
+    ]
+   ],
+   "issue_id": "ISS-7113728429"
+  },
+  {
+   "type": "payment_allocation",
+   "affected_ids": [
+    "RCP/057890",
+    "SI/079689"
+   ],
+   "expected_amount_minor": 587679,
+   "currency": "EUR",
+   "acceptable_evidence_sets": [
+    [
+     "D01114170",
+     "L6762304"
+    ]
+   ],
+   "issue_id": "ISS-3840a1963a"
+  },
+  {
+   "type": "fx_error",
+   "affected_ids": [
+    "RCP/097509"
+   ],
+   "expected_amount_minor": 3684704,
+   "currency": "KZT",
+   "acceptable_evidence_sets": [
+    [
+     "D00662405",
+     "L91224553",
+     "fx:2026-01-21:EUR:KZT"
+    ],
+    [
+     "D00662405",
+     "L45180426",
+     "fx:2026-01-21:EUR:KZT"
+    ]
+   ],
+   "issue_id": "ISS-f174e5a798"
+  },
+  {
+   "type": "period_cutoff",
+   "affected_ids": [
+    "RCP/047036"
+   ],
+   "expected_amount_minor": 256940000,
+   "currency": "KZT",
+   "acceptable_evidence_sets": [
+    [
+     "D05492813",
+     "L27455469"
+    ]
+   ],
+   "issue_id": "ISS-cb95bf51da"
+  }
+ ]
+}
