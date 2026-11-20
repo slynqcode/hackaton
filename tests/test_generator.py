@@ -78,8 +78,8 @@ def test_distractors_present_and_not_flagged_by_exact_rules():
         same[(i["entity_id"], i["total_minor"])].append(i)
     assert any(len(v) > 1 for v in same.values()), "legit repeated amounts expected"
     assert any(p["amount_minor"] < 0 for p in ep.tables["payments"]), "refund expected"
-    assert any(len(p["invoice_refs"]) > 1 for p in ep.tables["payments"]), "multi-invoice payment expected"
-    inv_pay = collections.Counter(r["invoice_id"] for p in ep.tables["payments"] for r in p["invoice_refs"])
+    assert any(len(p["invoice_refs"] or []) > 1 for p in ep.tables["payments"]), "multi-invoice payment expected"
+    inv_pay = collections.Counter(r["invoice_id"] for p in ep.tables["payments"] for r in p["invoice_refs"] or [])
     assert any(v > 1 for v in inv_pay.values()), "split payments expected"
     assert any(r["currency"] != ep.manifest["base_currency"] for r in ep.tables["ledger"])
 
@@ -137,8 +137,8 @@ def test_random_configs_never_crash_and_always_certify():
 
 def test_advances_are_legitimate_unapplied_cash():
     ep = generate_episode(12, {"faults": {k: 0 for k in FAULT_TYPES}})
-    adv = [p for p in ep.tables["payments"] if p["invoice_refs"] == []]
-    assert len(adv) == 2
+    adv = [p for p in ep.tables["payments"] if not p["invoice_refs"] and p["memo"].startswith("Advance")]
+    assert len(adv) == 2 and {type(p["invoice_refs"]) for p in adv} == {list, type(None)}   # [] and null both legit
     un = {r["payment_id"] for r in ep.tables["ledger"] if r["account"] == "UNAPPLIED"}
     assert {p["payment_id"] for p in adv} <= un and detect(ep.tables, ep.manifest, ep.policy) == []
 

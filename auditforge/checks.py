@@ -60,9 +60,19 @@ def memo_invoice_ids(b: Book, memo: str) -> list:
     return sorted(i for i in b.inv if i in memo)
 
 
+ON_ACCOUNT_MEMO = "balance held on account as prepayment"
+
+
 def is_advance(b: Book, p: dict) -> bool:
-    """Legitimate prepayment on account: no references and the memo names no invoice."""
-    return p["invoice_refs"] == [] and not memo_invoice_ids(b, p["memo"]) and p["amount_minor"] > 0
+    """Legitimate prepayment on account: no references ([] or null) and the memo names no invoice."""
+    return not p["invoice_refs"] and not memo_invoice_ids(b, p["memo"]) and p["amount_minor"] > 0
+
+
+def is_on_account(b: Book, p: dict) -> bool:
+    """Legitimate overpayment: refs allocate less than the amount and the memo says the balance is held on account."""
+    refs = p["invoice_refs"] or []
+    return (bool(refs) and ON_ACCOUNT_MEMO in p["memo"] and p["amount_minor"] > 0
+            and sum(r["allocated_minor"] for r in refs) < p["amount_minor"])
 
 
 # ------------------------------------------------------------------ accounting invariants (clean books)
@@ -114,16 +124,18 @@ def check_clean(tables: dict, manifest: dict, policy: dict) -> list:
     # payments
     for pid, p in b.pay.items():
         refs = p["invoice_refs"]
-        if refs is None:
+        if refs is None and not is_advance(b, p):
             v.append(f"{pid}: null refs in clean books")
             continue
-        if sum(r["allocated_minor"] for r in refs) != p["amount_minor"] and not is_advance(b, p):
+        refs = refs or []
+        if sum(r["allocated_minor"] for r in refs) != p["amount_minor"] and not (is_advance(b, p) or is_on_account(b, p)):
             v.append(f"{pid}: not fully allocated")
         if memo_invoice_ids(b, p["memo"]) != sorted(r["invoice_id"] for r in refs):
             v.append(f"{pid}: memo/refs mismatch")
         rows = b.rows_by_pay[pid]
         un = sum(r["credit_minor"] for r in rows if r["account"] == "UNAPPLIED")
-        if un and not (is_advance(b, p) and un == p["amount_minor"]):
+        held = p["amount_minor"] - sum(r["allocated_minor"] for r in refs) if is_on_account(b, p) else None
+        if un and not ((is_advance(b, p) and un == p["amount_minor"]) or un == held):
             v.append(f"{pid}: unapplied in clean books")
         cash = [r for r in rows if r["account"] == "CASH"]
         if len(cash) != 1 or cash[0]["debit_minor"] + cash[0]["credit_minor"] != abs(p["amount_minor"]) or cash[0]["currency"] != p["currency"]:
@@ -167,7 +179,7 @@ def detect(tables: dict, manifest: dict, policy: dict) -> list:
     for pid, p in b.pay.items():
         refs = p["invoice_refs"] or []
         un = p["amount_minor"] - sum(r["allocated_minor"] for r in refs)
-        if un != 0 and not is_advance(b, p):
+        if un != 0 and not is_advance(b, p) and not is_on_account(b, p):
             out.append(("payment_allocation", tuple(sorted([pid] + memo_invoice_ids(b, p["memo"]))), abs(un), p["currency"]))
         d = b.ldate(p["timestamp"])
         for ref in refs:

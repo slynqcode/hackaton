@@ -1,0 +1,57 @@
+{
+ "company_timezone": "UTC+00:00",
+ "period_semantics": "[period_start, period_end): start inclusive, end exclusive, in company timezone",
+ "cutoff_basis": "A document belongs to the period of its own timestamp (invoice issued_at / payment timestamp) in company timezone. Every ledger row posted for the document must fall on the same side of the period boundaries (before / in / after) as the document. Records outside the period exist.",
+ "fx_rate_date": "local date (company timezone) of the payment document timestamp",
+ "fx_lookup": "fx.csv row with date = that local date, source_currency = payment currency, target_currency = invoice currency; rate = target units per 1 source unit (major units)",
+ "fx_booking": "Cross-currency receipt posts: Dr CASH (payment ccy); Cr FX_CLEARING (payment ccy, allocated amount); Dr FX_CLEARING + Cr AR (invoice ccy, converted allocated amount); remainder Cr UNAPPLIED (payment ccy)",
+ "rounding": {
+  "mode": "half_even",
+  "rule": "converted amount rounded once to the minor unit of the target currency"
+ },
+ "amount_tolerance_minor": 1,
+ "duplicate_rule": "two invoices with the same entity, the same po_ref and the same set of line items",
+ "allocation_rule": "invoice_refs[].allocated_minor is in payment currency. A receipt whose memo names invoices must allocate its full amount to them; null = not allocated. An advance payment on account (memo names no invoice, invoice_refs = [] or null) legitimately stays in UNAPPLIED and is NOT an error. A receipt whose memo says the balance is held on account as prepayment legitimately leaves that balance in UNAPPLIED.",
+ "null_semantics": "null in a reference field means the link is absent; links are never guessed",
+ "accounts": [
+  "AR",
+  "REVENUE",
+  "CASH",
+  "FX_CLEARING",
+  "UNAPPLIED"
+ ],
+ "record_ids": {
+  "ledger": "row_id",
+  "invoices": "invoice_id (get_record) / doc_id (get_document)",
+  "payments": "payment_id (get_record) / doc_id (get_document)",
+  "fx": "fx:YYYY-MM-DD:SRC:DST",
+  "policy": "policy",
+  "manifest": "manifest"
+ },
+ "finding_types": {
+  "duplicate_invoice": {
+   "affected_ids": "both invoice_id values (original and repeated invoice), any order",
+   "claimed_amount_minor": "total_minor of one of the two invoices",
+   "currency": "invoice currency",
+   "evidence_ids": "doc_id of both invoices"
+  },
+  "payment_allocation": {
+   "affected_ids": "[payment_id, invoice_id named in the payment memo]",
+   "claimed_amount_minor": "payment amount_minor minus sum(invoice_refs.allocated_minor) (null refs count as 0), in PAYMENT currency",
+   "currency": "payment currency",
+   "evidence_ids": "payment doc_id + row_id of the ledger UNAPPLIED row"
+  },
+  "fx_error": {
+   "affected_ids": "[payment_id]",
+   "claimed_amount_minor": "|booked AR credit - correct conversion of the allocated amount| in INVOICE currency",
+   "currency": "invoice currency",
+   "evidence_ids": "payment doc_id + row_id of the AR credit row (or the FX_CLEARING row in invoice currency) + fx record id of the correct rate"
+  },
+  "period_cutoff": {
+   "affected_ids": "[invoice_id] or [payment_id] of the document posted on the wrong side of the period boundary",
+   "claimed_amount_minor": "total_minor (invoice) or |amount_minor| (payment)",
+   "currency": "document currency",
+   "evidence_ids": "document doc_id + a ledger row_id posted for it (invoice: AR or REVENUE row; payment: CASH row)"
+  }
+ }
+}

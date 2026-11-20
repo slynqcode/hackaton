@@ -1,0 +1,303 @@
+{
+ "schema_version": "1.0",
+ "env_version": "1.3.1",
+ "seed": 1009,
+ "config": {
+  "n_invoices": 62,
+  "n_entities": 9,
+  "faults": {
+   "duplicate_invoice": 0,
+   "payment_allocation": 1,
+   "fx_error": 2,
+   "period_cutoff": 2
+  },
+  "interactions": [],
+  "distractors": {
+   "installments": 3,
+   "refunds": 2,
+   "multi_invoice": 2,
+   "recurring": 2,
+   "same_amount_near": 3,
+   "boundary_invoices": 8,
+   "boundary_cross_ok": 4,
+   "cross_ccy_ok": 6,
+   "advances": 2,
+   "split_po": 2,
+   "late_postings": 3,
+   "early_postings": 2,
+   "on_account": 2
+  },
+  "company_offset_minutes": null,
+  "period_months": null,
+  "rounding": null,
+  "currencies": null,
+  "id_style": null,
+  "id_salt": ""
+ },
+ "setup": {
+  "company_offset_minutes": 540,
+  "currencies": [
+   "USD",
+   "KZT",
+   "GBP"
+  ],
+  "rounding": "half_even",
+  "history": {
+   "special_counts": {
+    "installments": 3,
+    "refunds": 2,
+    "multi": 4
+   }
+  },
+  "n_issues": 5
+ },
+ "faults": [
+  {
+   "issue_id": "ISS-54eea4aff0",
+   "type": "payment_allocation",
+   "operator": "payment_allocation_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "mode": "partial",
+    "allocated_minor": 878301,
+    "payment_amount_minor": 1909352
+   }
+  },
+  {
+   "issue_id": "ISS-fc950ff290",
+   "type": "fx_error",
+   "operator": "fx_error_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "variant": "prev_day",
+    "wrong_date": "2026-04-30",
+    "wrong_rate": null,
+    "booked_minor": 1744438,
+    "correct_minor": 1752500,
+    "allocated_minor": 2033782
+   }
+  },
+  {
+   "issue_id": "ISS-fa600bde84",
+   "type": "fx_error",
+   "operator": "fx_error_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "variant": "invoice_date",
+    "wrong_date": "2026-05-19",
+    "wrong_rate": null,
+    "booked_minor": 3768667,
+    "correct_minor": 3668500,
+    "allocated_minor": 4578877
+   }
+  },
+  {
+   "issue_id": "ISS-a34140eb28",
+   "type": "period_cutoff",
+   "operator": "period_cutoff_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "document": "SI/055632",
+    "document_timestamp": "2026-05-01T08:42:00+09:00",
+    "document_side": "in",
+    "posted_at": "2026-04-30T19:45:00+09:00",
+    "posted_side": "before"
+   }
+  },
+  {
+   "issue_id": "ISS-2c22df08cb",
+   "type": "period_cutoff",
+   "operator": "period_cutoff_op",
+   "group": null,
+   "role": null,
+   "params": {
+    "document": "SI/096973",
+    "document_timestamp": "2026-04-30T10:20:00+09:00",
+    "document_side": "before",
+    "posted_at": "2026-05-01T06:20:00+09:00",
+    "posted_side": "in"
+   }
+  }
+ ],
+ "causal_links": [],
+ "changes": [
+  {
+   "op": "add",
+   "table": "ledger",
+   "id": "L27947055",
+   "record": {
+    "row_id": "L27947055",
+    "timestamp": "2026-05-10T03:10:00-08:00",
+    "account": "UNAPPLIED",
+    "debit_minor": 0,
+    "credit_minor": 1031051,
+    "currency": "USD",
+    "entity_id": "E0320",
+    "invoice_id": null,
+    "payment_id": "RCP/078165"
+   },
+   "doc_key": "P0000",
+   "issue_ids": [
+    "ISS-54eea4aff0"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L30192717",
+   "field": "debit_minor",
+   "before": 1752500,
+   "after": 1744438,
+   "doc_key": "P0045",
+   "issue_ids": [
+    "ISS-fc950ff290"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L39446319",
+   "field": "debit_minor",
+   "before": 3668500,
+   "after": 3768667,
+   "doc_key": "P0034",
+   "issue_ids": [
+    "ISS-fa600bde84"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L40428679",
+   "field": "timestamp",
+   "before": "2026-05-01T03:30:00+01:00",
+   "after": "2026-04-30T11:45:00+01:00",
+   "doc_key": "I0003",
+   "issue_ids": [
+    "ISS-a34140eb28"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L61372148",
+   "field": "credit_minor",
+   "before": 1601500,
+   "after": 736689,
+   "doc_key": "P0000",
+   "issue_ids": [
+    "ISS-54eea4aff0"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L63169970",
+   "field": "credit_minor",
+   "before": 3668500,
+   "after": 3768667,
+   "doc_key": "P0034",
+   "issue_ids": [
+    "ISS-fa600bde84"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L78278134",
+   "field": "timestamp",
+   "before": "2026-04-30T02:46:00+01:00",
+   "after": "2026-04-30T22:20:00+01:00",
+   "doc_key": "I0004",
+   "issue_ids": [
+    "ISS-2c22df08cb"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L82471734",
+   "field": "credit_minor",
+   "before": 1909352,
+   "after": 878301,
+   "doc_key": "P0000",
+   "issue_ids": [
+    "ISS-54eea4aff0"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L89704865",
+   "field": "credit_minor",
+   "before": 1752500,
+   "after": 1744438,
+   "doc_key": "P0045",
+   "issue_ids": [
+    "ISS-fc950ff290"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L89985753",
+   "field": "timestamp",
+   "before": "2026-04-30T02:46:00+01:00",
+   "after": "2026-04-30T22:20:00+01:00",
+   "doc_key": "I0004",
+   "issue_ids": [
+    "ISS-2c22df08cb"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L90558205",
+   "field": "timestamp",
+   "before": "2026-05-01T03:30:00+01:00",
+   "after": "2026-04-30T11:45:00+01:00",
+   "doc_key": "I0003",
+   "issue_ids": [
+    "ISS-a34140eb28"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "ledger",
+   "id": "L97704435",
+   "field": "debit_minor",
+   "before": 1601500,
+   "after": 736689,
+   "doc_key": "P0000",
+   "issue_ids": [
+    "ISS-54eea4aff0"
+   ]
+  },
+  {
+   "op": "modify",
+   "table": "payments",
+   "id": "D06015195",
+   "field": "invoice_refs",
+   "before": [
+    {
+     "invoice_id": "SI/023869",
+     "allocated_minor": 1909352
+    }
+   ],
+   "after": [
+    {
+     "invoice_id": "SI/023869",
+     "allocated_minor": 878301
+    }
+   ],
+   "doc_key": "P0000",
+   "issue_ids": [
+    "ISS-54eea4aff0"
+   ]
+  }
+ ]
+}

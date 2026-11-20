@@ -16,6 +16,7 @@ from .mutants import run_mutation_suite
 from .policies import FlagAll, Oracle, RandomExplorer, ReferenceSolver, SimpleReconciler, ZeroAgent
 from .explain import explain
 from . import fuzz
+from . import tricks
 from .remote import RemoteEnv
 from .runner import run_episode
 from .env import AuditEnv
@@ -138,7 +139,8 @@ def cmd_mutation(args):
 def cmd_analysis(args):
     """Measured failure analysis: per-type errors of the naive reconciler + distractor ablation."""
     NO_DIS = {"installments": 0, "refunds": 0, "multi_invoice": 0, "recurring": 0, "same_amount_near": 0,
-              "boundary_invoices": 0, "boundary_cross_ok": 0, "cross_ccy_ok": 0, "advances": 0, "split_po": 0, "late_postings": 0}
+              "boundary_invoices": 0, "boundary_cross_ok": 0, "cross_ccy_ok": 0, "advances": 0, "split_po": 0, "late_postings": 0,
+              "early_postings": 0, "on_account": 0}
     NOFAULT = {k: 0 for k in ("duplicate_invoice", "payment_allocation", "fx_error", "period_cutoff")}
     seeds = list(range(9301, 9316))
     variants = {"naive": dict(), "+tz_aware": dict(tz_aware=True), "+tz_aware+allocated_amount": dict(tz_aware=True, use_allocated=True)}
@@ -169,6 +171,14 @@ def cmd_analysis(args):
            "How to read it: each ablation row removes one naive shortcut and the F1 gain is the measured cost of that shortcut. "
            "`reference_solver` (same tool API, exact policy) reaches F1 = 1.0 on every episode (see `reports/hidden_like_eval.json`), "
            "so the remaining gap is analytical difficulty, not unsolvable data."]
+    # shortcut rules that skip the accounting logic, measured on all train + dev + hidden_like episodes
+    eps = [generate_episode(e["seed"], e["config"]) for sp in ("train", "dev", "hidden_like") for e in load_split(sp)["episodes"]]
+    md += ["", f"## Shortcut rules (tricks) vs the truth ({len(eps)} episodes: train + dev + hidden_like)", "",
+           "Each rule reads public tables only and skips the real logic (period of document vs posting, line items, memo). "
+           "Legit distractors make every one of them pay with false accusations.", "",
+           "| error type | shortcut rule | TP | FP (false accusations) | FN |", "|---|---|---|---|---|"]
+    for r in tricks.measure(eps):
+        md.append(f"| {r['type']} | {r['rule']} | {r['tp']} | {r['fp']} | {r['fn']} |")
     open(P("reports", "failure_analysis.md"), "w").write("\n".join(md) + "\n")
     print("\n".join(md))
 

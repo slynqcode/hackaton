@@ -36,7 +36,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "distractors": {
         "installments": 3, "refunds": 2, "multi_invoice": 2, "recurring": 2,
         "same_amount_near": 3, "boundary_invoices": 8, "boundary_cross_ok": 4, "cross_ccy_ok": 6, "advances": 2,
-        "split_po": 2, "late_postings": 3,
+        "split_po": 2, "late_postings": 3, "early_postings": 2, "on_account": 2,
     },
     "company_offset_minutes": None,
     "period_months": None,
@@ -98,6 +98,9 @@ def resolve_config(config: dict | None) -> dict:
     for k, v in list(cfg["faults"].items()) + list(cfg["distractors"].items()):
         if isinstance(v, bool) or not isinstance(v, int) or v < 0:
             raise ValueError(f"{k} must be a non-negative int")
+    for k, v in cfg["distractors"].items():
+        if v > MAX_PER_DISTRACTOR:
+            raise ValueError(f"distractor {k} must be <= {MAX_PER_DISTRACTOR}")
     total = sum(cfg["faults"].values()) + 2 * len(cfg["interactions"])
     if total > MAX_ISSUES:
         raise ValueError(f"too many issues: {total} > {MAX_ISSUES}")
@@ -372,7 +375,15 @@ def build_history(ctx: Ctx, rng) -> dict:
             break
         a = rng.choice(cands)
         a.tags.add("split")
-        lines = _make_lines(rng, a.ccy, a.po)
+        if s % 2 == 0:
+            # same total, different line items (v1.3.1): "same po_ref + same amount" is not a duplicate either
+            desc = rng.choice([d for d in CATALOG if d not in {l["description"] for l in a.lines}] or CATALOG)
+            lines = [{"line_no": 1, "description": desc, "quantity": 1, "unit_price_minor": a.total,
+                      "amount_minor": a.total, "po_ref": a.po}]
+            if _sig(lines) == _sig(a.lines):
+                lines = _make_lines(rng, a.ccy, a.po)
+        else:
+            lines = _make_lines(rng, a.ccy, a.po)
         while _sig(lines) == _sig(a.lines):
             lines = _make_lines(rng, a.ccy, a.po)
         _new_inv(ctx, rng, a.ent, a.issued + timedelta(days=rng.randint(2, 8), minutes=rng.randrange(600)), {"split"},
@@ -385,7 +396,16 @@ def build_history(ctx: Ctx, rng) -> dict:
             break
         inv = rng.choice(cands)
         inv.tags.add("late_post")
-        inv.post_ts = inv.issued + timedelta(minutes=rng.randint(1440, 4 * 1440))
+        inv.post_ts = inv.issued + timedelta(minutes=rng.randint(5 * 60, 4 * 1440))   # 5 h .. 4 days (v1.3.1)
+    # early postings (v1.3.1): booked from the purchase order 1-20 h BEFORE the invoice timestamp, same period.
+    # Legit, so "posting before the document = cutoff error" is not a valid shortcut either.
+    for s in range(dis.get("early_postings", 0)):
+        cands = sorted((i for i in ctx.invs.values() if not i.tags and ctx.start + day <= i.issued <= ctx.end - 6 * day), key=_key)
+        if not cands:
+            break
+        inv = rng.choice(cands)
+        inv.tags.add("early_post")
+        inv.post_ts = inv.issued - timedelta(minutes=rng.randint(60, 20 * 60))
 
     # payments for invoices ---------------------------------------------------------------
     inv_list = list(ctx.invs.values())
@@ -472,15 +492,29 @@ def build_history(ctx: Ctx, rng) -> dict:
         _new_pay(ctx, rng, inv, ts, inv.total, tags={"boundary"})
     # legitimate advances (prepayments on account): no invoice, full amount sits in UNAPPLIED.
     # They make "any UNAPPLIED row = allocation error" a losing shortcut; the memo/refs must be read.
-    for _ in range(dis["advances"]):
+    for k in range(dis["advances"]):
         e = rng.choice(same_ents)
         ccy = ctx.ents[e]["pay_ccy"]
         ts = _rand_instant(rng, ctx.wstart, ctx.wend)
         key = f"P{len(ctx.pays):04d}"
+        # v1.3.1: every other advance has invoice_refs = null (no invoice exists, so no link): "refs null = error"
+        # is not a valid shortcut; the memo must be read
         pay = Pay(key, e, ccy, ts, _price(rng, ccy) * rng.randint(1, 6), [], rng.choice(DOC_OFFSETS),
-                  rng.choice(DOC_OFFSETS), None, {"advance"})
+                  rng.choice(DOC_OFFSETS), None, {"advance"} | ({"refs_null"} if k % 2 else set()))
         pay.post_ts = _post_ts(rng, ctx, ts)
         ctx.pays[key] = pay
+    # overpayments held on account (v1.3.1): a receipt pays one invoice in full plus a prepayment the memo says is
+    # held on account. sum(refs) < amount legitimately, so "sum(refs) != amount = error" is not a valid shortcut.
+    # An existing plain receipt is turned into one (no extra documents, so the 200-document cap still holds).
+    for _ in range(dis.get("on_account", 0)):
+        cands = sorted((p for p in ctx.pays.values() if not p.tags and not p.refund and len(p.allocs) == 1 and p.amount > 0
+                        and ctx.invs[p.allocs[0][0]].ccy == p.ccy and ctx.start + day <= p.ts <= ctx.end - day),
+                       key=lambda p: p.key)
+        if not cands:
+            break
+        p = rng.choice(cands)
+        p.tags.add("on_account")
+        p.amount += _price(rng, p.ccy) * rng.randint(1, 3)   # allocation (p.allocs) stays the invoice amount
     return {"special_counts": {k: sum(1 for v in special.values() if v == k) for k in ("installments", "refunds", "multi")}}
 
 
@@ -582,9 +616,10 @@ def render(ctx: Ctx, F: dict) -> dict:
         pay_docs.append({
             "doc_id": did, "payment_id": pid, "entity_id": ids.get("ent", p.ent),
             "timestamp": to_iso(p.ts, p.doc_off), "currency": p.ccy, "amount_minor": p.amount,
-            "invoice_refs": None if refs_null else [{"invoice_id": ids.get("inv", ik), "allocated_minor": a} for ik, a in allocs],
+            "invoice_refs": None if refs_null or "refs_null" in p.tags else [{"invoice_id": ids.get("inv", ik), "allocated_minor": a} for ik, a in allocs],
             "memo": "Advance payment on account (no invoice yet)" if "advance" in p.tags else
-                    ("Refund against " if p.refund else "Remittance advice: ") + "; ".join(orig_ids)})
+                    ("Refund against " if p.refund else "Remittance advice: ") + "; ".join(orig_ids)
+                    + ("; balance held on account as prepayment" if "on_account" in p.tags else "")})
 
     rows.sort(key=lambda r: (r[0], r[1]))
     ledger = [r[2] for r in rows]
@@ -619,6 +654,8 @@ def _typo_rate(rate: Decimal) -> Decimal:
     return (rate * Decimal("1.02")).quantize(FX_DP)
 
 
+MAX_DOCUMENTS = 200
+MAX_PER_DISTRACTOR = 12
 MIN_FX_GAP_MINOR = 8   # an fx_error must move AR by clearly more than the 1-minor-unit tolerance
 
 
@@ -638,7 +675,7 @@ def plan_faults(ctx: Ctx, rng) -> tuple[dict, list]:
     def single_receipts(extra_tag=None, cross=None):
         out = []
         for p in ctx.pays.values():
-            if p.refund or len(p.allocs) != 1 or "installment" in p.tags or p.key in used_pay:
+            if p.refund or len(p.allocs) != 1 or "installment" in p.tags or "on_account" in p.tags or p.key in used_pay:
                 continue
             if p.allocs[0][0] in used_inv or ("pay", p.key) in used_doc:
                 continue
@@ -809,7 +846,9 @@ def build_policy(ctx: Ctx) -> dict:
         "duplicate_rule": "two invoices with the same entity, the same po_ref and the same set of line items",
         "allocation_rule": "invoice_refs[].allocated_minor is in payment currency. A receipt whose memo names invoices must "
                            "allocate its full amount to them; null = not allocated. An advance payment on account (memo names "
-                           "no invoice, invoice_refs = []) legitimately stays in UNAPPLIED and is NOT an error.",
+                           "no invoice, invoice_refs = [] or null) legitimately stays in UNAPPLIED and is NOT an error. "
+                           "A receipt whose memo says the balance is held on account as prepayment legitimately leaves "
+                           "that balance in UNAPPLIED.",
         "null_semantics": "null in a reference field means the link is absent; links are never guessed",
         "accounts": ["AR", "REVENUE", "CASH", "FX_CLEARING", "UNAPPLIED"],
         "record_ids": {"ledger": "row_id", "invoices": "invoice_id (get_record) / doc_id (get_document)",
@@ -959,6 +998,9 @@ def generate_episode(seed: int, config: dict | None = None) -> Episode:
         ch["issue_ids"] = [i["issue_id"] for i in issues if dk in i["_touched"]]
     for i in issues:
         i.pop("_touched")
+    n_docs = len(tables["invoices"]) + len(tables["payments"])
+    if n_docs > MAX_DOCUMENTS:   # the case caps documents at 200: refuse the config instead of breaking the rule
+        raise ValueError(f"config produces {n_docs} documents > {MAX_DOCUMENTS}; lower n_invoices or distractor counts")
     ep_id = make_episode_id(seed, cfg)
     manifest = {
         "schema_version": SCHEMA_VERSION, "episode_id": ep_id, "env_version": ENV_VERSION,
