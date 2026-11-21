@@ -101,7 +101,7 @@ def main(argv=None) -> None:
                     env = AuditEnv(mode=a.mode, secret=secret, max_steps=a.max_steps, time_limit_s=a.time_limit)
                     try:
                         obs, info = env.reset(msg["seed"], msg.get("config"))
-                    except (ValueError, TypeError, KeyError):
+                    except (ValueError, TypeError, KeyError, AttributeError, IndexError):
                         env = None
                         out = {"fatal": "bad_config"}
                     else:

@@ -70,7 +70,9 @@ def resolve_config(config: dict | None) -> dict:
     for k, v in (config or {}).items():
         if k not in cfg:
             raise ValueError(f"unknown config key: {k}")
-        if isinstance(cfg[k], dict) and isinstance(v, dict):
+        if isinstance(cfg[k], dict) and not isinstance(v, dict):
+            raise ValueError(f"{k} must be an object")
+        if isinstance(cfg[k], dict):
             for kk, vv in v.items():
                 if kk not in cfg[k] and k == "distractors":
                     raise ValueError(f"unknown distractor key: {kk}")
@@ -79,22 +81,36 @@ def resolve_config(config: dict | None) -> dict:
                 cfg[k][kk] = vv
         else:
             cfg[k] = v
+    if not isinstance(cfg["interactions"], list):
+        raise ValueError("interactions must be a list")
+    if len(set(map(str, cfg["interactions"]))) != len(cfg["interactions"]):
+        raise ValueError("interactions must not repeat")
     for t in cfg["interactions"]:
-        if t not in INTERACTIONS:
+        if not isinstance(t, str) or t not in INTERACTIONS:
             raise ValueError(f"unknown interaction: {t}")
-    if not (isinstance(cfg["n_entities"], int) and 3 <= cfg["n_entities"] <= 40):
+    if isinstance(cfg["n_entities"], bool) or not (isinstance(cfg["n_entities"], int) and 3 <= cfg["n_entities"] <= 40):
         raise ValueError("n_entities must be an int in [3, 40]")
-    if not (isinstance(cfg["n_invoices"], int) and 30 <= cfg["n_invoices"] <= 80):
+    if isinstance(cfg["n_invoices"], bool) or not (isinstance(cfg["n_invoices"], int) and 30 <= cfg["n_invoices"] <= 80):
         raise ValueError("n_invoices must be an int in [30, 80] (keeps documents <= 200)")
     if cfg["currencies"] is not None:
+        if not isinstance(cfg["currencies"], list) or not all(isinstance(c, str) for c in cfg["currencies"]):
+            raise ValueError("currencies must be a list of currency codes")
         if len(set(cfg["currencies"])) < 2 or any(c not in EXPONENTS for c in cfg["currencies"]):
             raise ValueError("currencies: >=2 distinct supported currencies")
     if cfg["rounding"] not in (None, "half_up", "half_even"):
         raise ValueError("rounding must be half_up or half_even")
+    off = cfg["company_offset_minutes"]
+    if off is not None and (isinstance(off, bool) or not isinstance(off, int)):
+        raise ValueError("company_offset_minutes must be an int")
     if cfg["company_offset_minutes"] is not None and not (-720 <= cfg["company_offset_minutes"] <= 840):
         raise ValueError("company_offset_minutes out of range")
-    if cfg["period_months"] not in (None, 1, 2, 3):
+    if isinstance(cfg["period_months"], bool) or cfg["period_months"] not in (None, 1, 2, 3):
         raise ValueError("period_months must be 1, 2 or 3")
+    st = cfg["id_style"]
+    if st is not None and (isinstance(st, bool) or not isinstance(st, int) or not 0 <= st < len(ID_STYLES)):
+        raise ValueError(f"id_style must be null or an int in [0, {len(ID_STYLES) - 1}]")
+    if not isinstance(cfg["id_salt"], str):
+        raise ValueError("id_salt must be a string")
     for k, v in list(cfg["faults"].items()) + list(cfg["distractors"].items()):
         if isinstance(v, bool) or not isinstance(v, int) or v < 0:
             raise ValueError(f"{k} must be a non-negative int")

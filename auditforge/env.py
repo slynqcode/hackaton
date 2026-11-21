@@ -53,6 +53,7 @@ class AuditEnv:
         self.mode, self.max_steps, self.time_limit_s, self._clock = mode, max_steps, time_limit_s, clock
         self._ep: Episode | None = None
         self._done = False
+        self._steps, self._truncated = 0, False
 
     # ------------------------------------------------------------------ lifecycle
     def reset(self, seed: int | None = None, config: dict | None = None, episode: Episode | None = None):
@@ -86,7 +87,7 @@ class AuditEnv:
         if self._ep is None:
             return self._obs(error="not_reset"), 0.0, True, False, {}
         if self._done:
-            return self._obs(error="episode_finished"), 0.0, True, self._truncated, {"step": self._steps}
+            return self._obs(error="episode_finished"), 0.0, not self._truncated, self._truncated, {"step": self._steps}
         self._steps += 1
         if self._clock() - self._t0 > self.time_limit_s:
             return self._finish(truncated=True, reason="truncated_time", obs=self._obs(error="time_limit"))
